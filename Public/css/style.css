@@ -1,0 +1,14 @@
+body {
+    font-size: 12pt;
+}
+
+ul#pagination {
+    margin: 0;
+    padding: 4px;
+}
+
+ul#pagination li.pagination_item {
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+}

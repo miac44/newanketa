@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>{{ site.title }}</title>
+{% for attr_name, attr_value in site.meta %}
+{% for name, content in attr_value %}
+    <meta {{ attr_name }}="{{ name }}" content="{{ content }}">
+{% endfor %}
+{% endfor %}
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+<h1>{{ site.name }}</h1>
+</header>

@@ -1,0 +1,9 @@
+{{ include('header.html') }}
+{% if user is null %}
+	{{ include('auth_form.html') }}
+{% else %}
+	Привет, {{ user.name }}! <a href="/logout">Выйти</a>
+{% endif %}
+{{ content|raw }}
+{% if pagination is defined %}{{ include('pagination.html') }} {% endif %}
+{{ include('footer.html') }}
