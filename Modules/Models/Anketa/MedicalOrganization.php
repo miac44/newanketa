@@ -13,6 +13,6 @@ class MedicalOrganization extends Model
     ];
     const RELATIONS = [
         'forms'=>['type'=>'manyToMany','model'=>'\Modules\Models\Anketa\Form'],
-    ]
+    ];
 
 }
