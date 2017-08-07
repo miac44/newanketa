@@ -39,11 +39,7 @@ return array (
     'date_format' => 'd.m.Y H:i',
   'routes' =>
   array (
-    '/' => '/Blog/Index',
-    '/post/<1>' => '/Blog/Post(id=<1>)',
-    '/tag/<1>' => '/Blog/Tag(id=<1>)',
-    '/author/<1>' => '/Blog/Author(id=<1>)',
-    '/posts/page/<1>' => '/Blog/PostsPage(page=<1>)',
+    '/' => '/Anketa/Index',
     '/auth' => '/Main/Auth',
     '/logout' => '/Main/Logout',
   ),
