@@ -1,5 +1,11 @@
+{% if user is null %}
 <form name="auth_form" action="/auth" method="POST">
     Логин: <input name="login" placeholder="login" />
     Пароль: <input name="password" type="password" placeholder="password" />
     <button type="submit">Вход</button>
 </form>
+{% else %}
+Привет, {{ user.name }}! <a href="/logout">Выйти</a>
+{% endif %}
+
+

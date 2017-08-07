@@ -18,7 +18,7 @@ class Main extends Controller
 
     protected function actionIndex()
     {
-        $module = new \Modules\Controllers\Blog\Index();
+        $module = new \Modules\Controllers\Anketa\Index();
         $module->view = $this->view;
         return $module->action('Index');
     }
@@ -27,6 +27,11 @@ class Main extends Controller
     {
         \App\Auth::login($post['login'], $post['password']);
         \App\Http::redirectPrevious();
+    }
+
+    protected function actionLogin($data, $post)
+    {
+        $this->view->display('auth_form');
     }
 
     protected function actionLogout()
