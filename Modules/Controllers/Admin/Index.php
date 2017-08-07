@@ -24,7 +24,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionIndex()
     {
-        $this->view->content = "Index";
+        $this->view->content = $this->view->render('Admin\index');
         $this->view->display('admin');
     }
 
