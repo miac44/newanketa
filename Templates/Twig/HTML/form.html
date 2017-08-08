@@ -1,0 +1,9 @@
+<form name="{{ name }}"
+ {% if value is defined %} value="{{ value }}"{% endif %}
+ {% if action is defined %} action="{{ action }}"{% endif %}
+ {% if id is defined %} id="{{ id }}"{% endif %}
+ {% if class is defined %} class="{{ class }}"{% endif %}
+ {% if method is defined %} method="{{ method }}"{% endif %}
+ />
+ {{ include "HTML\submit.button.html "}}
+ </form>

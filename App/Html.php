@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Forms
+class Html
 {
     public $model;
     public $form;
@@ -37,7 +37,7 @@ class Forms
         return $form;
     }
 
-    public function getForm()
+    public function form()
     {
         $this->form = self::formHeader();
         $this->form .= self::formBody();

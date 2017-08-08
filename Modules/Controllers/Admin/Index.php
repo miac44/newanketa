@@ -34,4 +34,14 @@ class Index extends \App\Controllers\Main
         $this->view->content = "Second";
         $this->view->display('admin');
     }
+
+    protected function actionMedicalOrganizationForm()
+    {
+        $html = new \App\Html();
+        $html->model = new \Modules\Models\Anketa\MedicalOrganization();
+        var_dump($html->form());
+        $this->view->content = "Second";
+        $this->view->display('admin');
+    }
+
 }
