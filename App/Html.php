@@ -6,10 +6,11 @@ class Html
 {
     public $model;
     public $form;
+    public $action;
 
     public function formHeader()
     {
-        $form = '<form action="#" name="' . $this->model::TABLE. '">';
+        $form = '<form action="' . $this->action . '" name="' . $this->model::TABLE. '" method="POST">';
         return $form;
     }
     private function formBody()
