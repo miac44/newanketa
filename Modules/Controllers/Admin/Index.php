@@ -39,8 +39,8 @@ class Index extends \App\Controllers\Main
     {
         $html = new \App\Html();
         $html->model = new \Modules\Models\Anketa\MedicalOrganization();
-        var_dump($html->form());
-        $this->view->content = "Second";
+        $this->view->content = '<h1>Добавить МО</h1>';
+        $this->view->content .= $html->form();
         $this->view->display('admin');
     }
 

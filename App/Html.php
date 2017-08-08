@@ -10,12 +10,14 @@ class Html
 
     public function formHeader()
     {
-        $form = '<form action="' . $this->action . '" name="' . $this->model::TABLE. '" method="POST">';
+        $form = '<div class="container"><form action="' . $this->action . '" name="' . $this->model::TABLE. '" method="POST">';
         return $form;
     }
     private function formBody()
     {
         foreach ($this->model::COLUMNS as $k=>$v){
+            $form .= '<div clas="row"><div class="col-md-4"></div>';
+            $form .= '<div class="col-md-4">';
             switch ($v['type']){
                 case 'text':
                     $form .= '<textarea name="' . $k . '"></textarea>';
@@ -28,13 +30,18 @@ class Html
                     $form .= '<input name="' . $k . '" value="" />';
                     break;
             }
+            $form .= '</div>';
+            $form .= '<div class="col-md-4"></div></div>';
         }
         return $form;
     }
     private function formFooter()
     {
-        $form = '<a href="#" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</a>';
-        $form = '</form>';
+        $form .= '<div clas="row"><div class="col-md-4"></div>';
+        $form .= '<div class="col-md-4">';
+        $form .= '<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button>';
+        $form .= '</div><div class="col-md-4"></div></div>';
+        $form .= '</form></div>';
         return $form;
     }
 

@@ -12,3 +12,8 @@ ul#pagination li.pagination_item {
     margin-right: 5px;
     padding: 3px;
 }
+
+div, input, button, textarea {
+	width: 100%;
+	padding: 10px;
+}
