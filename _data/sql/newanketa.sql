@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.4.15.7
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 08, 2017 at 02:10 AM
--- Server version: 5.7.16
--- PHP Version: 7.1.0
+-- Generation Time: Aug 10, 2017 at 01:11 PM
+-- Server version: 5.7.13
+-- PHP Version: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `forms`
 --
 
-CREATE TABLE `forms` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `forms` (
+  `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -40,8 +40,8 @@ CREATE TABLE `forms` (
 -- Table structure for table `medical_organizations`
 --
 
-CREATE TABLE `medical_organizations` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `medical_organizations` (
+  `id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -50,17 +50,61 @@ CREATE TABLE `medical_organizations` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `regions`
+--
+
+CREATE TABLE IF NOT EXISTS `regions` (
+  `id` bigint(20) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `regions`
+--
+
+INSERT INTO `regions` (`id`, `name`, `created_at`, `modified_at`) VALUES
+(1, 'Костромской район', NULL, '2017-08-10 10:11:01'),
+(2, 'Антроповский район', NULL, '2017-08-10 10:11:01'),
+(3, 'Буйский район', NULL, '2017-08-10 10:11:01'),
+(4, 'Волгореченский район', NULL, '2017-08-10 10:11:01'),
+(5, 'Вохомский район', NULL, '2017-08-10 10:11:01'),
+(6, 'Галичский район', NULL, '2017-08-10 10:11:01'),
+(7, 'Кадыйский район', NULL, '2017-08-10 10:11:01'),
+(8, 'Кологривский район', NULL, '2017-08-10 10:11:01'),
+(9, 'Красносельский район', NULL, '2017-08-10 10:11:01'),
+(10, 'Макарьевский район', NULL, '2017-08-10 10:11:01'),
+(11, 'Мантуровский район', NULL, '2017-08-10 10:11:01'),
+(12, 'Межевской район', NULL, '2017-08-10 10:11:01'),
+(13, 'Нейский район', NULL, '2017-08-10 10:11:01'),
+(14, 'Нерехтский район', NULL, '2017-08-10 10:11:01'),
+(15, 'Октябрьский район', NULL, '2017-08-10 10:11:01'),
+(16, 'Островский район', NULL, '2017-08-10 10:11:01'),
+(17, 'Павинский район', NULL, '2017-08-10 10:11:01'),
+(18, 'Парфеньевский район', NULL, '2017-08-10 10:11:01'),
+(19, 'Поназыревский район', NULL, '2017-08-10 10:11:01'),
+(20, 'Пыщугский район', NULL, '2017-08-10 10:11:01'),
+(21, 'Солигалический район', NULL, '2017-08-10 10:11:01'),
+(22, 'Судиславский район', NULL, '2017-08-10 10:11:01'),
+(23, 'Сусанинский район', NULL, '2017-08-10 10:11:01'),
+(24, 'Чухломский район', NULL, '2017-08-10 10:11:01'),
+(25, 'Шарьинский район', NULL, '2017-08-10 10:11:01');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) unsigned NOT NULL,
   `login` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
@@ -76,15 +120,15 @@ INSERT INTO `users` (`id`, `login`, `name`, `password`, `created_at`, `modified_
 -- Table structure for table `user_sessions`
 --
 
-CREATE TABLE `user_sessions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `user_sessions` (
+  `id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `hash` varchar(512) NOT NULL,
   `ua` text NOT NULL,
   `ip` varchar(15) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_sessions`
@@ -111,6 +155,12 @@ ALTER TABLE `medical_organizations`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `regions`
+--
+ALTER TABLE `regions`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -132,22 +182,27 @@ ALTER TABLE `user_sessions`
 -- AUTO_INCREMENT for table `forms`
 --
 ALTER TABLE `forms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `medical_organizations`
 --
 ALTER TABLE `medical_organizations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `regions`
+--
+ALTER TABLE `regions`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
