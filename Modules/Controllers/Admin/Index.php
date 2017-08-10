@@ -37,10 +37,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionMedicalOrganizationForm()
     {
-        $html = new \App\Html();
-        $html->model = new \Modules\Models\Anketa\MedicalOrganization();
-        $this->view->content = '<h1>Добавить МО</h1>';
-        $this->view->content .= $html->form();
+        $this->view->content .= $this->view->render('Admin/formmo');
         $this->view->display('admin');
     }
 
