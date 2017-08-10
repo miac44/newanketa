@@ -7,15 +7,16 @@
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8"><input type="input" name="name" placeholder="Введите имя медицинской организации" required="required" /></div>
+            <div class="col-md-8"><input type="input" name="name" placeholder="Введите имя медицинской организации" required="required" {% if medicalorganization.name is defined %} value="{{ medicalorganization.name }}" {% endif %} /></div>
             <div class="col-md-2"></div>
+            {% if medicalorganization.id is defined %}<input type="hidden" name="id" value="{{ medicalorganization.id }}" />{% endif %} 
         </div>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <select name="region_id" required="required">
+                <select name="region" required="required">
                 {% for region in regions %}            
-                    <option value="{{ region.id }}">{{ region.name }}</option>
+                    <option value="{{ region.id }}"{% if medicalorganization.region.id is defined %}{% if medicalorganization.region.id == region.id %} selected{% endif %}{% endif %}>{{ region.name }}</option>
                 {% endfor%}
                 </select>
             </div>
@@ -26,7 +27,7 @@
             <div class="col-md-8">
                 {% for form in forms %}
                 <div class="checkbox">
-                    <label><input type="checkbox" name="forms[]" value=" {{ form.id }}"> {{ form.name }}</label>
+                    <label><input type="checkbox" name="forms[]" value=" {{ form.id }}" {% if medicalorganization.forms.form.id is defined %}{% if medicalorganization.forms.form.id == form.id %} checked{% endif %}{% endif %}> {{ form.name }}</label>
                 </div>            
                 {% endfor%}
             </div>

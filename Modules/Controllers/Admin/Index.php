@@ -36,8 +36,11 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
-    protected function actionMedicalOrganizationForm()
+    protected function actionMedicalOrganizationForm($data = null)
     {
+        if (!is_null($data['id'])){
+            $this->view->medicalorganization = \Modules\Models\Anketa\MedicalOrganization::findById($data['id']);
+        }
         $this->view->regions = \Modules\Models\Anketa\Region::findAll();
         $this->view->forms = \Modules\Models\Anketa\Form::findAll();
         $this->view->content = $this->view->render('Admin/formmo');
@@ -51,6 +54,11 @@ class Index extends \App\Controllers\Main
         foreach ($medicalOrganization::COLUMNS as $key => $value) {
                 $medicalOrganization->$key = $post[$key];
         };
+        foreach ($medicalOrganization::RELATIONS as $key => $value) {
+                if ($value['type']=='hasOne'){
+                    $medicalOrganization->$key = $post[$key];
+                }
+        };
         $medicalOrganization->save();
         if (!isset($medicalOrganization->id)) {
             $error = true;
@@ -59,11 +67,13 @@ class Index extends \App\Controllers\Main
         foreach ($links as $link) {
             $link->delete();
         }
-        foreach ($post['forms'] as $value) {
-            $link = new \Modules\Models\Anketa\MedicalOrganization_to_Form();
-            $link->form_id = $value;
-            $link->medicalorganization_id = $medicalOrganization->id;
-            $link->insert();
+        if (count($post['forms'])>0){
+            foreach ($post['forms'] as $value) {
+                $link = new \Modules\Models\Anketa\MedicalOrganization_to_Form();
+                $link->form_id = $value;
+                $link->medicalorganization_id = $medicalOrganization->id;
+                $link->insert();
+            }
         }
         if ($error){
             $this->view->content = $this->view->render('Admin\error');
