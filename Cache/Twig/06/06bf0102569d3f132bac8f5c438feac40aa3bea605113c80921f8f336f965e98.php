@@ -16,20 +16,28 @@ class __TwigTemplate_8a7d434ac7d969a82ad87ff16e9e6f7892b72379fbabfdfea850cebd485
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo twig_include($this->env, $context, "footer.scripts.html");
-        echo "
-<footer>
+        echo "<footer>
+<div class=\"navbar-fixed-bottom row-fluid\">
+\t<div class=\"navbar-inner\">
+\t\t<div class=\"container\">
 (c) ";
-        // line 3
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["site"]) || array_key_exists("site", $context) ? $context["site"] : (function () { throw new Twig_Error_Runtime('Variable "site" does not exist.', 3, $this->getSourceContext()); })()), "publish_year", array()), "html", null, true);
-        if ((twig_date_format_filter($this->env, "now", "Y") != twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["site"]) || array_key_exists("site", $context) ? $context["site"] : (function () { throw new Twig_Error_Runtime('Variable "site" does not exist.', 3, $this->getSourceContext()); })()), "publish_year", array()))) {
+        // line 5
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["site"]) || array_key_exists("site", $context) ? $context["site"] : (function () { throw new Twig_Error_Runtime('Variable "site" does not exist.', 5, $this->getSourceContext()); })()), "publish_year", array()), "html", null, true);
+        if ((twig_date_format_filter($this->env, "now", "Y") != twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["site"]) || array_key_exists("site", $context) ? $context["site"] : (function () { throw new Twig_Error_Runtime('Variable "site" does not exist.', 5, $this->getSourceContext()); })()), "publish_year", array()))) {
             echo "-";
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
         }
         echo " ";
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["site"]) || array_key_exists("site", $context) ? $context["site"] : (function () { throw new Twig_Error_Runtime('Variable "site" does not exist.', 3, $this->getSourceContext()); })()), "copyright", array()), "html", null, true);
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["site"]) || array_key_exists("site", $context) ? $context["site"] : (function () { throw new Twig_Error_Runtime('Variable "site" does not exist.', 5, $this->getSourceContext()); })()), "copyright", array()), "html", null, true);
         echo "
+\t\t</div>
+\t</div>
+</div>
 </footer>
+";
+        // line 10
+        echo twig_include($this->env, $context, "footer.scripts.html");
+        echo "
 </body>
 </html>";
     }
@@ -46,15 +54,21 @@ class __TwigTemplate_8a7d434ac7d969a82ad87ff16e9e6f7892b72379fbabfdfea850cebd485
 
     public function getDebugInfo()
     {
-        return array (  24 => 3,  19 => 1,);
+        return array (  39 => 10,  25 => 5,  19 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Twig_Source("{{ include('footer.scripts.html') }}
-<footer>
+        return new Twig_Source("<footer>
+<div class=\"navbar-fixed-bottom row-fluid\">
+\t<div class=\"navbar-inner\">
+\t\t<div class=\"container\">
 (c) {{ site.publish_year}}{% if \"now\"|date(\"Y\") != site.publish_year %}-{{ \"now\"|date(\"Y\") }}{% endif %} {{ site.copyright }}
+\t\t</div>
+\t</div>
+</div>
 </footer>
+{{ include('footer.scripts.html') }}
 </body>
 </html>", "footer.html", "D:\\OpenServer\\domains\\newanketa\\Templates\\Twig\\footer.html");
     }

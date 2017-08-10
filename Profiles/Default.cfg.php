@@ -46,7 +46,7 @@ return array (
     '/admin' => '/Admin/Index',
     '/admin/second' => '/Admin/Second',
     '/admin/medicalorganization/form' => '/Admin/MedicalOrganizationForm',
-    '/admin/medicalorganization/add' => '/Admin/MedicalOrganizationAdd',
+    '/admin/medicalorganization/save' => '/Admin/MedicalOrganizationSave',
   ),
 
 );

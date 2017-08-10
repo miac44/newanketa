@@ -17,7 +17,7 @@ class __TwigTemplate_c07ec3507e32216634e7510c6a4b238fd66ff6587c89c7a124e030c2b69
     {
         // line 1
         echo "<div class=\"container\">
-    <form name=\"medicalorganization\" action=\"/admin/medicalorganization/add\" method=\"post\">
+    <form name=\"medicalorganization\" action=\"/admin/medicalorganization/save\" method=\"post\">
         <div class=\"row\">
             <div class=\"col-md-2\"></div>
             <div class=\"col-md-8 text-center\"><h2>Добавить МО<h2></div>
@@ -31,7 +31,7 @@ class __TwigTemplate_c07ec3507e32216634e7510c6a4b238fd66ff6587c89c7a124e030c2b69
         <div class=\"row\">
             <div class=\"col-md-2\"></div>
             <div class=\"col-md-8\">
-                <select name=\"region\" required=\"required\">
+                <select name=\"region_id\" required=\"required\">
                 ";
         // line 17
         $context['_parent'] = $context;
@@ -109,7 +109,7 @@ class __TwigTemplate_c07ec3507e32216634e7510c6a4b238fd66ff6587c89c7a124e030c2b69
     public function getSourceContext()
     {
         return new Twig_Source("<div class=\"container\">
-    <form name=\"medicalorganization\" action=\"/admin/medicalorganization/add\" method=\"post\">
+    <form name=\"medicalorganization\" action=\"/admin/medicalorganization/save\" method=\"post\">
         <div class=\"row\">
             <div class=\"col-md-2\"></div>
             <div class=\"col-md-8 text-center\"><h2>Добавить МО<h2></div>
@@ -123,7 +123,7 @@ class __TwigTemplate_c07ec3507e32216634e7510c6a4b238fd66ff6587c89c7a124e030c2b69
         <div class=\"row\">
             <div class=\"col-md-2\"></div>
             <div class=\"col-md-8\">
-                <select name=\"region\" required=\"required\">
+                <select name=\"region_id\" required=\"required\">
                 {% for region in regions %}            
                     <option value=\"{{ region.id }}\">{{ region.name }}</option>
                 {% endfor%}

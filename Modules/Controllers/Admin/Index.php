@@ -43,9 +43,33 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
-    protected function actionMedicalOrganizationAdd($data, $post)
+    protected function actionMedicalOrganizationSave($data, $post)
     {
-        var_dump($post);
+        $error = false;
+        $medicalOrganization = new \Modules\Models\Anketa\MedicalOrganization();
+        foreach ($medicalOrganization::COLUMNS as $key => $value) {
+                $medicalOrganization->$key = $post[$key];
+        };
+        $medicalOrganization->save();
+        if (!isset($medicalOrganization->id)) {
+            $error = true;
+        };
+        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['medicalorganization_id = '=>$medicalOrganization->id]);
+        foreach ($links as $link) {
+            $link->delete();
+        }
+        foreach ($post['forms'] as $value) {
+            $link = new \Modules\Models\Anketa\MedicalOrganization_to_Form();
+            $link->form_id = $value;
+            $link->medicalorganization_id = $medicalOrganization->id;
+            $link->insert();
+        }
+        if ($error){
+            $this->view->content = $this->view->render('Admin\error');
+        } else {
+            $this->view->content = $this->view->render('Admin\ok');
+        }
+        $this->view->display('admin');
     }
 
 }
