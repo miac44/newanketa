@@ -72,4 +72,23 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
+    protected function actionMedicalOrganizationList()
+    {
+        $this->view->medicalorganizations = \Modules\Models\Anketa\MedicalOrganization::findAll();
+        $this->view->content = $this->view->render('Admin\listmo');
+        $this->view->display('admin');
+    }
+
+    protected function actionMedicalOrganizationDelete($data)
+    {
+        $medicalorganization = \Modules\Models\Anketa\MedicalOrganization::findById($data['id']);
+        $medicalorganization->delete();
+        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['medicalorganization_id = '=>$data['id']]);
+        foreach ($links as $link) {
+            $link->delete();
+        }
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
 }

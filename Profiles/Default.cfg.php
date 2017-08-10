@@ -47,6 +47,9 @@ return array (
     '/admin/second' => '/Admin/Second',
     '/admin/medicalorganization/form' => '/Admin/MedicalOrganizationForm',
     '/admin/medicalorganization/save' => '/Admin/MedicalOrganizationSave',
+    '/admin/medicalorganization/list' => '/Admin/MedicalOrganizationList',
+    '/admin/medicalorganization/delete/<1>' => '/Admin/MedicalOrganizationDelete(id=<1>)',
+    '/admin/medicalorganization/edit/<1>' => '/Admin/MedicalOrganizationEdit(id=<1>)',
   ),
 
 );

@@ -16,7 +16,8 @@ class __TwigTemplate_805add9c2c7f1c831c9764012e51ac6b81efb4c2a18b55f4725f278a66b
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<a href=\"/admin/medicalorganization/form\" class=\"btn btn-lg btn-default\"><span class=\"glyphicon glyphicon-plus\"></span>Добавить МО</a>";
+        echo "<a href=\"/admin/medicalorganization/form\" class=\"btn btn-lg btn-default\"><span class=\"glyphicon glyphicon-plus\"></span>Добавить МО</a>
+<a href=\"/admin/medicalorganization/list\" class=\"btn btn-lg btn-default\"><span class=\"glyphicon glyphicon-list\"></span>Список МО</a>";
     }
 
     public function getTemplateName()
@@ -31,6 +32,7 @@ class __TwigTemplate_805add9c2c7f1c831c9764012e51ac6b81efb4c2a18b55f4725f278a66b
 
     public function getSourceContext()
     {
-        return new Twig_Source("<a href=\"/admin/medicalorganization/form\" class=\"btn btn-lg btn-default\"><span class=\"glyphicon glyphicon-plus\"></span>Добавить МО</a>", "Admin\\index.html", "D:\\OpenServer\\domains\\newanketa\\Modules\\Views\\Twig\\Admin\\index.html");
+        return new Twig_Source("<a href=\"/admin/medicalorganization/form\" class=\"btn btn-lg btn-default\"><span class=\"glyphicon glyphicon-plus\"></span>Добавить МО</a>
+<a href=\"/admin/medicalorganization/list\" class=\"btn btn-lg btn-default\"><span class=\"glyphicon glyphicon-list\"></span>Список МО</a>", "Admin\\index.html", "D:\\OpenServer\\domains\\newanketa\\Modules\\Views\\Twig\\Admin\\index.html");
     }
 }

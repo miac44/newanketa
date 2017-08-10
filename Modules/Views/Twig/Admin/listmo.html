@@ -1,0 +1,12 @@
+<div class="container">
+{% for medicalorganization in medicalorganizations %}
+<div class="row">
+    <div class="col-md-2">{{ medicalorganization.id }}</div>
+    <div class="col-md-7">{{ medicalorganization.name }}</div>
+    <div class="col-md-3">
+	    <a href="/admin/medicalorganization/edit/{{ medicalorganization.id }}" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-edit"></span>Редактировать</a>
+	    <a href="/admin/medicalorganization/delete/{{ medicalorganization.id }}"  class="btn btn-block btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>
+	</div>
+</div>
+{% endfor %}
+</div>
