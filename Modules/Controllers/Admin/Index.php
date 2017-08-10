@@ -37,8 +37,15 @@ class Index extends \App\Controllers\Main
 
     protected function actionMedicalOrganizationForm()
     {
-        $this->view->content .= $this->view->render('Admin/formmo');
+        $this->view->regions = \Modules\Models\Anketa\Region::findAll();
+        $this->view->forms = \Modules\Models\Anketa\Form::findAll();
+        $this->view->content = $this->view->render('Admin/formmo');
         $this->view->display('admin');
+    }
+
+    protected function actionMedicalOrganizationAdd($data, $post)
+    {
+        var_dump($post);
     }
 
 }

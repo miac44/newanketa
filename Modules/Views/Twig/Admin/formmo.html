@@ -7,7 +7,29 @@
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8"><input type="input" name="name" /></div>
+            <div class="col-md-8"><input type="input" name="name" placeholder="Введите имя медицинской организации" required="required" /></div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <select name="region" required="required">
+                {% for region in regions %}            
+                    <option value="{{ region.id }}">{{ region.name }}</option>
+                {% endfor%}
+                </select>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {% for form in forms %}
+                <div class="checkbox">
+                    <label><input type="checkbox" name="forms[]" value=" {{ form.id }}"> {{ form.name }}</label>
+                </div>            
+                {% endfor%}
+            </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">

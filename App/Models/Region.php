@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Models\Anketa;
+namespace App\Models;
 
 use App\Model;
 

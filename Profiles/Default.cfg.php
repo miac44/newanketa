@@ -42,6 +42,11 @@ return array (
     '/' => '/Anketa/Index',
     '/auth' => '/Main/Auth',
     '/logout' => '/Main/Logout',
+    '/login' => '/Main/Login',
+    '/admin' => '/Admin/Index',
+    '/admin/second' => '/Admin/Second',
+    '/admin/medicalorganization/form' => '/Admin/MedicalOrganizationForm',
+    '/admin/medicalorganization/add' => '/Admin/MedicalOrganizationAdd',
   ),
 
 );
