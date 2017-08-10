@@ -13,6 +13,7 @@ class Index extends \App\Controllers\Main
         parent::beforeAction();
         if (is_null($this->view->user)) {
             \App\Http::redirect("/login");
+            die();
         }
         $menu = [];
         foreach (\App\Config::instance()->menu as $k=>$v){
