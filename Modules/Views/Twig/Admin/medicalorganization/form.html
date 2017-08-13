@@ -27,7 +27,7 @@
             <div class="col-md-8">
                 {% for form in forms %}
                 <div class="checkbox">
-                    <label><input type="checkbox" name="forms[]" value=" {{ form.id }}"{% for checkedMedicalOrganization in medicalorganization.forms %}{% if checkedMedicalOrganization.id is defined %}{% if checkedMedicalOrganization.id == form.id %} checked{% endif %}{% endif %}{% endfor %}> {{ form.name }}</label>
+                    <label><input type="checkbox" name="forms[]" value=" {{ form.id }}"{%  if medicalorganization.forms is defined %}{% for checkedMedicalOrganization in medicalorganization.forms %}{% if checkedMedicalOrganization.id == form.id %} checked{% endif %}{% endfor %}{% endif %}> {{ form.name }}</label>
                 </div>
                 {% endfor%}
             </div>

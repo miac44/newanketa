@@ -43,7 +43,7 @@ class Index extends \App\Controllers\Main
         }
         $this->view->regions = \Modules\Models\Anketa\Region::findAll();
         $this->view->forms = \Modules\Models\Anketa\Form::findAll();
-        $this->view->content = $this->view->render('Admin/formmo');
+        $this->view->content = $this->view->render('Admin\medicalorganization\form');
         $this->view->display('admin');
     }
 
@@ -82,7 +82,7 @@ class Index extends \App\Controllers\Main
     protected function actionMedicalOrganizationList()
     {
         $this->view->medicalorganizations = \Modules\Models\Anketa\MedicalOrganization::findAll();
-        $this->view->content = $this->view->render('Admin\listmo');
+        $this->view->content = $this->view->render('Admin\medicalorganization\list');
         $this->view->display('admin');
     }
 
