@@ -56,7 +56,8 @@ class Index extends \App\Controllers\Main
         };
         foreach ($medicalOrganization::RELATIONS as $key => $value) {
                 if ($value['type']=='hasOne'){
-                    $medicalOrganization->$key = $post[$key];
+                    $hasOneElement = $value['id'] ?? $key . '_id';
+                    $medicalOrganization->$hasOneElement = $post[$key];
                 }
         };
         $medicalOrganization->save();
