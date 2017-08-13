@@ -148,7 +148,7 @@ class Index extends \App\Controllers\Main
     protected function actionQuestionForm($data = null)
     {
         if (!is_null($data['id'])){
-            $this->view->form = \Modules\Models\Anketa\Question::findById($data['id']);
+            $this->view->question = \Modules\Models\Anketa\Question::findById($data['id']);
         }
         $this->view->form_id = $data['form_id'];
         $this->view->content = $this->view->render('Admin\question\form');
@@ -158,8 +158,8 @@ class Index extends \App\Controllers\Main
     protected function actionQuestionSave($data, $post)
     {
         $question = new \Modules\Models\Anketa\Question();
-        if (isset(data['id'])) {
-            $question->id = $data['id'];
+        if (isset($post['id'])) {
+            $question->id = $post['id'];
         };
         foreach ($question::COLUMNS as $key => $value) {
             $question->$key = $post[$key];

@@ -15,8 +15,8 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <select name="type" required="required">
-                    <option value="radio">Единственный выбор</option>
-                    <option value="checkbox">Множественный выбор</option>
+                    <option value="radio"{% if question.type is defined %}{% if question.type == 'radio' %} selected{% endif %}{% endif %}>Единственный выбор</option>
+                    <option value="checkbox"{% if question.type is defined %}{% if question.type == 'checkbox' %} selected{% endif %}{% endif %}>Множественный выбор</option>
                 </select>
             </div>
             <div class="col-md-2"></div>
@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="checkbox"><label><input type="checkbox" name="required" value="1"> Необходимый</label></div>
+                <div class="checkbox"><label><input type="checkbox" name="required" value="1"{% if question.required is defined %}{% if question.required is not null %} checked{% endif %}{% endif %} /> Необходимый</label></div>
             </div>
             <div class="col-md-2"></div>
         </div>

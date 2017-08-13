@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 13, 2017 at 09:02 PM
+-- Generation Time: Aug 13, 2017 at 09:37 PM
 -- Server version: 5.7.16
 -- PHP Version: 7.1.0
 
@@ -214,8 +214,7 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `form_id`, `text`, `type`, `required`, `parent_id`, `created_at`, `modified_at`) VALUES
-(1, 3, 'sfgsfdsf', 'radio', NULL, NULL, '2017-08-13 17:53:10', '2017-08-13 17:53:10'),
-(2, 3, 'множественый выбор', 'checkbox', NULL, NULL, '2017-08-13 17:53:45', '2017-08-13 17:53:45'),
+(2, 3, 'множественый быбор', 'checkbox', NULL, NULL, '2017-08-13 17:53:45', '2017-08-13 17:53:45'),
 (3, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:53:57', '2017-08-13 17:53:57'),
 (4, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:54:44', '2017-08-13 17:54:44'),
 (5, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:55:08', '2017-08-13 17:55:08'),
@@ -223,8 +222,12 @@ INSERT INTO `questions` (`id`, `form_id`, `text`, `type`, `required`, `parent_id
 (7, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:55:53', '2017-08-13 17:55:53'),
 (8, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:55:57', '2017-08-13 17:55:57'),
 (9, 3, 'ыаываываыeqe', 'checkbox', 1, NULL, '2017-08-13 17:57:58', '2017-08-13 17:57:58'),
-(10, 3, 'ыаываываыeqe', 'checkbox', 1, NULL, '2017-08-13 17:58:18', '2017-08-13 17:58:18'),
-(11, 3, 'ыаываываыeqe', 'radio', 1, NULL, '2017-08-13 17:58:39', '2017-08-13 17:58:39');
+(10, 3, 'Еще 10-й вопрос', 'radio', 1, NULL, '2017-08-13 17:58:18', '2017-08-13 17:58:18'),
+(12, 3, 'Это 10-й вопрос. Множественный выбор с необходимостью', 'checkbox', 1, NULL, '2017-08-13 18:31:11', '2017-08-13 18:31:11'),
+(13, 3, 'Это 10-й вопрос. Множественный выбор с необходимостью', 'radio', NULL, NULL, '2017-08-13 18:31:25', '2017-08-13 18:31:25'),
+(14, 3, 'ыаываываыeqe', 'radio', 1, NULL, '2017-08-13 18:33:55', '2017-08-13 18:33:55'),
+(15, 3, 'Еще 10-й вопрос', 'checkbox', NULL, NULL, '2017-08-13 18:35:30', '2017-08-13 18:35:30'),
+(16, 1, 'йкйцк', 'checkbox', 1, NULL, '2017-08-13 18:37:14', '2017-08-13 18:37:14');
 
 -- --------------------------------------------------------
 
@@ -389,7 +392,7 @@ ALTER TABLE `medical_organizations`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `regions`
 --
