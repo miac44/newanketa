@@ -50,6 +50,11 @@ return array (
     '/admin/medicalorganization/list' => '/Admin/MedicalOrganizationList',
     '/admin/medicalorganization/delete/<1>' => '/Admin/MedicalOrganizationDelete(id=<1>)',
     '/admin/medicalorganization/edit/<1>' => '/Admin/MedicalOrganizationForm(id=<1>)',
+    '/admin/form/form' => '/Admin/FormForm',
+    '/admin/form/save' => '/Admin/FormSave',
+    '/admin/form/list' => '/Admin/FormList',
+    '/admin/form/delete/<1>' => '/Admin/FormDelete(id=<1>)',
+    '/admin/form/edit/<1>' => '/Admin/FormForm(id=<1>)',
   ),
 
 );

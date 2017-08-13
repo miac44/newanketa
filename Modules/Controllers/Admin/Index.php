@@ -98,4 +98,52 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
+    protected function actionFormForm($data = null)
+    {
+        if (!is_null($data['id'])){
+            $this->view->form = \Modules\Models\Anketa\Form::findById($data['id']);
+        }
+        $this->view->content = $this->view->render('Admin\form\form');
+        $this->view->display('admin');
+    }
+
+    protected function actionFormSave($data, $post)
+    {
+        $form = new \Modules\Models\Anketa\Form();
+        if (isset($post['id'])) {
+            $form->id = $post['id'];
+        };
+        foreach ($form::COLUMNS as $key => $value) {
+            $form->$key = $post[$key];
+        };
+        foreach ($form::RELATIONS as $key => $value) {
+            if ($value['type']=='hasOne'){
+                $hasOneElement = $value['id'] ?? $key . '_id';
+                $form->$hasOneElement = $post[$key];
+            }
+        };
+        $form->save();
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
+    protected function actionFormList()
+    {
+        $this->view->forms = \Modules\Models\Anketa\Form::findAll();
+        $this->view->content = $this->view->render('Admin\form\list');
+        $this->view->display('admin');
+    }
+
+    protected function actionFormDelete($data)
+    {
+        $form = \Modules\Models\Anketa\Form::findById($data['id']);
+        $form->delete();
+        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['form_id = '=>$data['id']]);
+        foreach ($links as $link) {
+            $link->delete();
+        }
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
 }

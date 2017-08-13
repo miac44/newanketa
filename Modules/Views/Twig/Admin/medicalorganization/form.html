@@ -1,5 +1,6 @@
 <div class="container">
     <form name="medicalorganization" action="/admin/medicalorganization/save" method="post">
+        {% if medicalorganization.id is defined %}<input type="hidden" name="id" value="{{ medicalorganization.id }}" />{% endif %}
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8 text-center"><h2>Добавить МО<h2></div>
@@ -9,7 +10,6 @@
             <div class="col-md-2"></div>
             <div class="col-md-8"><input type="input" name="name" placeholder="Введите имя медицинской организации" required="required" {% if medicalorganization.name is defined %} value="{{ medicalorganization.name }}" {% endif %} /></div>
             <div class="col-md-2"></div>
-            {% if medicalorganization.id is defined %}<input type="hidden" name="id" value="{{ medicalorganization.id }}" />{% endif %} 
         </div>
         <div class="row">
             <div class="col-md-2"></div>
