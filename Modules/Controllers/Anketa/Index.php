@@ -10,6 +10,8 @@ class Index extends \App\Controllers\Main
 
     protected function actionIndex()
     {
-        echo "Index";
+        $this->view->forms = \Modules\Models\Anketa\Form::findAll();
+        $this->view->content = $this->view->render('Anketa\index');
+        $this->view->display('index');
     }
 }
