@@ -29,7 +29,6 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
-
     protected function actionSecond()
     {
         $this->view->content = "Second";
@@ -145,5 +144,4 @@ class Index extends \App\Controllers\Main
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
     }
-
 }
