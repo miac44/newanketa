@@ -1,0 +1,38 @@
+<div class="container">
+    <form name="question" action="/admin/question/form/{{ form_id }}/save" method="post">
+        {% if question.id is defined %}<input type="hidden" name="id" value="{{ question.id }}" />{% endif %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center"><h2>Добавить вопрос<h2></div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8"><textarea name="text" placeholder="Введите вопрос" required="required">{% if question.text is defined %}{{ question.text }}{% endif %}</textarea></div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <select name="type" required="required">
+                    <option value="radio">Единственный выбор</option>
+                    <option value="checkbox">Множественный выбор</option>
+                </select>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="checkbox"><label><input type="checkbox" name="required" value="1"> Необходимый</label></div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8"><button type="submit" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button></div>
+            <div class="col-md-2"></div>
+        </div>
+    </form>
+</div>
+

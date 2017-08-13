@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 13, 2017 at 06:24 PM
+-- Generation Time: Aug 13, 2017 at 09:02 PM
 -- Server version: 5.7.16
 -- PHP Version: 7.1.0
 
@@ -200,13 +200,31 @@ INSERT INTO `medical_organizations` (`id`, `name`, `region_id`, `created_at`, `m
 
 CREATE TABLE `questions` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `form_id` bigint(20) NOT NULL,
   `text` text NOT NULL,
   `type` varchar(255) NOT NULL,
-  `required` bigint(1) NOT NULL,
+  `required` bigint(1) DEFAULT NULL,
   `parent_id` bigint(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `form_id`, `text`, `type`, `required`, `parent_id`, `created_at`, `modified_at`) VALUES
+(1, 3, 'sfgsfdsf', 'radio', NULL, NULL, '2017-08-13 17:53:10', '2017-08-13 17:53:10'),
+(2, 3, 'множественый выбор', 'checkbox', NULL, NULL, '2017-08-13 17:53:45', '2017-08-13 17:53:45'),
+(3, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:53:57', '2017-08-13 17:53:57'),
+(4, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:54:44', '2017-08-13 17:54:44'),
+(5, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:55:08', '2017-08-13 17:55:08'),
+(6, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:55:22', '2017-08-13 17:55:22'),
+(7, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:55:53', '2017-08-13 17:55:53'),
+(8, 3, 'необходимый', 'checkbox', NULL, NULL, '2017-08-13 17:55:57', '2017-08-13 17:55:57'),
+(9, 3, 'ыаываываыeqe', 'checkbox', 1, NULL, '2017-08-13 17:57:58', '2017-08-13 17:57:58'),
+(10, 3, 'ыаываываыeqe', 'checkbox', 1, NULL, '2017-08-13 17:58:18', '2017-08-13 17:58:18'),
+(11, 3, 'ыаываываыeqe', 'radio', 1, NULL, '2017-08-13 17:58:39', '2017-08-13 17:58:39');
 
 -- --------------------------------------------------------
 
@@ -371,7 +389,7 @@ ALTER TABLE `medical_organizations`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `regions`
 --

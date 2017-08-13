@@ -144,4 +144,54 @@ class Index extends \App\Controllers\Main
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
     }
+
+    protected function actionQuestionForm($data = null)
+    {
+        if (!is_null($data['id'])){
+            $this->view->form = \Modules\Models\Anketa\Question::findById($data['id']);
+        }
+        $this->view->form_id = $data['form_id'];
+        $this->view->content = $this->view->render('Admin\question\form');
+        $this->view->display('admin');
+    }
+
+    protected function actionQuestionSave($data, $post)
+    {
+        $question = new \Modules\Models\Anketa\Question();
+        if (isset($post['id'])) {
+            $question->id = $post['id'];
+        };
+        foreach ($question::COLUMNS as $key => $value) {
+            $question->$key = $post[$key];
+        };
+        foreach ($question::RELATIONS as $key => $value) {
+            if ($value['type']=='hasOne'){
+                $hasOneElement = $value['id'] ?? $key . '_id';
+                $question->$hasOneElement = $post[$key];
+            }
+        };
+        $question->form_id = $data['form_id'];
+        $question->save();
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
+    protected function actionQuestionList($data)
+    {
+        $this->view->questions = \Modules\Models\Anketa\Question::findAll(['form_id = ' => $data['form_id']]);
+        $this->view->content = $this->view->render('Admin\question\list');
+        $this->view->display('admin');
+    }
+
+    protected function actionQuestionDelete($data)
+    {
+        $question = \Modules\Models\Anketa\Question::findById($data['id']);
+        $question -> delete();
+//        TODO
+//        удалить ответы на вопросы
+//        пересчитать информацию
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
 }
