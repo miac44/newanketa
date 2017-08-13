@@ -56,7 +56,7 @@ return array (
     '/admin/form/delete/<1>' => '/Admin/FormDelete(id=<1>)',
     '/admin/form/edit/<1>' => '/Admin/FormForm(id=<1>)',
     '/admin/question/form/<1>/form' => '/Admin/QuestionForm(form_id=<1>)',
-    '/admin/question/form/<1>/list' => '/Admin/QuestionList(form_id=<1>',
+    '/admin/question/form/<1>/list' => '/Admin/QuestionList(form_id=<1>)',
     '/admin/question/form/<1>/save' => '/Admin/QuestionSave(form_id=<1>)',
     '/admin/question/form/<1>/delete/<2>' => '/Admin/QuestionDelete(form_id=<1>,id=<2>)',
     '/admin/question/form/<1>/edit/<2>' => '/Admin/QuestionForm(form_id=<1>,id=<2>)',
