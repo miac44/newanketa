@@ -1,0 +1,11 @@
+<h2 class="text-center">Список анкет</h2>
+<div class="container">
+    {% for form in forms %}
+        <div class="row">
+            <a href="/form/{{ form.id }}">
+                <div class="col-md-4">{{ form.name }}</div>
+                <div class="col-md-8">{{ form.description }}</div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
