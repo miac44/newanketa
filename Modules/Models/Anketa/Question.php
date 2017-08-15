@@ -16,7 +16,7 @@ class Question extends Model
     const RELATIONS = [
         'form'=>['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Form'],
         'parent'=>['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Question'],
-        'answer'=>['type'=>'hasMany','model'=>'\Modules\Models\Anketa\Answer'],
+        'answers'=>['type'=>'hasMany','model'=>'\Modules\Models\Anketa\Answer'],
     ];
 
 }
