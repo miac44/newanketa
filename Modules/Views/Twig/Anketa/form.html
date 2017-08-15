@@ -5,9 +5,10 @@
 <div class="row">
 	{{ question.text }}
 	<div class="row">
-			{% for answer in question.answers %}
-					{{ answer.text }}
-			{% endfor %}
+		{% for answer in question.answers %}
+			{% if question.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
+			{% if question.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
+		{% endfor %}
 	</div>
 </div>
 {% endfor %}

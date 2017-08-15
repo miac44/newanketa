@@ -13,7 +13,7 @@ ul#pagination li.pagination_item {
     padding: 3px;
 }
 
-div, input, button, textarea {
+div, input[type="input"], button, textarea {
 	width: 100%;
 	padding: 10px;
 }
