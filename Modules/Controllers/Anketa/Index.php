@@ -14,4 +14,12 @@ class Index extends \App\Controllers\Main
         $this->view->content = $this->view->render('Anketa\index');
         $this->view->display('index');
     }
+
+    protected function actionForm($data)
+    {
+        $this->view->form = \Modules\Models\Anketa\Form::findById($data['id']);
+        $this->view->content = $this->view->render('Anketa\form');
+        $this->view->display('index');
+    }
+
 }

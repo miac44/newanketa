@@ -60,6 +60,10 @@ return array (
     '/admin/question/form/<1>/save' => '/Admin/QuestionSave(form_id=<1>)',
     '/admin/question/form/<1>/delete/<2>' => '/Admin/QuestionDelete(form_id=<1>,id=<2>)',
     '/admin/question/form/<1>/edit/<2>' => '/Admin/QuestionForm(form_id=<1>,id=<2>)',
+    '/admin/answer/question/<1>/form' => '/Admin/AnswerForm(question_id=<1>)',
+    '/admin/answer/question/<1>/save' => '/Admin/AnswerSave(question_id=<1>)',
+    '/admin/answer/question/<1>/edit' => '/Admin/AnswerForm(question_id=<1>)',
+    '/form/<1>' => '/Anketa/Form(id=<1>)',
     ),
 
 );

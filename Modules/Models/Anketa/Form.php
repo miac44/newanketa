@@ -15,6 +15,7 @@ class Form extends Model
     ];
     const RELATIONS = [
         'medicalOrganization'=>['type'=>'manyToMany','model'=>'\Modules\Models\Anketa\MedicalOrganization'],
+        'questions'=>['type'=>'hasMany','model'=>'\Modules\Models\Anketa\Question'],
     ];
 
 }

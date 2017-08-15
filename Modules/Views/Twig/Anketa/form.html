@@ -1,0 +1,14 @@
+<h1 class="text-center">{{form.name}}</h1>
+<h2 class="text-center">{{form.description}}</h2>
+<div class="container">
+{% for question in form.questions %}
+<div class="row">
+	{{ question.text }}
+	<div class="row">
+			{% for answer in question.answer %}
+					{{ answer.text }}
+			{% endfor %}
+	</div>
+</div>
+{% endfor %}
+</div>
