@@ -3,11 +3,10 @@
 <div class="container">
 {% for question in form.questions %}
 <div class="row">
-	{{ question.text }} ---- 		{{ dump(question.hasChildren)}}
-
+	{{ question.text }}
 	<div class="row">
 		{% for answer in question.answers %}
-			{% if question.parent_id is null %}
+			{% if question.hasChildren %}
 			{% if question.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
 			{% if question.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
 			{% endif %}
