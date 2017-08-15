@@ -19,4 +19,9 @@ class Question extends Model
         'answers'=>['type'=>'hasMany','model'=>'\Modules\Models\Anketa\Answer'],
     ];
 
+    public static function hasChildren($id)
+    {
+        return \Modules\Models\Anketa\Question::where(['parent_id' => $id]);
+    }
+
 }
