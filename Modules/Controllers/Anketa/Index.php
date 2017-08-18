@@ -8,6 +8,15 @@ use App\Config;
 class Index extends \App\Controllers\Main
 {
 
+    protected function beforeAction()
+    {
+        parent::beforeAction();
+        if (is_null($this->view->user)) {
+            \App\Http::redirect("/login");
+            die();
+        }
+    }
+
     protected function actionIndex()
     {
         $this->view->forms = \Modules\Models\Anketa\Form::findAll();

@@ -338,10 +338,10 @@ abstract class Model
     public static function whereOneElement($data = ['1=1'])
     {
         $res = self::where($data);
-        if (is_array($res)){
+        if (is_array($res) && isset($res[0])){
             return $res[0];
         } else {
-            return $res;
+            return null;
         }
     }
 
