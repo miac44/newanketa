@@ -7,6 +7,11 @@ abstract class Tree extends Model
 
     public function __get($k)
     {
+        $res = parent::__get($k);
+        if (!is_null($res)){
+            return $res;
+        }
+
         if ($k == "parent"){
             if (isset($this->parent_id)){
                 return self::findById($this->parent_id);
@@ -23,16 +28,19 @@ abstract class Tree extends Model
         if ($k == "children"){
             return self::where(['parent_id = ' => $this->id]);
         }
-
-        parent::__get($k);
+        return null;
     }
 
     public function __isset($k)
     {
+        $res = parent::__isset($k);
+        if (true === $res){
+            return $res;
+        }    
         if ($k == "hasChildren" || $k == "parent" || $k == "children"){
             return true;
         }
-        parent::__isset($k);
+        return false;
     }
 
 }
