@@ -17,6 +17,7 @@ class Question extends Tree
         'form'=>['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Form'],
         'parent'=>['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Question'],
         'answers'=>['type'=>'hasMany','model'=>'\Modules\Models\Anketa\Answer'],
+        'answer_parent'=>['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Answer'],
     ];
 
 
