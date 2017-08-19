@@ -150,7 +150,7 @@ class Index extends \App\Controllers\Main
         if (!is_null($data['id'])){
             $this->view->question = \Modules\Models\Anketa\Question::findById($data['id']);
         }
-        $this->view->form_id = $data['form_id'];
+        $this->view->form = \Modules\Models\Anketa\Form::findById($data['form_id']);
         $this->view->content = $this->view->render('Admin\question\form');
         $this->view->display('admin');
     }
