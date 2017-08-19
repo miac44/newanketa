@@ -8,10 +8,6 @@ use App\Config;
 
 class Main extends Controller
 {
-  protected function fuk()
-  {
-    echo "this is code";
-  }
     protected function beforeAction()
     {
         $this->view->site = Config::instance()->site;
