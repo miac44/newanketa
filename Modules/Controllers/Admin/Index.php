@@ -147,7 +147,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionQuestionForm($data = null)
     {
-        if (!is_null($data['id'])){
+        if (isset($data['id']) && !is_null($data['id'])){
             $this->view->question = \Modules\Models\Anketa\Question::findById($data['id']);
         }
         $this->view->form = \Modules\Models\Anketa\Form::findById($data['form_id']);
@@ -162,15 +162,22 @@ class Index extends \App\Controllers\Main
             $question->id = $post['id'];
         };
         foreach ($question::COLUMNS as $key => $value) {
-            $question->$key = $post[$key];
+            if (isset($post[$key])){
+                $question->$key = $post[$key];
+            }
         };
         foreach ($question::RELATIONS as $key => $value) {
-            if ($value['type']=='hasOne'){
-                $hasOneElement = $value['id'] ?? $key . '_id';
-                $question->$hasOneElement = $post[$key];
+            if (isset($post[$key])){
+                if ($value['type']=='hasOne'){
+                    $hasOneElement = $value['id'] ?? $key . '_id';
+                    $question->$hasOneElement = $post[$key];
+                }
             }
         };
         $question->form_id = $data['form_id'];
+        if ($question->parent_id == 0){
+            $question->parent_id = null;
+        }
         $question->save();
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');

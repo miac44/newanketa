@@ -26,10 +26,13 @@
             <div class="col-md-8">
                 <div class="select">
                     <label>Родительский вопрос</label>
-                    <select name="parent_id" style="width: 100%">
+                    <select name="parent" style="width: 100%">
                         <option value="0">Нет</option>
                         {% for parentQuestion in form.questions %}
+                        {% if question.id is defined %}
                         {% if parentQuestion.id != question.id %}
+                        <option value="{{ parentQuestion.id}}"{% if question.parent_id is defined %}{% if question.parent_id == parentQuestion.id %} selected{% endif %}{% endif %}>{{ parentQuestion.text }}</option>                        {% endif %}
+                        {% else %}
                         <option value="{{ parentQuestion.id}}"{% if question.parent_id is defined %}{% if question.parent_id == parentQuestion.id %} selected{% endif %}{% endif %}>{{ parentQuestion.text }}</option>
                         {% endif %}
                         {% endfor %}
