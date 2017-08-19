@@ -1,17 +1,31 @@
+{# вначале пишем макрос для обработки дерева #}
+{# макрос не универсален, поэтому пока оставляем так #}
+{% macro list(items, step = 0) %}
+{% import _self as tree %}
+
+{# начало ветки #}
+<div class="row">
+    {% for item in items %}
+        {{ item.text }}
+    <div id="question_{{ item.id }}" class="row">
+        {% for answer in item.answers %}
+        {% if item.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
+        {% if item.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
+        {% endfor %}
+        {% if item.hasChildren %}
+        <div id="childrens_{{ item.id }}">
+        {{ tree.list(item.childrens, step + 1) }}
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}
+{# конец макроса #}
+{% import _self as tree %}
+
 <h1 class="text-center">{{form.name}}</h1>
 <h2 class="text-center">{{form.description}}</h2>
 <div class="container">
-{% for question in form.questions %}
-<div class="row">
-	{{ question.text }}
-	<div class="row">
-		{% for answer in question.answers %}
-			{% if question.hasChildren %}
-			{% if question.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
-			{% if question.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
-			{% endif %}
-		{% endfor %}
-	</div>
-</div>
-{% endfor %}
+{{ tree.list(form.questions) }}
 </div>

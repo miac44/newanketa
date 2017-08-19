@@ -48,7 +48,7 @@ abstract class Tree extends Model
         return self::where(['parent_id = ' => 'null']);
     }
 
-    public function getChildren()
+    public function getChildrens()
     {
         if (isset($this->id)){
             return self::where(['parent_id = ' => $this->id]);
