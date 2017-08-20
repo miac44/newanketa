@@ -4,25 +4,28 @@
 {% import _self as tree %}
 
 {# начало ветки #}
-<div class="row">
     {% for item in items %}
-        {{ item.text }}
-    <div id="question_{{ item.id }}" class="row">
+    {% set itemHasChildren = item.hasChildren %}
+    <div id="question_{{ item.id }}" {% if itemHasChildren %}class="panel-group"{% endif %}>
+        <div class="question_text">{{ item.text }}</div>
         {% for answer in item.answers %}
         {#
         {% if item.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
         {% if item.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
         #}
-        <a data-toggle="collapse" data-parent="#question_{{ item.id }}" href="#childrens_{{ item.id }}">{{ answer.text }}</a>
+        {% if itemHasChildren %}
+            <a data-toggle="collapse" data-parent="#childrens_{{ item.id }}" href="#parent_answer_{{ answer.id }}">{{ answer.text }}</a>
+        {% else %}
+            {{ answer.text }}
+        {% endif %}
         {% endfor %}
         {% if item.hasChildren %}
-        <div id="childrens_{{ item.id }}" class="panel-collapse collapse">
+        <div id="childrens_{{ item.id }}" class="panel">
         {{ tree.list(item.childrens, step + 1) }}
         </div>
         {% endif %}
     </div>
     {% endfor %}
-</div>
 {% endmacro %}
 {# конец макроса #}
 {% import _self as tree %}
@@ -30,5 +33,6 @@
 <h1 class="text-center">{{form.name}}</h1>
 <h2 class="text-center">{{form.description}}</h2>
 <div class="container">
-{{ tree.list(form.questions) }}
+    {{ dump(questions)}}
+{{ tree.list(questions) }}
 </div>
