@@ -272,7 +272,7 @@ abstract class Model
         $db = Db::instance();
         return (int)$db->count(static::TABLE);
     }
- 
+
     public static function page($data = ['1' => '1'], int $page=1, int $record_per_page=5)
     {
         $start_record = ($page-1)*$record_per_page;
@@ -298,9 +298,15 @@ abstract class Model
             $sql .=  ' WHERE ';
             $values = [];
             foreach ($data as $k => $v) {
-                $key = rtrim($k, ' <>=');
+                $k = trim($k);
+                if (preg_match('/^\w+/i', $k, $match)){
+                   $key = $match[0];
+               } else {
+                   //ошибка обработки паттерна регулярки
+               }
+                $key = rtrim($key, ' <>=');
                 $values[':'.$key] = $v;
-                $sql .= $k . ':' . $key;
+                $sql .= $k . ' :' . $key;
                 $sql .= ' AND ';
             }
             $sql = substr($sql, 0, -5);
@@ -345,7 +351,7 @@ abstract class Model
     public static function create()
     {
         $db = Db::instance();
-        $sql = 'CREATE TABLE ' . static::TABLE . ' 
+        $sql = 'CREATE TABLE ' . static::TABLE . '
                 (id SERIAL NOT NULL, ';
         foreach (static::COLUMNS as $k => $v) {
             if (isset($v['null'])){
