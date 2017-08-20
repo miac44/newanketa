@@ -9,11 +9,14 @@
         {{ item.text }}
     <div id="question_{{ item.id }}" class="row">
         {% for answer in item.answers %}
+        {#
         {% if item.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
         {% if item.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
+        #}
+        <a data-toggle="collapse" data-parent="#question_{{ item.id }}" href="#childrens_{{ item.id }}">{{ answer.text }}</a>
         {% endfor %}
         {% if item.hasChildren %}
-        <div id="childrens_{{ item.id }}">
+        <div id="childrens_{{ item.id }}" class="panel-collapse collapse">
         {{ tree.list(item.childrens, step + 1) }}
         </div>
         {% endif %}
