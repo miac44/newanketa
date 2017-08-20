@@ -43,6 +43,16 @@ abstract class Tree extends Model
         return false;
     }
 
+    public function getHasParent()
+    {
+        if (isset($this->id)){
+            if (!is_null(self::where(['parent_id = ' => 'NULL']))){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function getGrantParents()
     {
         return self::where(['parent_id = ' => 'null']);
