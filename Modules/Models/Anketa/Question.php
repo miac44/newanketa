@@ -20,4 +20,8 @@ class Question extends Tree
         'answer_parent'=>['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Answer'],
     ];
 
+    public static function getQuestionsIdsArrayFromParentAnswer($parent_answer_id)
+    {
+        return self::where(['parent_answer_id'=>$parent_answer_id]);
+    }
 }

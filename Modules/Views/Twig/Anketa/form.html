@@ -7,12 +7,8 @@
     {% for item in items %}
     {% set itemHasChildren = item.hasChildren %}
     <div id="question_{{ item.id }}" {% if itemHasChildren %}class="panel-group"{% endif %}>
-        <div class="question_text">{{ item.text }}</div>
+        <div class="question_text">{{ item.text }}{% if item.hasParent %}FUCK{% endif %}</div>
         {% for answer in item.answers %}
-        {#
-        {% if item.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
-        {% if item.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
-        #}
         {% if itemHasChildren %}
             <a data-toggle="collapse" data-parent="#childrens_{{ item.id }}" href="#parent_answer_{{ answer.id }}">{{ answer.text }}</a>
         {% else %}
@@ -33,6 +29,13 @@
 <h1 class="text-center">{{form.name}}</h1>
 <h2 class="text-center">{{form.description}}</h2>
 <div class="container">
-    {{ dump(questions)}}
 {{ tree.list(questions) }}
 </div>
+
+
+
+
+{#
+{% if item.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
+{% if item.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
+#}
