@@ -16,7 +16,7 @@ class Index extends \App\Controllers\Main
             die();
         }
         $menu = [];
-        foreach (\App\Config::instance()->menu as $k=>$v){
+        foreach (\App\Config::instance()->menu as $k => $v) {
             $menu[$k] = $v;
         }
         $this->view->menu = $menu;
@@ -31,7 +31,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionMedicalOrganizationForm($data = null)
     {
-        if (!is_null($data['id'])){
+        if (!is_null($data['id'])) {
             $this->view->medicalorganization = \Modules\Models\Anketa\MedicalOrganization::findById($data['id']);
         }
         $this->view->regions = \Modules\Models\Anketa\Region::findAll();
@@ -47,20 +47,20 @@ class Index extends \App\Controllers\Main
             $medicalOrganization->id = $post['id'];
         };
         foreach ($medicalOrganization::COLUMNS as $key => $value) {
-                $medicalOrganization->$key = $post[$key];
+            $medicalOrganization->$key = $post[$key];
         };
         foreach ($medicalOrganization::RELATIONS as $key => $value) {
-                if ($value['type']=='hasOne'){
-                    $hasOneElement = $value['id'] ?? $key . '_id';
-                    $medicalOrganization->$hasOneElement = $post[$key];
-                }
+            if ($value['type'] == 'hasOne') {
+                $hasOneElement = $value['id'] ?? $key . '_id';
+                $medicalOrganization->$hasOneElement = $post[$key];
+            }
         };
         $medicalOrganization->save();
-        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['medicalorganization_id = '=>$medicalOrganization->id]);
+        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['medicalorganization_id = ' => $medicalOrganization->id]);
         foreach ($links as $link) {
             $link->delete();
         }
-        if (count($post['forms'])>0){
+        if (count($post['forms']) > 0) {
             foreach ($post['forms'] as $value) {
                 $link = new \Modules\Models\Anketa\MedicalOrganization_to_Form();
                 $link->form_id = $value;
@@ -83,7 +83,7 @@ class Index extends \App\Controllers\Main
     {
         $medicalorganization = \Modules\Models\Anketa\MedicalOrganization::findById($data['id']);
         $medicalorganization->delete();
-        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['medicalorganization_id = '=>$data['id']]);
+        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['medicalorganization_id = ' => $data['id']]);
         foreach ($links as $link) {
             $link->delete();
         }
@@ -93,7 +93,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionFormForm($data = null)
     {
-        if (!is_null($data['id'])){
+        if (!is_null($data['id'])) {
             $this->view->form = \Modules\Models\Anketa\Form::findById($data['id']);
         }
         $this->view->content = $this->view->render('Admin\form\form');
@@ -110,7 +110,7 @@ class Index extends \App\Controllers\Main
             $form->$key = $post[$key];
         };
         foreach ($form::RELATIONS as $key => $value) {
-            if ($value['type']=='hasOne'){
+            if ($value['type'] == 'hasOne') {
                 $hasOneElement = $value['id'] ?? $key . '_id';
                 $form->$hasOneElement = $post[$key];
             }
@@ -131,7 +131,7 @@ class Index extends \App\Controllers\Main
     {
         $form = \Modules\Models\Anketa\Form::findById($data['id']);
         $form->delete();
-        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['form_id = '=>$data['id']]);
+        $links = \Modules\Models\Anketa\MedicalOrganization_to_Form::where(['form_id = ' => $data['id']]);
         foreach ($links as $link) {
             $link->delete();
         }
@@ -141,7 +141,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionQuestionForm($data = null)
     {
-        if (isset($data['id']) && !is_null($data['id'])){
+        if (isset($data['id']) && !is_null($data['id'])) {
             $this->view->question = \Modules\Models\Anketa\Question::findById($data['id']);
         }
         $this->view->form = \Modules\Models\Anketa\Form::findById($data['form_id']);
@@ -156,13 +156,13 @@ class Index extends \App\Controllers\Main
             $question->id = $post['id'];
         };
         foreach ($question::COLUMNS as $key => $value) {
-            if (isset($post[$key])){
+            if (isset($post[$key])) {
                 $question->$key = $post[$key];
             }
         };
         foreach ($question::RELATIONS as $key => $value) {
-            if (isset($post[$key])){
-                if ($value['type']=='hasOne'){
+            if (isset($post[$key])) {
+                if ($value['type'] == 'hasOne') {
                     $hasOneElement = $value['id'] ?? $key . '_id';
                     $question->$hasOneElement = $post[$key];
                 }
@@ -185,7 +185,7 @@ class Index extends \App\Controllers\Main
     protected function actionQuestionDelete($data)
     {
         $question = \Modules\Models\Anketa\Question::findById($data['id']);
-        $question -> delete();
+        $question->delete();
 //        TODO
 //        удалить ответы на вопросы
 //        пересчитать информацию
@@ -195,7 +195,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionAnswerForm($data)
     {
-        if (is_null($data['question_id'])){
+        if (is_null($data['question_id'])) {
             $this->view->display('Admin\error');
         }
         $this->view->question = \Modules\Models\Anketa\Question::findById($data['question_id']);
@@ -205,7 +205,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionAnswerSave($data, $post)
     {
-        $answers = \Modules\Models\Anketa\Answer::where(['question_id = '=>$data['question_id']]);
+        $answers = \Modules\Models\Anketa\Answer::where(['question_id = ' => $data['question_id']]);
         foreach ($answers as $answer) {
             $answer->delete();
         };
@@ -214,7 +214,7 @@ class Index extends \App\Controllers\Main
             $answer = new \Modules\Models\Anketa\Answer();
             $answer->question_id = $data['question_id'];
             $answer->text = trim($text);
-            if ($answer->text != ""){
+            if ($answer->text != "") {
                 $answer->save();
             }
         };
@@ -257,7 +257,7 @@ class Index extends \App\Controllers\Main
     {
         $this->view->form = \Modules\Models\Anketa\Form::findById($data['form_id']);
         $this->view->answer = \Modules\Models\Anketa\Answer::findById($post['answer']);
-        $question_id = substr($post['question'], strpos($post['question'], "_")+1);
+        $question_id = substr($post['question'], strpos($post['question'], "_") + 1);
         $this->view->question = \Modules\Models\Anketa\Question::findById($question_id);
         $this->view->content = $this->view->render('Admin\action\questions');
         $this->view->display('admin');
@@ -268,22 +268,35 @@ class Index extends \App\Controllers\Main
         $answer_id = $data['answer_id'];
         foreach ($post['questions'] as $question_id => $action) {
             $link = \Modules\Models\Anketa\Action::whereOneElement(['answer_id = ' => $answer_id, 'question_id = ' => $question_id]);
-            if (!is_null($link)){
+            if (!is_null($link)) {
                 $link->delete();
             }
-            if ($action == "show"){
+            if ($action == "show") {
+                $reverseAction = "hide";
+            };
+            if ($action == "hide") {
+                $reverseAction = "show";
+            };
+            if (isset($reverseAction)) {
                 $link = new \Modules\Models\Anketa\Action();
                 $link->answer_id = $answer_id;
                 $link->question_id = $question_id;
-                $link->action_object = "show";
+                $link->action_object = $action;
                 $link->save();
-            }
-            if ($action == "hide"){
-                $link = new \Modules\Models\Anketa\Action();
-                $link->answer_id = $answer_id;
-                $link->question_id = $question_id;
-                $link->action_object = "hide";
-                $link->save();
+                $questionFromAnswer = \Modules\Models\Anketa\Answer::findById($answer_id)->question;
+                $reverseAnswers = $questionFromAnswer->answers;
+                foreach ($reverseAnswers as $answer) {
+                    if ($answer->id != $answer_id) {
+                        $link = \Modules\Models\Anketa\Action::whereOneElement(['answer_id = ' => $answer->id, 'question_id = ' => $question_id]);
+                        if (is_null($link)) {
+                            $link = new \Modules\Models\Anketa\Action();
+                            $link->answer_id = $answer->id;
+                            $link->question_id = $question_id;
+                            $link->action_object = $reverseAction;
+                            $link->save();
+                        }
+                    }
+                }
             }
         }
         $this->view->content = $this->view->render('Admin\ok');
