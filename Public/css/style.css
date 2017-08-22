@@ -28,3 +28,7 @@ input[type="input"],textarea {
 button {
     padding-top: 10px;
 }
+
+.medicalOrganization {
+    padding-top: 30px;
+}
