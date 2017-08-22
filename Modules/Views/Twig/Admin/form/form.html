@@ -3,27 +3,39 @@
         {% if form.id is defined %}<input type="hidden" name="id" value="{{ form.id }}" />{% endif %}
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 text-center"><h2>Добавить анкету<h2></div>
+            <div class="col-md-8 text-center">
+                <h2>Добавить анкету<h2>
+            </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8"><input type="input" name="name" placeholder="Введите имя анкеты" required="required" {% if form.name is defined %} value="{{ form.name }}" {% endif %} /></div>
+            <div class="col-md-8"><input type="input" name="name" placeholder="Введите имя анкеты"
+                                         required="required" {% if form.name is defined %} value="{{ form.name }}" {% endif %} />
+            </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8"><input type="input" name="description" placeholder="Введите описание анкеты" required="required" {% if form.description is defined %} value="{{ form.description }}" {% endif %} /></div>
+            <div class="col-md-8"><input type="input" name="description" placeholder="Введите описание анкеты"
+                                         required="required" {% if form.description is defined %} value="{{ form.description }}" {% endif %} />
+            </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8"><input type="input" name="action" placeholder="Введите английскую метку анкеты" required="required" {% if form.action is defined %} value="{{ form.action }}" {% endif %} /></div>
+            <div class="col-md-8"><input type="input" name="action" placeholder="Введите английскую метку анкеты"
+                                         required="required" {% if form.action is defined %} value="{{ form.action }}" {% endif %} />
+            </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8"><button type="submit" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button></div>
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-block btn-lg btn-primary"><span
+                            class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+                </button>
+            </div>
             <div class="col-md-2"></div>
         </div>
     </form>

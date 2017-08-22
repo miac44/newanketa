@@ -4,7 +4,8 @@ namespace App\Traits;
 
 trait GetterSetter
 {
-	protected $data = [];
+    protected $data = [];
+
     public function __set($k, $v)
     {
         $this->data[$k] = $v;
@@ -17,7 +18,7 @@ trait GetterSetter
 
     public function __isset($k)
     {
-    	return isset($this->data[$k]);
+        return isset($this->data[$k]);
     }
 
     public function count()
@@ -25,4 +26,4 @@ trait GetterSetter
         return count($this->data);
     }
 
- }
+}

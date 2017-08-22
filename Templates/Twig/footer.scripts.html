@@ -6,14 +6,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/jquery.chained.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         $("#medicalOrganization").chained("#region");
         $("#answer").chained("#question");
     });
-    function showMe($obj){
+    function showMe($obj) {
         $($obj).collapse('show');
-    };
-    function hideMe($obj){
+    }
+    ;
+    function hideMe($obj) {
         $($obj).collapse('hide');
-    };
+    }
+    ;
 </script>

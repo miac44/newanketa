@@ -1,17 +1,21 @@
 <div class="container">
-{% for medicalorganization in medicalorganizations %}
-<div class="row">
-    <div class="col-md-2">{{ medicalorganization.id }}</div>
-    <div class="col-md-7">{{ medicalorganization.name }}</div>
-    <div class="col-md-3">
-	    <a href="/admin/medicalorganization/edit/{{ medicalorganization.id }}" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-edit"></span>Редактировать</a>
-	    <a href="/admin/medicalorganization/delete/{{ medicalorganization.id }}"  class="btn btn-block btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>
-	</div>
-</div>
-{% endfor %}
-<div class="row"><div>
-<div class="row col-md-offset-4 col-md-4">
-    <a href="/admin/medicalorganization/form" class="btn btn-lg btn-block btn-warning"><span class="glyphicon glyphicon-list"></span> Добавить МО</a>
-    <p></p>
-</div>
-</div>
+    {% for medicalorganization in medicalorganizations %}
+        <div class="row">
+            <div class="col-md-2">{{ medicalorganization.id }}</div>
+            <div class="col-md-7">{{ medicalorganization.name }}</div>
+            <div class="col-md-3">
+                <a href="/admin/medicalorganization/edit/{{ medicalorganization.id }}"
+                   class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-edit"></span>Редактировать</a>
+                <a href="/admin/medicalorganization/delete/{{ medicalorganization.id }}"
+                   class="btn btn-block btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div>
+            <div class="row col-md-offset-4 col-md-4">
+                <a href="/admin/medicalorganization/form" class="btn btn-lg btn-block btn-warning"><span
+                            class="glyphicon glyphicon-list"></span> Добавить МО</a>
+                <p></p>
+            </div>
+        </div>

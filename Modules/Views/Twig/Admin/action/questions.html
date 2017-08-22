@@ -18,7 +18,8 @@
                     {{ question.text }}
                 </div>
                 <div class="col-md-1">
-                    <select name="questions[{{ question.id }}]" id="question_{{ question.id }}" {% if question.id == answer.question_id %} disabled{% endif %}>
+                    <select name="questions[{{ question.id }}]"
+                            id="question_{{ question.id }}" {% if question.id == answer.question_id %} disabled{% endif %}>
                         <option value="null">Ничего</option>
                         <option value="show" {{ showSelected }}>Показать</option>
                         <option value="hide" {{ hideSelected }}>Скрыть</option>

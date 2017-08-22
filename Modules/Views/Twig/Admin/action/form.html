@@ -1,31 +1,32 @@
 <div class="container">
-  <form name="" action="/admin/action/form/{{ form.id }}/questions" method="POST">
-    <div class="row">
-      <div id="form">
-        <h2>{{ form.name }}</h2>
-      </div>
-    </div>
-    <div class="row">
-          <select size="1" id="question" title="Выберите вопрос" name="question" required>
+    <form name="" action="/admin/action/form/{{ form.id }}/questions" method="POST">
+        <div class="row">
+            <div id="form">
+                <h2>{{ form.name }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <select size="1" id="question" title="Выберите вопрос" name="question" required>
                 <option>Выберите вопрос</option>
                 {% for question in form.questions %}
-                <option value="question_{{question.id}}">{{ question.text }}</option>
+                    <option value="question_{{ question.id }}">{{ question.text }}</option>
                 {% endfor %}
             </select>
-    </div>
-    <div class="row">
-        <select size="1" id="answer" title="Выберите ответ" name="answer" required>
-              <option>Выберите ответ</option>
-              {% for question in form.questions %}
-              {% for answer in question.answers %}
-              <option value="{{ answer.id }}" class="question_{{ question.id }}">{{ answer.text }}</option>
-              {% endfor %}
-              {% endfor %}
-          </select>
-    </div>
-    <div class="row">
-      <button type="submit" class="btn btn-block btn-lg btn-primary">Далее <span class="glyphicon glyphicon-arrow-right"></span></button>
-    </div>
+        </div>
+        <div class="row">
+            <select size="1" id="answer" title="Выберите ответ" name="answer" required>
+                <option>Выберите ответ</option>
+                {% for question in form.questions %}
+                    {% for answer in question.answers %}
+                        <option value="{{ answer.id }}" class="question_{{ question.id }}">{{ answer.text }}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-block btn-lg btn-primary">Далее <span
+                        class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
 </div>
 </form>
 </div>

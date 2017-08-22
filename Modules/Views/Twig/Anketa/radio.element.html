@@ -1,5 +1,7 @@
 <div class="radio">
-  <label><input name="form[{{ question.id }}][]" type="radio" value="{{ answer.text }}"
-{% if question.required is not null %} required{% endif %}
-{% if answer.actions is defined %} onClick="{% for action in answer.actions %}{{action.action_object}}Me('#question_{{action.question_id}}');{% endfor %}{% endif %}">{{ answer.text }}</label>
+    <label><input name="form[{{ question.id }}][]" type="radio" value="{{ answer.text }}"
+                {% if question.required is not null %} required{% endif %}
+                {% if answer.actions is defined %}
+                  onClick="{% for action in answer.actions %}{{action.action_object}}Me('#question_{{action.question_id}}');{% endfor %}{% endif %}">{{ answer.text }}
+    </label>
 </div>

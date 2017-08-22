@@ -1,13 +1,16 @@
 <div class="container">
-{% for question in questions %}
-<div class="row">
-    <div class="col-md-2">{{ question.id }}</div>
-    <div class="col-md-7">{{ question.text }}</div>
-    <div class="col-md-3">
-	    <a href="/admin/question/form/{{ form_id }}/edit/{{ question.id }}" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-edit"></span>Редактировать</a>
-        <a href="/admin/answer/question/{{ question.id }}/form" class="btn btn-block btn-lg btn-default"><span class="glyphicon glyphicon-question-sign"></span> Редактировать ответы</a>
-	    <a href="/admin/question/form/{{ form_id }}/delete/{{ question.id }}"  class="btn btn-block btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>
-	</div>
-</div>
-{% endfor %}
+    {% for question in questions %}
+        <div class="row">
+            <div class="col-md-2">{{ question.id }}</div>
+            <div class="col-md-7">{{ question.text }}</div>
+            <div class="col-md-3">
+                <a href="/admin/question/form/{{ form_id }}/edit/{{ question.id }}"
+                   class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-edit"></span>Редактировать</a>
+                <a href="/admin/answer/question/{{ question.id }}/form" class="btn btn-block btn-lg btn-default"><span
+                            class="glyphicon glyphicon-question-sign"></span> Редактировать ответы</a>
+                <a href="/admin/question/form/{{ form_id }}/delete/{{ question.id }}"
+                   class="btn btn-block btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>
+            </div>
+        </div>
+    {% endfor %}
 </div>

@@ -47,7 +47,7 @@ abstract class Model
                 continue;
             }
             $columns[] = $k;
-            $values[':'.$k] = $v;
+            $values[':' . $k] = $v;
         }
         $sql = '
             INSERT INTO ' . static::TABLE . '
@@ -69,8 +69,8 @@ abstract class Model
         $sql = '
             UPDATE ' . static::TABLE . ' SET ';
         foreach ($this as $k => $v) {
-            $values[':'.$k] = $v;
-            if ($k == 'id'){
+            $values[':' . $k] = $v;
+            if ($k == 'id') {
                 continue;
             }
             $sql .= $k . '=:' . $k;
@@ -123,7 +123,7 @@ abstract class Model
         $db = Db::instance();
         $res = $db->query_one_element(
             'SELECT * FROM ' . static::TABLE
-            . ' WHERE ' . $linkId_name. '=:id',
+            . ' WHERE ' . $linkId_name . '=:id',
             static::class,
             array('id' => $id_value)
         );
@@ -136,11 +136,11 @@ abstract class Model
         $db = Db::instance();
         $res = $db->query(
             'SELECT * FROM ' . static::TABLE
-            . ' WHERE ' . $linkId_name. '=:id',
+            . ' WHERE ' . $linkId_name . '=:id',
             static::class,
             array('id' => $id_value)
         );
-        if (count($res) == 0){
+        if (count($res) == 0) {
             return null;
         }
         return $res;
@@ -155,7 +155,7 @@ abstract class Model
             . ' LEFT JOIN ' . static::TABLE
             . ' AS data_table '
             . ' ON link_table.' . $linkFrom_name . '=data_table.' . $id
-            . ' WHERE link_table.' . $linkTo_name. '=:id',
+            . ' WHERE link_table.' . $linkTo_name . '=:id',
             static::class,
             array('id' => $id_value)
         );
@@ -165,14 +165,14 @@ abstract class Model
     public function __get($k)
     {
 
-        if ($k == "count"){
+        if ($k == "count") {
             return self::count();
         }
 
         /*
         Обработка связей таблиц
          */
-        if (key_exists($k, static::RELATIONS)){
+        if (key_exists($k, static::RELATIONS)) {
             /*
             @id - имя поля связанно объекта(таблицы)) с данными, по умолчанию id
              */
@@ -182,8 +182,8 @@ abstract class Model
             @link_id - имя поля текущего объекта(таблицы), где находиться ID связанной таблицы. по-умолчанию ИМЯВЫЗЫВАЕМОГОСВОЙСТВА_id
             */
             $linkId_name = static::RELATIONS[$k]['link_id'] ?? $k . '_id';
-            if (isset($this->{$linkId_name})){
-                if (static::RELATIONS[$k]['type']=='hasOne'){
+            if (isset($this->{$linkId_name})) {
+                if (static::RELATIONS[$k]['type'] == 'hasOne') {
                     return static::RELATIONS[$k]['model']::find_hasOne($id_name, $this->{$linkId_name});
                 }
             };
@@ -192,9 +192,9 @@ abstract class Model
             @link_id - имя поля связанного объекта(таблицы), где находиться ID записей. по-умолчанию ИМЯТЕКУЩЕГООБЪЕКТАБЕЗNAMESPACEИМАЛЕНЬКИМИБУКВАМИ_id
             */
             $linkId_name = static::RELATIONS[$k]['link_id'] ?? $this->getLinkId();
-            if (isset($this->{$id_name})){
-                if (static::RELATIONS[$k]['type']=='hasMany'){
-                    return static::RELATIONS[$k]['model']::find_hasMany($linkId_name, $this->{$id_name} );
+            if (isset($this->{$id_name})) {
+                if (static::RELATIONS[$k]['type'] == 'hasMany') {
+                    return static::RELATIONS[$k]['model']::find_hasMany($linkId_name, $this->{$id_name});
                 }
             };
             /*
@@ -203,12 +203,12 @@ abstract class Model
             @link_from_id - имя поля в модели(таблице) связей, для текущего объекта, по умолчанию ИМЯТЕКУЩЕГООБЪЕКТАБЕЗNAMESPACEИМАЛЕНЬКИМИБУКВАМИ_id
             @link_to_id - имя поля в модели(таблице) связей, для получаемого объекта, по умолчанию ИМЯВЫЗЫВАЕМОГООБЪЕКТАБЕЗNAMESPACEИМАЛЕНЬКИМИБУКВАМИ_id
              */
-            if (isset($this->{$id_name})){
-                if (static::RELATIONS[$k]['type']=='manyToMany'){
+            if (isset($this->{$id_name})) {
+                if (static::RELATIONS[$k]['type'] == 'manyToMany') {
                     $links_model = static::RELATIONS[$k]['link_model'] ?? $this->getLinksModel($k);
                     $linkFrom_name = static::RELATIONS[$k]['link_from_id'] ?? $this->getLinkId();
                     $linkTo_name = static::RELATIONS[$k]['link_to_id'] ?? strtolower(preg_replace('#.+\\\#', '', static::RELATIONS[$k]['model'])) . '_id';
-                    return static::RELATIONS[$k]['model']::find_manyToMany($links_model,$linkTo_name, $linkFrom_name, $id_name, $this->{$id_name});
+                    return static::RELATIONS[$k]['model']::find_manyToMany($links_model, $linkTo_name, $linkFrom_name, $id_name, $this->{$id_name});
                 }
             };
             return false;
@@ -241,17 +241,17 @@ abstract class Model
         $db = Db::instance();
         $sql = '
             SELECT * FROM ' . static::TABLE;
-        if (!is_null($data)){
-            $sql .=  ' WHERE ';
+        if (!is_null($data)) {
+            $sql .= ' WHERE ';
             $values = [];
             foreach ($data as $k => $v) {
-                $values[':'.$k] = '%' . $v . '%';
+                $values[':' . $k] = '%' . $v . '%';
                 $sql .= $k . ' LIKE :' . $k;
                 $sql .= ' AND ';
             }
             $sql = substr($sql, 0, -5);
         };
-        if ($limit>0){
+        if ($limit > 0) {
             $sql .= ' LIMIT ' . $start . ',' . $limit;
         }
         $res = $db->query(
@@ -264,7 +264,7 @@ abstract class Model
 
     public static function extendedSearch($data = ['1' => '1'])
     {
-        foreach ($data as $k=>$v) {
+        foreach ($data as $k => $v) {
             $data[$k] = str_replace(' ', '%', $v);
         }
         return self::search($data);
@@ -276,16 +276,16 @@ abstract class Model
         return (int)$db->count(static::TABLE);
     }
 
-    public static function page($data = ['1' => '1'], int $page=1, int $record_per_page=5)
+    public static function page($data = ['1' => '1'], int $page = 1, int $record_per_page = 5)
     {
-        $start_record = ($page-1)*$record_per_page;
+        $start_record = ($page - 1) * $record_per_page;
         return self::search($data, $start_record, $record_per_page);
     }
 
     public static function searchOneElement($data)
     {
         $res = self::search($data);
-        if (is_array($res)){
+        if (is_array($res)) {
             return $res[0];
         } else {
             return $res;
@@ -297,24 +297,24 @@ abstract class Model
         $db = Db::instance();
         $sql = '
             SELECT * FROM ' . static::TABLE;
-        if (!is_null($data)){
-            $sql .=  ' WHERE ';
+        if (!is_null($data)) {
+            $sql .= ' WHERE ';
             $values = [];
             foreach ($data as $k => $v) {
                 $k = trim($k);
-                if (preg_match('/^\w+/i', $k, $match)){
-                   $key = $match[0];
-               } else {
-                   //ошибка обработки паттерна регулярки
-               }
+                if (preg_match('/^\w+/i', $k, $match)) {
+                    $key = $match[0];
+                } else {
+                    //ошибка обработки паттерна регулярки
+                }
                 $key = rtrim($key, ' <>=');
-                $values[':'.$key] = $v;
+                $values[':' . $key] = $v;
                 $sql .= $k . ' :' . $key;
                 $sql .= ' AND ';
             }
             $sql = substr($sql, 0, -5);
         };
-        if ($limit>0){
+        if ($limit > 0) {
             $sql .= ' LIMIT ' . $start . ',' . $limit;
         }
         $res = $db->query(
@@ -328,7 +328,7 @@ abstract class Model
     public static function whereOneElement($data = ['1=1'])
     {
         $res = self::where($data);
-        if (is_array($res) && isset($res[0])){
+        if (is_array($res) && isset($res[0])) {
             return $res[0];
         } else {
             return null;
@@ -357,12 +357,12 @@ abstract class Model
         $sql = 'CREATE TABLE ' . static::TABLE . '
                 (id SERIAL NOT NULL, ';
         foreach (static::COLUMNS as $k => $v) {
-            if (isset($v['null'])){
-                $null_attr = (true === $v['null'])?'NULL':'NOT NULL';
+            if (isset($v['null'])) {
+                $null_attr = (true === $v['null']) ? 'NULL' : 'NOT NULL';
             } else {
                 $null_attr = 'NOT NULL';
             }
-            switch ($v['type']){
+            switch ($v['type']) {
                 case 'text':
                     $sql .= $k . ' TEXT ' . $null_attr . ', ';
                     break;

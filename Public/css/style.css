@@ -12,16 +12,17 @@ ul#pagination li.pagination_item {
     margin-right: 5px;
     padding: 3px;
 }
-input[type="input"],textarea {
+
+input[type="input"], textarea {
     width: 100%;
-	padding: 10px;
+    padding: 10px;
 }
 
-.question_text{
-        font-weight: bold;
+.question_text {
+    font-weight: bold;
 }
 
-#footer_navbar{
+#footer_navbar {
     background-color: white;
 }
 
@@ -33,6 +34,6 @@ button {
     padding-top: 30px;
 }
 
-select#question{
+select#question {
     width: 100%;
 }

@@ -8,12 +8,12 @@ abstract class Tree extends Model
     public function __get($k)
     {
         $res = parent::__get($k);
-        if (!is_null($res)){
+        if (!is_null($res)) {
             return $res;
         }
 
         $method = 'get' . ucfirst($k);
-        if (method_exists($this, $method)){
+        if (method_exists($this, $method)) {
             return $this->$method();
         }
 
@@ -23,20 +23,20 @@ abstract class Tree extends Model
     public function __isset($k)
     {
         $res = parent::__isset($k);
-        if (true === $res){
+        if (true === $res) {
             return $res;
         }
 
         $method = 'get' . ucfirst($k);
-        if (method_exists($this, $method)){
+        if (method_exists($this, $method)) {
             return $this->$method();
         }
     }
 
     public function getHasChildren()
     {
-        if (isset($this->id)){
-            if (count(self::where(['parent_id = ' => $this->id]))>0){
+        if (isset($this->id)) {
+            if (count(self::where(['parent_id = ' => $this->id])) > 0) {
                 return true;
             }
         }
@@ -45,8 +45,8 @@ abstract class Tree extends Model
 
     public function getHasParent()
     {
-        if (isset($this->id)){
-            if (!is_null($this->parent_id)){
+        if (isset($this->id)) {
+            if (!is_null($this->parent_id)) {
                 return true;
             }
         }
@@ -60,7 +60,7 @@ abstract class Tree extends Model
 
     public function getChildrens()
     {
-        if (isset($this->id)){
+        if (isset($this->id)) {
             return self::where(['parent_id = ' => $this->id]);
         }
         return false;
@@ -68,7 +68,7 @@ abstract class Tree extends Model
 
     public function getParent()
     {
-        if (isset($this->parent_id)){
+        if (isset($this->parent_id)) {
             return self::findById($this->parent_id);
         }
         return null;
