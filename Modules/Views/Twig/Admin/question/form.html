@@ -1,9 +1,10 @@
 <div class="container">
-    <form name="question" action="/admin/question/form/{{ form.id }}/save" method="post">
-        {% if question.id is defined %}<input type="hidden" name="id" value="{{ question.id }}" />{% endif %}
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8 text-center"><h2>Добавить вопрос<h2></div>
+  <form name="question" action="/admin/question/form/{{ form.id }}/save" method="post">
+    {% if question.id is defined %}<input type="hidden" name="id" value="{{ question.id }}" />{% endif %}
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 text-center">
+        <h2>Добавить вопрос<h2></div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
@@ -22,24 +23,11 @@
             <div class="col-md-2"></div>
         </div>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="select">
-                    <label>Родительский вопрос</label>
-                    <select name="parent" style="width: 100%">
-                        <option value="0">Нет</option>
-                        {% for parentQuestion in form.questions %}
-                        {% if question.id is defined %}
-                        {% if parentQuestion.id != question.id %}
-                        <option value="{{ parentQuestion.id}}"{% if question.parent_id is defined %}{% if question.parent_id == parentQuestion.id %} selected{% endif %}{% endif %}>{{ parentQuestion.text }}</option>                        {% endif %}
-                        {% else %}
-                        <option value="{{ parentQuestion.id}}"{% if question.parent_id is defined %}{% if question.parent_id == parentQuestion.id %} selected{% endif %}{% endif %}>{{ parentQuestion.text }}</option>
-                        {% endif %}
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div class="checkbox"><label><input type="checkbox" name="required" value="1"{% if question.required is defined %}{% if question.required is not null %} checked{% endif %}{% endif %} /> Необходимый</label></div>
+          </div>
+          <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
@@ -48,4 +36,3 @@
         </div>
     </form>
 </div>
-

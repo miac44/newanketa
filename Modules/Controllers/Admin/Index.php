@@ -175,10 +175,8 @@ class Index extends \App\Controllers\Main
             }
         };
         $question->form_id = $data['form_id'];
-        if ($question->parent_id == 0){
-            $question->parent_id = null;
-        }
         $question->save();
+        var_dump($question);
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
     }
