@@ -15,4 +15,5 @@ class ValueTable extends Model
         define('TABLE' , 'valuetable_' . $table_alias);
     }
 
+
 }
