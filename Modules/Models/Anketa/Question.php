@@ -19,5 +19,4 @@ class Question extends Tree
         'answers'=>['type'=>'hasMany','model'=>'\Modules\Models\Anketa\Answer'],
     ];
 
-
 }
