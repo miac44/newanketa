@@ -1,0 +1,14 @@
+<div class="row">
+  <div id="years">
+    <div class="col-md-6">
+      <label>Выберите год посещения</label>
+    </div>
+    <div class="col-md-6"> {% set currentYear = "now" | date("Y") %}
+      <select name="year" id="year" title="Выберите год">
+        {% for year in currentYear..2014 %}
+      	<option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+</div>

@@ -26,6 +26,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionForm($data)
     {
+        $this->view->regions = \Modules\Models\Anketa\Region::findAll();
         $this->view->form = \Modules\Models\Anketa\Form::findById($data['id']);
         $this->view->questions = \Modules\Models\Anketa\Question::where(['form_id = '=>$data['id'], 'parent_id is '=>null]);
         $this->view->content = $this->view->render('Anketa\form');
