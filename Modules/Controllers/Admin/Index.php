@@ -29,12 +29,6 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
-    protected function actionSecond()
-    {
-        $this->view->content = "Second";
-        $this->view->display('admin');
-    }
-
     protected function actionMedicalOrganizationForm($data = null)
     {
         if (!is_null($data['id'])){
