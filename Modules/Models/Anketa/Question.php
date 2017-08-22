@@ -2,9 +2,9 @@
 
 namespace Modules\Models\Anketa;
 
-use App\Tree;
+use App\Model;
 
-class Question extends Tree
+class Question extends Model
 {
 
     const TABLE = 'questions';
@@ -15,8 +15,8 @@ class Question extends Tree
     ];
     const RELATIONS = [
         'form'=>['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Form'],
-        'parent'=>['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Question'],
         'answers'=>['type'=>'hasMany','model'=>'\Modules\Models\Anketa\Answer'],
+        'actions'=>['type'=>'hasMany','model'=>'\Modules\Models\Anketa\Action'],
     ];
 
 }

@@ -217,7 +217,7 @@ class Index extends \App\Controllers\Main
             $answer->question_id = $data['question_id'];
             $answer->text = trim($text);
             if ($answer->text != ""){
-                $answer->save();    
+                $answer->save();
             }
         };
         $this->view->content = $this->view->render('Admin\ok');
