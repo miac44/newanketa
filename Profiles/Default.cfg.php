@@ -39,7 +39,7 @@ return array (
     'date_format' => 'd.m.Y H:i',
   'routes' =>
   array (
-    '/' => '/Anketa/Index',
+    '/' => '/Anketa/FormList',
     '/auth' => '/Main/Auth',
     '/logout' => '/Main/Logout',
     '/login' => '/Main/Login',
@@ -66,8 +66,14 @@ return array (
     '/admin/answer/question/<1>/save' => '/Admin/AnswerSave(question_id=<1>)',
     '/admin/answer/question/<1>/edit' => '/Admin/AnswerForm(question_id=<1>)',
     '/admin/action/form/<1>' => '/Admin/ActionForm(form_id=<1>)',
-    '/admin/action/form/<1>/save' => '/Admin/ActionFormSave(form_id=<1>)',
+    '/admin/action/form/<1>/questions' => '/Admin/ActionQuestions(form_id=<1>)',
+    '/admin/action/answer/<1>/save/' => '/Admin/ActionSave(answer_id=<1>)',
     '/form/<1>' => '/Anketa/Form(id=<1>)',
     ),
+  'menu' =>
+  array(
+    'Главная' => '/admin/form/list',
+    'МО' => '/admin/medicalorganization/list',
+  ),
 
 );

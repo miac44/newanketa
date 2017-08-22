@@ -1,5 +1,5 @@
 <div class="container">
-  <form name="" action="/admin/action/form/{{ form.id }}/save" method="POST">
+  <form name="" action="/admin/action/form/{{ form.id }}/questions" method="POST">
     <div class="row">
       <div id="form">
         <h2>{{ form.name }}</h2>
@@ -24,21 +24,7 @@
           </select>
     </div>
     <div class="row">
-        {% for question in form.questions %}
-        <div class="col-md-11">
-            {{ question.text }}
-        </div>
-        <div class="col-md-1">
-            <select name="questions[{{question.id}}]" id="question_{{question.id}}">
-                <option value="null">Ничего</option>
-                <option value="show">Показать</option>
-                <option value="hide">Скрыть</option>
-            </select>
-        </div>
-        {% endfor %}
-    </div>
-    <div class="row">
-      <button type="submit" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button>
+      <button type="submit" class="btn btn-block btn-lg btn-primary">Далее <span class="glyphicon glyphicon-arrow-right"></span></button>
     </div>
 </div>
 </form>

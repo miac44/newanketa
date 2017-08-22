@@ -249,15 +249,25 @@ class Index extends \App\Controllers\Main
     protected function actionActionForm($data)
     {
         $this->view->form = \Modules\Models\Anketa\Form::findById($data['form_id']);
-        $this->view->content = $this->view->render('Admin\actionform');
+        $this->view->content = $this->view->render('Admin\action\form');
         $this->view->display('admin');
     }
 
-    protected function actionActionFormSave($data, $post)
+    protected function actionActionQuestions($data, $post)
     {
-        $answer_id = $post['answer'];
+        $this->view->form = \Modules\Models\Anketa\Form::findById($data['form_id']);
+        $this->view->answer = \Modules\Models\Anketa\Answer::findById($post['answer']);
+        $question_id = substr($post['question'], strpos($post['question'], "_")+1);
+        $this->view->question = \Modules\Models\Anketa\Question::findById($question_id);
+        $this->view->content = $this->view->render('Admin\action\questions');
+        $this->view->display('admin');
+    }
+
+    protected function actionActionSave($data, $post)
+    {
+        $answer_id = $data['answer_id'];
         foreach ($post['questions'] as $question_id => $action) {
-            $link = \Modules\Models\Anketa\Action::whereOneElement(['answer_id = ' => $answer_id, 'question_id' => $question_id]);
+            $link = \Modules\Models\Anketa\Action::whereOneElement(['answer_id = ' => $answer_id, 'question_id = ' => $question_id]);
             if (!is_null($link)){
                 $link->delete();
             }
