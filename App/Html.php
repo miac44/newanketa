@@ -50,6 +50,6 @@ class Html
         $this->form = self::formHeader();
         $this->form .= self::formBody();
         $this->form .= self::formFooter();
-        return $this->form;  
+        return $this->form;
     }
 }

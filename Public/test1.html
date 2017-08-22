@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Мой первый сайт</title>
+    <meta name="keywords" content="сайт, мой первый сайт, тест">
+    <meta name="author" content="Автор">
+    <meta name="description" content="Описание сайта">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/select.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div id="question_1" class="panel-group">
+            <div class="question_text">1. Госпитализация была:</div>
+            <a data-toggle="collapse" data-parent="#childrens_1" href="#answer_parent_1">плановая</a>
+            <a data-toggle="collapse" data-parent="#childrens_1" href="#answer_parent_2">экстренная</a>
+            <div id="childrens_1" class="panel">
+                <!--children_{{question.id}} -->
+                <div class="panel">
+                    <div id="answer_parent_1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Срок ожидания плановой госпитализации с момента получения направления на плановую госпитализацию?
+                            <div id="question_2" c class="row">
+                                30 календарных дней и более 29 календарных дней 28 календарных дней 27 календарных дней 15 календарных дней меньше 15 календарных дней
+                            </div>
+                            Вы были госпитализированы в назначенный срок?
+                            <div id="question_3" class="row">
+                                Да Нет
+                            </div>
+                            Вы удовлетворены условиями пребывания в приемном отделении?
+                            <div id="question_4" class="row">
+                                Да Нет
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div id="answer_parent_2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Что не удовлетворяет?
+                            <div id="question_5" class="row">
+                                отсутствие свободных мест ожидания состояние гардероба состояние туалета отсутствие питьевой воды санитарные условия
+                            </div>
+                            Сколько времени Вы ожидали в приемном отделении?
+                            <div id="question_6" class="row">
+                                120 мин и более от 75 мин до 120 мин от 60 мин до 75 мин от 45 мин до 60 мин от 30 мин до 45 мин менее 30 мин
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery-1.12.1.min.js"></script>
+    <script src="/js/select.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+
+</html>
