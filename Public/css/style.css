@@ -12,12 +12,19 @@ ul#pagination li.pagination_item {
     margin-right: 5px;
     padding: 3px;
 }
-
-div, input[type="input"], button, textarea {
-	width: 100%;
+input[type="input"],textarea {
+    width: 100%;
 	padding: 10px;
+}
+
+.question_text{
+        font-weight: bold;
 }
 
 #footer_navbar{
     background-color: white;
+}
+
+button {
+    padding-top: 10px;
 }

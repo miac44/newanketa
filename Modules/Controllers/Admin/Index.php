@@ -176,7 +176,6 @@ class Index extends \App\Controllers\Main
         };
         $question->form_id = $data['form_id'];
         $question->save();
-        var_dump($question);
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
     }

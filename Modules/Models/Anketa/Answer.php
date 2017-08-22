@@ -13,8 +13,8 @@ class Answer extends Model
     ];
     const RELATIONS = [
         'question' => ['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Question'],
-        'questions'=>['type'=>'manyToMany','model'=>'\Modules\Models\Anketa\Question']
-        'actions'=>['type'=>'manyToMany','model'=>'\Modules\Models\Anketa\Actions']
+        'questions'=>['type'=>'manyToMany','model'=>'\Modules\Models\Anketa\Question'],
+        'actions'=>['type'=>'manyToMany','model'=>'\Modules\Models\Anketa\Actions'],
     ];
 
 }

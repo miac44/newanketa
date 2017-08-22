@@ -1,41 +1,15 @@
-{# вначале пишем макрос для обработки дерева #}
-{# макрос не универсален, поэтому пока оставляем так #}
-{% macro list(items, step = 0) %}
-{% import _self as tree %}
-
-{# начало ветки #}
-    {% for item in items %}
-    {% set itemHasChildren = item.hasChildren %}
-    <div id="question_{{ item.id }}" {% if itemHasChildren %}class="panel-group"{% endif %}>
-        <div class="question_text">{{ item.text }}{% if item.hasParent %}FUCK{% endif %}</div>
-        {% for answer in item.answers %}
-        {% if itemHasChildren %}
-            <a data-toggle="collapse" data-parent="#childrens_{{ item.id }}" href="#parent_answer_{{ answer.id }}">{{ answer.text }}</a>
-        {% else %}
-            {{ answer.text }}
-        {% endif %}
-        {% endfor %}
-        {% if item.hasChildren %}
-        <div id="childrens_{{ item.id }}" class="panel">
-        {{ tree.list(item.childrens, step + 1) }}
-        </div>
-        {% endif %}
-    </div>
-    {% endfor %}
-{% endmacro %}
-{# конец макроса #}
-{% import _self as tree %}
-
 <h1 class="text-center">{{form.name}}</h1>
 <h2 class="text-center">{{form.description}}</h2>
 <div class="container">
-{{ tree.list(questions) }}
+    {% for question in form.questions %}
+    <div id="question_{question.id}" class="row">
+        <div class="question_text cold-md-4">{{ question.text }}</div>
+        <div class="answers col-md-8">
+            {% for answer in question.answers %}
+            {% if question.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
+            {% if question.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
 </div>
-
-
-
-
-{#
-{% if item.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
-{% if item.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
-#}
