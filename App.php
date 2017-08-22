@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 use App\Config;
 use App\Traits\Singleton;
 
-class App 
+class App
 {
 	use Singleton;
 
