@@ -245,4 +245,39 @@ class Index extends \App\Controllers\Main
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
     }
+
+    protected function actionActionForm($data)
+    {
+        $this->view->form = \Modules\Models\Anketa\Form::findById($data['form_id']);
+        $this->view->content = $this->view->render('Admin\actionform');
+        $this->view->display('admin');
+    }
+
+    protected function actionActionFormSave($data, $post)
+    {
+        $answer_id = $post['answer'];
+        foreach ($post['questions'] as $question_id => $action) {
+            $link = \Modules\Models\Anketa\Action::whereOneElement(['answer_id = ' => $answer_id, 'question_id' => $question_id]);
+            if (!is_null($link)){
+                $link->delete();
+            }
+            if ($action == "show"){
+                $link = new \Modules\Models\Anketa\Action();
+                $link->answer_id = $answer_id;
+                $link->question_id = $question_id;
+                $link->action_object = "show";
+                $link->save();
+            }
+            if ($action == "hide"){
+                $link = new \Modules\Models\Anketa\Action();
+                $link->answer_id = $answer_id;
+                $link->question_id = $question_id;
+                $link->action_object = "hide";
+                $link->save();
+            }
+        }
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
 }

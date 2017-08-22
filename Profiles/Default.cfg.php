@@ -65,6 +65,8 @@ return array (
     '/admin/answer/question/<1>/form' => '/Admin/AnswerForm(question_id=<1>)',
     '/admin/answer/question/<1>/save' => '/Admin/AnswerSave(question_id=<1>)',
     '/admin/answer/question/<1>/edit' => '/Admin/AnswerForm(question_id=<1>)',
+    '/admin/action/form/<1>' => '/Admin/ActionForm(form_id=<1>)',
+    '/admin/action/form/<1>/save' => '/Admin/ActionFormSave(form_id=<1>)',
     '/form/<1>' => '/Anketa/Form(id=<1>)',
     ),
 
