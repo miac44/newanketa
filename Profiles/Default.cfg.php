@@ -6,9 +6,9 @@ return array (
     'name' => 'слоган',
     'copyright' => 'Все права защищены',
     'publish_year' => '2017',
-    'meta' => 
+    'meta' =>
     array (
-      'name' => 
+      'name' =>
       array (
         'keywords' => 'сайт, мой первый сайт, тест',
         'author' => 'Автор',
@@ -50,6 +50,8 @@ return array (
     '/admin/medicalorganization/list' => '/Admin/MedicalOrganizationList',
     '/admin/medicalorganization/delete/<1>' => '/Admin/MedicalOrganizationDelete(id=<1>)',
     '/admin/medicalorganization/edit/<1>' => '/Admin/MedicalOrganizationForm(id=<1>)',
+    '/admin/medicalorganization/access/form/<1>' => '/Admin/MedicalOrganizationAccessForm(form_id=<1>)',
+    '/admin/medicalorganization/access/form/<1>/save' => '/Admin/MedicalOrganizationAccessFormSave(form_id=<1>)',
     '/admin/form/form' => '/Admin/FormForm',
     '/admin/form/save' => '/Admin/FormSave',
     '/admin/form/list' => '/Admin/FormList',

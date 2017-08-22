@@ -8,8 +8,9 @@
 	    <a href="/admin/form/edit/{{ form.id }}" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-edit"></span> Редактировать</a>
         <a href="/admin/question/form/{{ form.id }}/list" class="btn btn-block btn-lg btn-default"><span class="glyphicon glyphicon-question-sign"></span> Редактировать вопросы</a>
         <a href="/admin/question/form/{{ form.id }}/form" class="btn btn-block btn-lg btn-info"><span class="glyphicon glyphicon-plus-sign"></span> Добавить вопрос</a>
+        <a href="/admin/medicalorganization/access/form/{{ form.id }}/" class="btn btn-block btn-lg btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Учавствующие МО</a>
 	    <a href="/admin/form/delete/{{ form.id }}"  class="btn btn-block btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span> Удалить</a>
-	</div>
+    </div>
 </div>
 {% endfor %}
 </div>
