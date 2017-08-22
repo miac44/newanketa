@@ -378,6 +378,7 @@ abstract class Model
             }
         }
         $sql .= 'created_at TIMESTAMP NULL, modified_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP )';
+        var_dump($sql);
         return $db->execute($sql);
     }
 

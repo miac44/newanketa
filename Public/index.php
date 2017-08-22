@@ -14,4 +14,6 @@ if (file_exists(ROOT_DIR . '/Profiles/profile.php')) {
     define('PROFILE', 'default');
 }
 
+$valueTable = \Modules\Models\Anketa\Form::getValues('stacionar');
+$valueTable->extraCreate();
 App::instance()->run();
