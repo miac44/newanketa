@@ -2,7 +2,7 @@
 <h2 class="text-center">{{form.description}}</h2>
 <div class="container">
     {% for question in form.questions %}
-    <div id="question_{question.id}" class="row">
+    <div id="question_{{question.id}}" class="row collapse {% if question.actions is null %}in{%endif%}">
         <div class="question_text cold-md-4">{{ question.text }}</div>
         <div class="answers col-md-8">
             {% for answer in question.answers %}

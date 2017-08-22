@@ -11,7 +11,7 @@ class Action extends Model
     const COLUMNS = [
         'answer_id'   => ['type'=>'int'],
         'question_id'   => ['type'=>'int'],
-        'action'   => ['type'=>'string', 'length'=>20],
+        'action_object'   => ['type'=>'string', 'length'=>20],
     ];
 
 }

@@ -140,6 +140,9 @@ abstract class Model
             static::class,
             array('id' => $id_value)
         );
+        if (count($res) == 0){
+            return null;
+        }
         return $res;
     }
 

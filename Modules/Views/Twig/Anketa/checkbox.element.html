@@ -1,5 +1,5 @@
 <div class="checkbox">
   <label>
-  	<input name="answer_{{ question.id }}" type="checkbox" value="{{ answer.text }}">
+  	<input name="form[{{ question.id }}][]" type="checkbox" value="{{ answer.text }}">
   	{{ answer.text }}</label>
 </div>
