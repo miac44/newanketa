@@ -3,6 +3,7 @@
 namespace Modules\Models\Anketa;
 
 use App\Model;
+use App\Config;
 
 class Form extends Model
 {
@@ -18,8 +19,4 @@ class Form extends Model
         'questions' => ['type' => 'hasMany', 'model' => '\Modules\Models\Anketa\Question'],
     ];
 
-    public static function getValues($alias)
-    {
-        return new \Modules\Models\Anketa\ValueTable($alias);
-    }
 }

@@ -1,0 +1,25 @@
+<?php
+
+namespace Modules\Models\Anketa;
+
+use App\Model;
+
+class {{ model }} extends Model
+{
+
+    const TABLE = '{{ table }}';
+    const COLUMNS = [
+        'ip' => ['type' => 'string', 'length' => '15'],
+        'type' => ['type' => 'text', 'length' => '50'],
+        'month' => ['type' => 'string', 'length' => '15'],
+        'year' => ['type' => 'string', 'length' => '4'],
+        {% for question in questions %}
+        'question_{{ question.id }}' => ['type' => 'string'],
+        {% endfor %}
+    ];
+    const RELATIONS = [
+        'region' => ['type' => 'hasOne', 'model' => '\Modules\Models\Anketa\Region'],
+        'medicalOrganization' => ['type' => 'hasOne', 'model' => '\Modules\Models\Anketa\MedicalOrganization'],
+    ];
+
+}

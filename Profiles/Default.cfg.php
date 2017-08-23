@@ -56,6 +56,7 @@ return array(
             '/admin/form/list' => '/Admin/FormList',
             '/admin/form/delete/<1>' => '/Admin/FormDelete(id=<1>)',
             '/admin/form/edit/<1>' => '/Admin/FormForm(id=<1>)',
+            '/admin/form/<1>/createmodel' => '/Admin/FormCreateModel(id=<1>)',
             '/admin/question/form/<1>/form' => '/Admin/QuestionForm(form_id=<1>)',
             '/admin/question/form/<1>/list' => '/Admin/QuestionList(form_id=<1>)',
             '/admin/question/form/<1>/save' => '/Admin/QuestionSave(form_id=<1>)',
