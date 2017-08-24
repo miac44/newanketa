@@ -9,12 +9,12 @@ class {{ model }} extends Model
 
     const TABLE = '{{ table }}';
     const COLUMNS = [
-        'ip' => ['type' => 'string', 'length' => '15'],
+        'ip' => ['type' => 'string', 'length' => '15' , 'null'=> true, 'default' => null],
         'type' => ['type' => 'text', 'length' => '50'],
         'month' => ['type' => 'string', 'length' => '15'],
         'year' => ['type' => 'string', 'length' => '4'],
         {% for question in questions %}
-        'question_{{ question.id }}' => ['type' => 'string'],
+        'question_{{ question.id }}' => ['type' => 'string', 'length' => '512', 'default' => ''],
         {% endfor %}
     ];
     const RELATIONS = [

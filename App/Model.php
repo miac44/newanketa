@@ -354,6 +354,7 @@ abstract class Model
     public static function create()
     {
         $db = Db::instance();
+        $values = [];
         $sql = 'CREATE TABLE ' . static::TABLE . '
                 (id SERIAL NOT NULL, ';
         foreach (static::COLUMNS as $k => $v) {
@@ -362,23 +363,32 @@ abstract class Model
             } else {
                 $null_attr = 'NOT NULL';
             }
+            if (isset($v['default'])){
+                if ($v['default'] == 'null') {
+                    $null_attr = 'NULL';
+                    $default_attr = ' DEFAULT NULL';
+                } else {
+                    $default_attr = ' DEFAULT :' . $k . '_default';
+                    $values[':' . $k . '_default'] = $v['default'];
+                }
+            }
             switch ($v['type']) {
                 case 'text':
-                    $sql .= $k . ' TEXT ' . $null_attr . ', ';
+                    $sql .= $k . ' TEXT ' . $null_attr . $default_attr  . ', ';
                     break;
                 case 'int':
                     $length = $v['length'] ?? 20;
-                    $sql .= $k . ' BIGINT(' . $length . ') ' . $null_attr . ', ';
+                    $sql .= $k . ' BIGINT(' . $length . ') ' . $null_attr . $default_attr  . ', ';
                     break;
                 case 'string':
                 default:
                     $length = $v['length'] ?? 255;
-                    $sql .= $k . ' VARCHAR(' . $length . ') ' . $null_attr . ', ';
+                    $sql .= $k . ' VARCHAR(' . $length . ') ' . $null_attr . $default_attr  . ', ';
                     break;
             }
         }
         $sql .= 'created_at TIMESTAMP NULL, modified_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP )';
-        return $db->execute($sql);
+        return $db->execute($sql, $values);
     }
 
 }
