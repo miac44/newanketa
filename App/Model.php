@@ -358,6 +358,8 @@ abstract class Model
         $sql = 'CREATE TABLE ' . static::TABLE . '
                 (id SERIAL NOT NULL, ';
         foreach (static::COLUMNS as $k => $v) {
+            $null_attr = "";
+            $default_attr = "";
             if (isset($v['null'])) {
                 $null_attr = (true === $v['null']) ? 'NULL' : 'NOT NULL';
             } else {

@@ -9,10 +9,12 @@ class {{ model }} extends Model
 
     const TABLE = '{{ table }}';
     const COLUMNS = [
-        'ip' => ['type' => 'string', 'length' => '15' , 'null'=> true, 'default' => null],
-        'type' => ['type' => 'text', 'length' => '50'],
+        'ip' => ['type' => 'string', 'length' => '15' , 'default' => 'null'],
+        'type' => ['type' => 'string', 'length' => '50', 'default' => 'Сайт'],
         'month' => ['type' => 'string', 'length' => '15'],
         'year' => ['type' => 'string', 'length' => '4'],
+        'region_id' => ['type' => 'int'],
+        'medicalOrganization_id' => ['type' => 'int'],
         {% for question in questions %}
         'question_{{ question.id }}' => ['type' => 'string', 'length' => '512', 'default' => ''],
         {% endfor %}
