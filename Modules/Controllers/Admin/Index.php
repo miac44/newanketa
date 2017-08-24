@@ -177,7 +177,7 @@ class Index extends \App\Controllers\Main
     protected function actionQuestionList($data)
     {
         $this->view->form_id = $data['form_id'];
-        $this->view->questions = \Modules\Models\Anketa\Question::findAll(['form_id = ' => $data['form_id']]);
+        $this->view->questions = \Modules\Models\Anketa\Form::findById($data['form_id'])->questions;
         $this->view->content = $this->view->render('Admin\question\list');
         $this->view->display('admin');
     }
