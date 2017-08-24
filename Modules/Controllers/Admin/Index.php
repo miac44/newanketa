@@ -171,7 +171,6 @@ class Index extends \App\Controllers\Main
         $question->form_id = $data['form_id'];
         $question->save();
         $data['question_id'] = $question->id;
-        var_dump($data);
         self::actionAnswerSave($data, $post);
         die;
     }
@@ -211,7 +210,7 @@ class Index extends \App\Controllers\Main
         foreach ($answers as $answer) {
             $answer->delete();
         };
-        $answers = explode(";", $post['answertext']);
+        $answers = explode("\r\n", $post['answertext']);
         foreach ($answers as $text) {
             $answer = new \Modules\Models\Anketa\Answer();
             $answer->question_id = $data['question_id'];
