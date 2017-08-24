@@ -170,8 +170,10 @@ class Index extends \App\Controllers\Main
         };
         $question->form_id = $data['form_id'];
         $question->save();
-        $this->view->content = $this->view->render('Admin\ok');
-        $this->view->display('admin');
+        $data['question_id'] = $question->id;
+        var_dump($data);
+        self::actionAnswerSave($data, $post);
+        die;
     }
 
     protected function actionQuestionList($data)
@@ -209,7 +211,7 @@ class Index extends \App\Controllers\Main
         foreach ($answers as $answer) {
             $answer->delete();
         };
-        $answers = explode(";", $post['text']);
+        $answers = explode(";", $post['answertext']);
         foreach ($answers as $text) {
             $answer = new \Modules\Models\Anketa\Answer();
             $answer->question_id = $data['question_id'];
