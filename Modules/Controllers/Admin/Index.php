@@ -311,8 +311,8 @@ class Index extends \App\Controllers\Main
         $this->view->table = "valuetable_" . $form->alias;
         $this->view->questions = $form->questions;
         $model_text = $this->view->render('/Admin/files/model');
-        file_put_contents(ROOT_DIR . "/Modules/Models/Anketa/" . $modelname . ".php", $model_text);
-        $modelname = '\\Modules\\Models\\Anketa\\' . $modelname;
+        file_put_contents(ROOT_DIR . "/Modules/Models/Anketa/Dynamic/" . $modelname . ".php", $model_text);
+        $modelname = '\\Modules\\Models\\Anketa\\Dynamic\\' . $modelname;
         $model = new $modelname;
         $model->create();
         $this->view->content = $this->view->render('Admin\ok');

@@ -39,7 +39,7 @@ return array(
     'date_format' => 'd.m.Y H:i',
     'routes' =>
         array(
-            '/' => '/Anketa/FormList',
+            '/' => '/Anketa/Index',
             '/auth' => '/Main/Auth',
             '/logout' => '/Main/Logout',
             '/login' => '/Main/Login',
