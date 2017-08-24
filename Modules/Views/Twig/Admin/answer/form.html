@@ -11,7 +11,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <textarea name="text" placeholder="Введите ответы через ;"
-                          required="required">{% if question.answer is defined %}{% for answer in question.answers %}{{ answer.text }}; {% endfor %}{% endif %}</textarea>
+                          required="required">{% if question.answers is defined %}{% for answer in question.answers %}{{ answer.text }}; {% endfor %}{% endif %}</textarea>
             </div>
             <div class="col-md-2"></div>
         </div>
