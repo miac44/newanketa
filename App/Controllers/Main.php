@@ -8,7 +8,6 @@ use App\Config;
 
 class Main extends Controller
 {
-
     protected function beforeAction()
     {
         $this->view->site = Config::instance()->site;
@@ -31,7 +30,8 @@ class Main extends Controller
 
     protected function actionLogin($data, $post)
     {
-        $this->view->display('auth_form');
+        $this->view->content = $this->view->render('auth_form');
+        $this->view->display('index');
     }
 
     protected function actionLogout()

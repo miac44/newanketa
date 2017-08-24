@@ -14,7 +14,7 @@ class ConfigItem
 
     public function __get($k)
     {
-        if (is_array($this->$k)){
+        if (is_array($this->$k)) {
             return new ConfigItem($this->$k);
         } else {
             return $this->$k;

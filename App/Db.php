@@ -17,7 +17,7 @@ class Db
         try {
             $this->dbh = new \PDO('mysql:host=' . \App\Config::instance()->db->host . ';dbname=' . \App\Config::instance()->db->dbname, \App\Config::instance()->db->user, \App\Config::instance()->db->password);
             $this->execute('SET NAMES UTF8');
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             throw new DBException('Ошибка соединения с базой данных');
         }
     }
@@ -27,7 +27,7 @@ class Db
         try {
             $sth = $this->dbh->prepare($sql);
             $res = $sth->execute($substitutions);
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             throw new DBException('Ошибка соединения в запросе');
         }
         return $res;
@@ -48,7 +48,7 @@ class Db
         try {
             $sth = $this->dbh->prepare($sql);
             $res = $sth->execute($substitutions);
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             throw new DBException('Ошибка соединения в запросе');
         }
         return $sth->fetchObject($class);

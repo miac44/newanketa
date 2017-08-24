@@ -1,15 +1,32 @@
 <div class="container">
-{% for form in forms %}
-<div class="row">
-    <div class="col-md-1">{{ form.id }}</div>
-    <div class="col-md-5">{{ form.name }}</div>
-    <div class="col-md-3">{{ form.action }}</div>
-    <div class="col-md-3">
-	    <a href="/admin/form/edit/{{ form.id }}" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-edit"></span> Редактировать</a>
-        <a href="/admin/question/form/{{ form.id }}/list" class="btn btn-block btn-lg btn-default"><span class="glyphicon glyphicon-question-sign"></span> Редактировать вопросы</a>
-        <a href="/admin/question/form/{{ form.id }}/form" class="btn btn-block btn-lg btn-info"><span class="glyphicon glyphicon-plus-sign"></span> Добавить вопрос</a>
-	    <a href="/admin/form/delete/{{ form.id }}"  class="btn btn-block btn-lg btn-danger"><span class="glyphicon glyphicon-remove"></span> Удалить</a>
-	</div>
-</div>
-{% endfor %}
+    {% for form in forms %}
+        <div class="row medicalOrganization">
+            <div class="col-md-1">{{ form.id }}</div>
+            <div class="col-md-5">{{ form.name }}</div>
+            <div class="col-md-3">{{ form.alias }}</div>
+            <div class="col-md-3">
+                <a href="/admin/form/edit/{{ form.id }}" class="btn btn-block btn-default btn-primary"><span
+                            class="glyphicon glyphicon-edit"></span> Редактировать</a>
+                <a href="/admin/question/form/{{ form.id }}/list" class="btn btn-block btn-default btn-default"><span
+                            class="glyphicon glyphicon-question-sign"></span> Редактировать вопросы</a>
+                <a href="/admin/question/form/{{ form.id }}/form" class="btn btn-block btn-default btn-info"><span
+                            class="glyphicon glyphicon-plus-sign"></span> Добавить вопрос</a>
+                <a href="/admin/medicalorganization/access/form/{{ form.id }}/"
+                   class="btn btn-block btn-default btn-success"><span class="glyphicon glyphicon-wrench"></span>
+                    Учавствующие МО</a>
+                <a href="/admin/action/form/{{ form.id }}" class="btn btn-block btn-default btn-primary"><span
+                            class="glyphicon glyphicon-eye-close"></span> Визуализация вопросов</a>
+                <a href="/admin/form/{{ form.id }}/createmodel" class="btn btn-block btn-default btn-danger"><span
+                            class="glyphicon glyphicon-list-alt"></span> Создать таблицу для записи</a>
+                <a href="/admin/form/delete/{{ form.id }}" class="btn btn-block btn-default btn-danger"><span
+                            class="glyphicon glyphicon-remove"></span> Удалить</a>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="row"></div>
+    <div class="row col-md-offset-4 col-md-4">
+        <a href="/admin/form/form" class="btn btn-lg btn-block btn-warning"><span
+                    class="glyphicon glyphicon-plus"></span> Добавить анкету</a>
+        <p></p>
+    </div>
 </div>

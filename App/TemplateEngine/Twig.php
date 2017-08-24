@@ -25,6 +25,7 @@ class Twig
     {
         $this->loader->addPath($templateDir);
     }
+
     public function render($template)
     {
         return $this->twig->render($template . '.html', $this->data);

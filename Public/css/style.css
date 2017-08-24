@@ -13,11 +13,27 @@ ul#pagination li.pagination_item {
     padding: 3px;
 }
 
-div, input, button, textarea {
-	width: 100%;
-	padding: 10px;
+input[type="input"], textarea {
+    width: 100%;
+    padding: 10px;
 }
 
-#footer_navbar{
+.question_text {
+    font-weight: bold;
+}
+
+#footer_navbar {
     background-color: white;
+}
+
+button {
+    padding-top: 10px;
+}
+
+.medicalOrganization {
+    padding-top: 30px;
+}
+
+select#question {
+    width: 100%;
 }

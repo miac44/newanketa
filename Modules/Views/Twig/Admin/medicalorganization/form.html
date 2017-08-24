@@ -1,23 +1,28 @@
 <div class="container">
     <form name="medicalorganization" action="/admin/medicalorganization/save" method="post">
-        {% if medicalorganization.id is defined %}<input type="hidden" name="id" value="{{ medicalorganization.id }}" />{% endif %}
+        {% if medicalorganization.id is defined %}<input type="hidden" name="id"
+                                                         value="{{ medicalorganization.id }}" />{% endif %}
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 text-center"><h2>Добавить МО<h2></div>
+            <div class="col-md-8 text-center">
+                <h2>Добавить МО<h2>
+            </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8"><input type="input" name="name" placeholder="Введите имя медицинской организации" required="required" {% if medicalorganization.name is defined %} value="{{ medicalorganization.name }}" {% endif %} /></div>
+            <div class="col-md-8"><input type="input" name="name" placeholder="Введите имя медицинской организации"
+                                         required="required" {% if medicalorganization.name is defined %} value="{{ medicalorganization.name }}" {% endif %} />
+            </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <select name="region" required="required">
-                {% for region in regions %}            
-                    <option value="{{ region.id }}"{% if medicalorganization.region.id is defined %}{% if medicalorganization.region.id == region.id %} selected{% endif %}{% endif %}>{{ region.name }}</option>
-                {% endfor%}
+                    {% for region in regions %}
+                        <option value="{{ region.id }}"{% if medicalorganization.region.id is defined %}{% if medicalorganization.region.id == region.id %} selected{% endif %}{% endif %}>{{ region.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="col-md-2"></div>
@@ -26,16 +31,22 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 {% for form in forms %}
-                <div class="checkbox">
-                    <label><input type="checkbox" name="forms[]" value=" {{ form.id }}"{%  if medicalorganization.forms is defined %}{% for checkedMedicalOrganization in medicalorganization.forms %}{% if checkedMedicalOrganization.id == form.id %} checked{% endif %}{% endfor %}{% endif %}> {{ form.name }}</label>
-                </div>
-                {% endfor%}
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="forms[]"
+                                      value=" {{ form.id }}"{% if medicalorganization.forms is defined %}{% for checkedMedicalOrganization in medicalorganization.forms %}{% if checkedMedicalOrganization.id == form.id %} checked{% endif %}{% endfor %}{% endif %}> {{ form.name }}
+                        </label>
+                    </div>
+                {% endfor %}
             </div>
             <div class="col-md-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8"><button type="submit" class="btn btn-block btn-lg btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Сохранить</button></div>
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-block btn-lg btn-primary"><span
+                            class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+                </button>
+            </div>
             <div class="col-md-2"></div>
         </div>
     </form>

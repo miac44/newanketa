@@ -5,9 +5,11 @@ namespace App\Traits;
 trait Singleton
 {
     protected static $instance;
+
     protected function __construct()
     {
     }
+
     public static function instance($args = NULL)
     {
         if (null === static::$instance) {

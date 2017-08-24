@@ -1,0 +1,15 @@
+<div class="row">
+    <div id="regions">
+        <div class="col-md-6">
+            <label>Выберите район</label>
+        </div>
+        <div class="col-md-6">
+            <select size="1" id="region" title="Выберите район" name="region" required>
+                <option>Выберите район</option>
+                {% for region in regions %}
+                    <option value="region_{{ region.id }}">{{ region.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>

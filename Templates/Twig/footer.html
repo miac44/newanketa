@@ -1,13 +1,13 @@
 <div style="height: 60px">
-<footer>
-<div id="footer_navbar" class="navbar-fixed-bottom row-fluid">
-	<div class="navbar-inner">
-		<div class="container">
-(c) {{ site.publish_year}}{% if "now"|date("Y") != site.publish_year %}-{{ "now"|date("Y") }}{% endif %} {{ site.copyright }}
-		</div>
-	</div>
-</div>
-</footer>
-{{ include('footer.scripts.html') }}
-</body>
-</html>
+    <footer>
+        <div id="footer_navbar" class="navbar-fixed-bottom row-fluid">
+            <div class="navbar-inner">
+                <div class="container">
+                    (c) {{ site.publish_year }}{% if "now"|date("Y") != site.publish_year %}-{{ "now"|date("Y") }}{% endif %} {{ site.copyright }}
+                </div>
+            </div>
+        </div>
+    </footer>
+    {{ include('footer.scripts.html') }}
+    </body>
+    </html>

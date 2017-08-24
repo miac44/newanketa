@@ -1,0 +1,36 @@
+<div class="container">
+    <form name="" action="/admin/action/answer/{{ answer.id }}/save/" method="POST">
+        <div class="row"><h2>{{ question.text }}</h2></div>
+        <div class="row"><h3>{{ answer.text }}</h3></div>
+        <div class="row">
+            {% for question in form.questions %}
+                {% set showSelected = "" %}
+                {% set hideSelected = "" %}
+                {% if answer.actions is defined %}
+                    {% for action in answer.actions %}
+                        {% if action.question_id == question.id %}
+                            {% if action.action_object == 'show' %} {% set showSelected = "selected" %}{% endif %}
+                            {% if action.action_object == 'hide' %} {% set hideSelected = "selected" %}{% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <div class="col-md-11">
+                    {{ question.text }}
+                </div>
+                <div class="col-md-1">
+                    <select name="questions[{{ question.id }}]"
+                            id="question_{{ question.id }}" {% if question.id == answer.question_id %} disabled{% endif %}>
+                        <option value="null">Ничего</option>
+                        <option value="show" {{ showSelected }}>Показать</option>
+                        <option value="hide" {{ hideSelected }}>Скрыть</option>
+                    </select>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-block btn-lg btn-primary"><span
+                        class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+    <form name="" action="/admin/medicalorganization/access/form/{{ form.id }}/save" method="POST">
+        <div class="row">
+            <div id="form">
+                <h2>{{ form.name }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div id="medicalOrganizations">
+                {% for medicalOrganization in medicalOrganizations %}
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="medicalOrganizations[]"
+                                      value="{{ medicalOrganization.id }}"{% for accessform in medicalOrganization.forms %}{% if accessform.id == form.id %} checked{% endif %}{% endfor %} > {{ medicalOrganization.name }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-block btn-lg btn-primary"><span
+                        class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+            </button>
+        </div>
+</div>
+</form>
+</div>

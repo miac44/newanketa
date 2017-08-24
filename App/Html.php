@@ -10,15 +10,16 @@ class Html
 
     public function formHeader()
     {
-        $form = '<div class="container"><form action="' . $this->action . '" name="' . $this->model::TABLE. '" method="POST">';
+        $form = '<div class="container"><form action="' . $this->action . '" name="' . $this->model::TABLE . '" method="POST">';
         return $form;
     }
+
     private function formBody()
     {
-        foreach ($this->model::COLUMNS as $k=>$v){
+        foreach ($this->model::COLUMNS as $k => $v) {
             $form .= '<div clas="row"><div class="col-md-4"></div>';
             $form .= '<div class="col-md-4">';
-            switch ($v['type']){
+            switch ($v['type']) {
                 case 'text':
                     $form .= '<textarea name="' . $k . '"></textarea>';
                     break;
@@ -35,6 +36,7 @@ class Html
         }
         return $form;
     }
+
     private function formFooter()
     {
         $form .= '<div clas="row"><div class="col-md-4"></div>';
@@ -50,6 +52,6 @@ class Html
         $this->form = self::formHeader();
         $this->form .= self::formBody();
         $this->form .= self::formFooter();
-        return $this->form;  
+        return $this->form;
     }
 }

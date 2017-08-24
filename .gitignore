@@ -5,5 +5,3 @@ Public/google_*.html
 *.tmp.php
 Profiles/*
 !Profiles/Default.cfg.php
-
-

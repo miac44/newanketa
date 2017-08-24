@@ -1,0 +1,27 @@
+<?php
+
+namespace Modules\Models\Anketa\Dynamic;
+
+use App\Model;
+
+class {{ model }} extends Model
+{
+
+    const TABLE = '{{ table }}';
+    const COLUMNS = [
+        'ip' => ['type' => 'string', 'length' => '15' , 'default' => 'null'],
+        'type' => ['type' => 'string', 'length' => '50', 'default' => 'Сайт'],
+        'month' => ['type' => 'string', 'length' => '15'],
+        'year' => ['type' => 'string', 'length' => '4'],
+        'region_id' => ['type' => 'int'],
+        'medicalOrganization_id' => ['type' => 'int'],
+        {% for question in questions %}
+        'question_{{ question.id }}' => ['type' => 'string', 'length' => '512', 'default' => ''],
+        {% endfor %}
+    ];
+    const RELATIONS = [
+        'region' => ['type' => 'hasOne', 'model' => '\Modules\Models\Anketa\Region'],
+        'medicalOrganization' => ['type' => 'hasOne', 'model' => '\Modules\Models\Anketa\MedicalOrganization'],
+    ];
+
+}

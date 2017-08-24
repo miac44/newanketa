@@ -9,10 +9,11 @@ class Answer extends Model
 
     const TABLE = 'answers';
     const COLUMNS = [
-        'text'   => ['type'=>'string'],
+        'text' => ['type' => 'string'],
     ];
     const RELATIONS = [
-        'question' => ['type'=>'hasOne','model'=>'\Modules\Models\Anketa\Question'],
+        'question' => ['type' => 'hasOne', 'model' => '\Modules\Models\Anketa\Question'],
+        'actions' => ['type' => 'hasMany', 'model' => '\Modules\Models\Anketa\Action'],
     ];
 
 }
