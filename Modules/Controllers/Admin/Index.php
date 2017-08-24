@@ -268,6 +268,7 @@ class Index extends \App\Controllers\Main
         $answer_id = $data['answer_id'];
         foreach ($post['questions'] as $question_id => $action) {
             $link = \Modules\Models\Anketa\Action::whereOneElement(['answer_id = ' => $answer_id, 'question_id = ' => $question_id]);
+            $reverseAction = null;
             if (!is_null($link)) {
                 $link->delete();
             }
