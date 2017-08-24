@@ -15,7 +15,11 @@
                     {% endfor %}
                 {% endif %}
                 <div class="col-md-11">
+                    {% if question.id == answer.question_id %} <span class="label label-default">{% endif %}
                     {{ question.text }}
+                    {% if showSelected == "selected" %}<span class="badge">+</span>{% endif %}
+                    {% if hideSelected == "selected" %}<span class="badge">-</span>{% endif %}
+                    {% if question.id == answer.question_id %} </span>{% endif %}
                 </div>
                 <div class="col-md-1">
                     <select name="questions[{{ question.id }}]"
