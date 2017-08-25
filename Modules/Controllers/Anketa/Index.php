@@ -19,7 +19,13 @@ class Index extends \App\Controllers\Main
 
     protected function actionIndex()
     {
-        $this->view->forms = \Modules\Models\Anketa\Form::findAll();
+        $forms = \Modules\Models\Anketa\Form::findAll();
+        foreach ($forms as  $key => $form) {
+            $nameModel = '\\Modules\\Models\\Anketa\\Dynamic\\' . ucfirst($form->alias);
+            $form->countCompletedForm = count($nameModel::findAll());
+            $forms[$key] = $form;
+        }
+        $this->view->forms = $forms;
         $this->view->content = $this->view->render('Anketa\index');
         $this->view->display('index');
     }
