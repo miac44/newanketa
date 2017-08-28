@@ -321,4 +321,16 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
+    protected function actionMZList()
+    {
+        $this->view->medicalOrganizations = \Modules\Models\Anketa\MedicalOrganization::findAll();
+        $this->view->forms = \Modules\Models\Anketa\Form::findAll();
+        $this->view->content = $this->view->render('Admin\mz\index');
+        $this->view->display('admin');
+    }
+
+    protected function actionMZEnterData($data, $post)
+    {
+        var_dump($post);
+    }
 }

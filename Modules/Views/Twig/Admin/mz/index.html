@@ -1,0 +1,32 @@
+<div id="container">
+    <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Наименование</th>
+                    <th>Действие</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for medicalOrganization in medicalOrganizations %}
+                    <tr>
+                        <td>{{ medicalOrganization.id }}</td>
+                        <td>{{ medicalOrganization.name }}</td>
+                        <td>
+                            <form action="/admin/mz/enterdata/{{ medicalOrganization.id }}" method="post">
+                            <select name="form_id">
+                            {% for form in forms %}
+                                <option value="{{ form.id }}">{{form.name}}</option>
+                            {% endfor %}
+                            </select>
+                            <input type="hidden" name="medicalOrganization_id" value="{{ medicalOrganization.id }}" />
+                            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Добавить данные</button>
+                        </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
