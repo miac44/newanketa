@@ -17,7 +17,7 @@
                         <td>{{ medicalOrganization.name }}</td>
                         {% for form in forms %}
                         {% for medicalForms in medicalOrganization.forms if medicalForms.id == form.id %}
-                        <td class="success">{{ form.valueCount}}</td>
+                        <td class="success">{{ form.id }}</td>
                         {% else %}
                         <td class="danger">х</td>
                         {% endfor %}
