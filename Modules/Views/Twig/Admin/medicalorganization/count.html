@@ -2,13 +2,13 @@
     <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Наименование</th>
-                    {% for form in forms %}
-                    <th>{{form.name}}</th>
-                    {% endfor %}
-                </tr>
+                    <tr>
+                        <th>id</th>
+                        <th>Наименование</th>
+                        {% for form in forms %}
+                        <th>{{form.name}}</th>
+                        {% endfor %}
+                    </tr>
                 </thead>
                 <tbody>
                     {% for medicalOrganization in medicalOrganizations %}
@@ -17,7 +17,8 @@
                         <td>{{ medicalOrganization.name }}</td>
                         {% for form in forms %}
                         {% for medicalForms in medicalOrganization.forms if medicalForms.id == form.id %}
-                        <td class="success">{{ form.id }}</td>
+                        {% set modelName = form.alias %}
+                        <td class="success">{{ attribute(medicalOrganization, modelName) }}</td>
                         {% else %}
                         <td class="danger">х</td>
                         {% endfor %}
