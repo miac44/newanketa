@@ -21,6 +21,8 @@
                             {% for medicalForms in medicalOrganization.forms %}
                             {% if medicalForms.id == form.id %}
                             <option value="{{ form.id }}">{{form.name}}</option>
+                            {% else %}
+                            fakukak
                             {% endif %}
                             {% endfor %}
                             {% endfor %}

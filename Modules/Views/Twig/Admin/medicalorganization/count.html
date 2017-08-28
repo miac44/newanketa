@@ -1,0 +1,30 @@
+<div id="container">
+    <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Наименование</th>
+                    {% for form in forms %}
+                    <th>{{form.name}}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                    {% for medicalOrganization in medicalOrganizations %}
+                    <tr>
+                        <td>{{ medicalOrganization.id }}</td>
+                        <td>{{ medicalOrganization.name }}</td>
+                        {% for form in forms %}
+                        {% for medicalForms in medicalOrganization.forms if medicalForms.id == form.id %}
+                        <td class="success">{{ form.valueCount}}</td>
+                        {% else %}
+                        <td class="danger">х</td>
+                        {% endfor %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>

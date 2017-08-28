@@ -329,6 +329,14 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
+    protected function actionMedicalOrganizationCount()
+    {
+        $this->view->medicalOrganizations = \Modules\Models\Anketa\MedicalOrganization::findAll();
+        $this->view->forms = \Modules\Models\Anketa\Form::findAll();
+        $this->view->content = $this->view->render('Admin\medicalorganization\count');
+        $this->view->display('admin');
+    }
+
     protected function actionMZEnterData($data, $post)
     {
         var_dump($post);
