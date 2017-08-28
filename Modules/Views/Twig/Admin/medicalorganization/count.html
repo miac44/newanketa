@@ -17,8 +17,7 @@
                         <td>{{ medicalOrganization.name }}</td>
                         {% for form in forms %}
                         {% for medicalForms in medicalOrganization.forms if medicalForms.id == form.id %}
-                        {% set modelName = form.alias %}
-                        <td class="success">{{ attribute(medicalOrganization, modelName) }}</td>
+                        <td class="success">{{ attribute(medicalOrganization, form.alias) }}</td>
                         {% else %}
                         <td class="danger">х</td>
                         {% endfor %}

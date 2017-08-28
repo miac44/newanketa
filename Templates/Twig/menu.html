@@ -1,12 +1,24 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                {% if menu is defined %}
                 {% for menuname, menulink in menu %}
-                    <li{% if menulink == request_uri %} class="active"{% endif %}><a
-                                href="{{ menulink }}">{{ menuname }}</a></li>
+                <li{% if menulink==request_uri %} class="active" {% endif %}><a href="{{ menulink }}">{{ menuname }}</a></li>
                 {% endfor %}
+                {% endif %}
             </ul>
+            <div class="dropdown pull-right">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="glyphicon glyphicon-user"></span> {{ user.name }}<span class="caret"></span>
+              </button>
+                <ul class="dropdown-menu" aria-labelledby="userDropdownMenu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/admin">Администраторская часть</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/logout">Выйти</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
