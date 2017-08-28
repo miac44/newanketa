@@ -51,6 +51,7 @@ return array(
             '/admin/medicalorganization/edit/<1>' => '/Admin/MedicalOrganizationForm(id=<1>)',
             '/admin/medicalorganization/access/form/<1>' => '/Admin/MedicalOrganizationAccessForm(form_id=<1>)',
             '/admin/medicalorganization/access/form/<1>/save' => '/Admin/MedicalOrganizationAccessFormSave(form_id=<1>)',
+            '/admin/medicalorganization/count' => '/Admin/MedicalOrganizationCount',
             '/admin/form/form' => '/Admin/FormForm',
             '/admin/form/save' => '/Admin/FormSave',
             '/admin/form/list' => '/Admin/FormList',
