@@ -3,6 +3,7 @@
 namespace Modules\Models\Anketa;
 
 use App\Model;
+use App\Config;
 
 class Form extends Model
 {
@@ -11,7 +12,7 @@ class Form extends Model
     const COLUMNS = [
         'name' => ['type' => 'string'],
         'description' => ['type' => 'text'],
-        'action' => ['type' => 'string'],
+        'alias' => ['type' => 'string'],
     ];
     const RELATIONS = [
         'medicalOrganization' => ['type' => 'manyToMany', 'model' => '\Modules\Models\Anketa\MedicalOrganization'],

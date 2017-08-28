@@ -3,7 +3,7 @@
         <div class="row medicalOrganization">
             <div class="col-md-1">{{ form.id }}</div>
             <div class="col-md-5">{{ form.name }}</div>
-            <div class="col-md-3">{{ form.action }}</div>
+            <div class="col-md-3">{{ form.alias }}</div>
             <div class="col-md-3">
                 <a href="/admin/form/edit/{{ form.id }}" class="btn btn-block btn-default btn-primary"><span
                             class="glyphicon glyphicon-edit"></span> Редактировать</a>
@@ -16,6 +16,8 @@
                     Учавствующие МО</a>
                 <a href="/admin/action/form/{{ form.id }}" class="btn btn-block btn-default btn-primary"><span
                             class="glyphicon glyphicon-eye-close"></span> Визуализация вопросов</a>
+                <a href="/admin/form/{{ form.id }}/createmodel" class="btn btn-block btn-default btn-danger"><span
+                            class="glyphicon glyphicon-list-alt"></span> Создать таблицу для записи</a>
                 <a href="/admin/form/delete/{{ form.id }}" class="btn btn-block btn-default btn-danger"><span
                             class="glyphicon glyphicon-remove"></span> Удалить</a>
             </div>

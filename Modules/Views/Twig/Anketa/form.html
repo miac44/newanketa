@@ -1,19 +1,26 @@
 <h1 class="text-center">{{ form.name }}</h1>
 <h2 class="text-center">{{ form.description }}</h2>
-<div class="container">
-    {{ include('Anketa/regions.html') }}
-    {{ include('Anketa/medicalOrganization.html') }}
-    {{ include('Anketa/months.html') }}
-    {{ include('Anketa/years.html') }}
-    {% for question in form.questions %}
-        <div id="question_{{ question.id }}" class="row collapse {% if question.actions is null %}in{% endif %}">
-            <div class="question_text cold-md-4">{{ question.text }}</div>
-            <div class="answers col-md-8">
-                {% for answer in question.answers %}
-                    {% if question.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
-                    {% if question.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
-                {% endfor %}
+<form action="/form/{{form.id}}/save" method="POST">
+    <div class="container">
+        {{ include('Anketa/regions.html') }}
+        {{ include('Anketa/medicalOrganization.html') }}
+        {{ include('Anketa/months.html') }}
+        {{ include('Anketa/years.html') }}
+        {% for question in form.questions %}
+            <div id="question_{{ question.id }}" class="row collapse {% if question.actions is null %}in{% endif %}">
+                <div class="question_text cold-md-4">{{ question.text }}</div>
+                <div class="answers col-md-8">
+                    {% for answer in question.answers %}
+                        {% if question.type == "radio" %}{{ include('Anketa/radio.element.html') }}{% endif %}
+                        {% if question.type == "checkbox" %}{{ include('Anketa/checkbox.element.html') }}{% endif %}
+                    {% endfor %}
+                </div>
             </div>
+        {% endfor %}
+        <div class="row">
+            <button type="submit" class="btn btn-block btn-lg btn-primary"><span
+                        class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+            </button>
         </div>
-    {% endfor %}
-</div>
+    </div>
+</form>

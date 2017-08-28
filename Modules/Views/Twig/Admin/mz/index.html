@@ -1,0 +1,39 @@
+<div id="container">
+    <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Наименование</th>
+                    <th>Действие</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for medicalOrganization in medicalOrganizations %}
+                    <tr>
+                        <td>{{ medicalOrganization.id }}</td>
+                        <td>{{ medicalOrganization.name }}</td>
+                        <td>
+                            <form action="/admin/mz/enterdata/{{ medicalOrganization.id }}" method="post">
+                            <select name="form_id">
+                                <option selected disabled>Выберите анкету</option>
+                            {% for form in forms %}
+                            {% for medicalForms in medicalOrganization.forms %}
+                            {% if medicalForms.id == form.id %}
+                            <option value="{{ form.id }}">{{form.name}}</option>
+                            {% else %}
+                            fakukak
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+                            </select>
+                            <input type="hidden" name="medicalOrganization_id" value="{{ medicalOrganization.id }}" />
+                            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Добавить данные</button>
+                        </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>

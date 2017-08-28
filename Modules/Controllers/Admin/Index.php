@@ -170,14 +170,15 @@ class Index extends \App\Controllers\Main
         };
         $question->form_id = $data['form_id'];
         $question->save();
-        $this->view->content = $this->view->render('Admin\ok');
-        $this->view->display('admin');
+        $data['question_id'] = $question->id;
+        self::actionAnswerSave($data, $post);
+        die;
     }
 
     protected function actionQuestionList($data)
     {
         $this->view->form_id = $data['form_id'];
-        $this->view->questions = \Modules\Models\Anketa\Question::findAll(['form_id = ' => $data['form_id']]);
+        $this->view->questions = \Modules\Models\Anketa\Form::findById($data['form_id'])->questions;
         $this->view->content = $this->view->render('Admin\question\list');
         $this->view->display('admin');
     }
@@ -209,7 +210,7 @@ class Index extends \App\Controllers\Main
         foreach ($answers as $answer) {
             $answer->delete();
         };
-        $answers = explode(";", $post['text']);
+        $answers = explode("\r\n", $post['answertext']);
         foreach ($answers as $text) {
             $answer = new \Modules\Models\Anketa\Answer();
             $answer->question_id = $data['question_id'];
@@ -268,6 +269,7 @@ class Index extends \App\Controllers\Main
         $answer_id = $data['answer_id'];
         foreach ($post['questions'] as $question_id => $action) {
             $link = \Modules\Models\Anketa\Action::whereOneElement(['answer_id = ' => $answer_id, 'question_id = ' => $question_id]);
+            $reverseAction = null;
             if (!is_null($link)) {
                 $link->delete();
             }
@@ -303,4 +305,40 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
+    protected function actionFormCreateModel($data)
+    {
+        $form = \Modules\Models\Anketa\Form::findById($data['id']);
+        $modelname = ucfirst($form->alias);
+        $this->view->model = $modelname;
+        $this->view->table = "valuetable_" . $form->alias;
+        $this->view->questions = $form->questions;
+        $model_text = $this->view->render('/Admin/files/model');
+        file_put_contents(ROOT_DIR . "/Modules/Models/Anketa/Dynamic/" . $modelname . ".php", $model_text);
+        $modelname = '\\Modules\\Models\\Anketa\\Dynamic\\' . $modelname;
+        $model = new $modelname;
+        $model->create();
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
+    protected function actionMZList()
+    {
+        $this->view->medicalOrganizations = \Modules\Models\Anketa\MedicalOrganization::findAll();
+        $this->view->forms = \Modules\Models\Anketa\Form::findAll();
+        $this->view->content = $this->view->render('Admin\mz\index');
+        $this->view->display('admin');
+    }
+
+    protected function actionMedicalOrganizationCount()
+    {
+        $this->view->medicalOrganizations = \Modules\Models\Anketa\MedicalOrganization::findAll();
+        $this->view->forms = \Modules\Models\Anketa\Form::findAll();
+        $this->view->content = $this->view->render('Admin\medicalorganization\count');
+        $this->view->display('admin');
+    }
+
+    protected function actionMZEnterData($data, $post)
+    {
+        var_dump($post);
+    }
 }

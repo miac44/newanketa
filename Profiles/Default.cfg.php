@@ -39,7 +39,7 @@ return array(
     'date_format' => 'd.m.Y H:i',
     'routes' =>
         array(
-            '/' => '/Anketa/FormList',
+            '/' => '/Anketa/Index',
             '/auth' => '/Main/Auth',
             '/logout' => '/Main/Logout',
             '/login' => '/Main/Login',
@@ -51,11 +51,13 @@ return array(
             '/admin/medicalorganization/edit/<1>' => '/Admin/MedicalOrganizationForm(id=<1>)',
             '/admin/medicalorganization/access/form/<1>' => '/Admin/MedicalOrganizationAccessForm(form_id=<1>)',
             '/admin/medicalorganization/access/form/<1>/save' => '/Admin/MedicalOrganizationAccessFormSave(form_id=<1>)',
+            '/admin/medicalorganization/count' => '/Admin/MedicalOrganizationCount',
             '/admin/form/form' => '/Admin/FormForm',
             '/admin/form/save' => '/Admin/FormSave',
             '/admin/form/list' => '/Admin/FormList',
             '/admin/form/delete/<1>' => '/Admin/FormDelete(id=<1>)',
             '/admin/form/edit/<1>' => '/Admin/FormForm(id=<1>)',
+            '/admin/form/<1>/createmodel' => '/Admin/FormCreateModel(id=<1>)',
             '/admin/question/form/<1>/form' => '/Admin/QuestionForm(form_id=<1>)',
             '/admin/question/form/<1>/list' => '/Admin/QuestionList(form_id=<1>)',
             '/admin/question/form/<1>/save' => '/Admin/QuestionSave(form_id=<1>)',
@@ -67,12 +69,18 @@ return array(
             '/admin/action/form/<1>' => '/Admin/ActionForm(form_id=<1>)',
             '/admin/action/form/<1>/questions' => '/Admin/ActionQuestions(form_id=<1>)',
             '/admin/action/answer/<1>/save/' => '/Admin/ActionSave(answer_id=<1>)',
+            '/admin/mz/list' => '/Admin/MZList',
+            '/admin/mz/enterdata/<1>' => '/Admin/MZEnterData(id=<1>)',
+            '/admin/mz/save/<1>' => '/Admin/MZSave(id=<1>)',
             '/form/<1>' => '/Anketa/Form(id=<1>)',
+            '/form/<1>/save' => '/Anketa/FormSave(id=<1>)',
         ),
     'menu' =>
         array(
             'Главная' => '/admin/form/list',
             'МО' => '/admin/medicalorganization/list',
+            'Ввод с МЗ' => '/admin/mz/list',
+            'Количество' => '/admin/medicalorganization/count',
         ),
 
 );

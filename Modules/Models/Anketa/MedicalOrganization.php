@@ -16,4 +16,29 @@ class MedicalOrganization extends Model
         'region' => ['type' => 'hasOne', 'model' => '\Modules\Models\Anketa\Region'],
     ];
 
+    public function __get($k)
+
+    {
+        $res = parent::__get($k);
+        if (!is_null($res)) {
+            return $res;
+        }
+
+        $dynamicModel = '\\Modules\\Models\\Anketa\\Dynamic\\' . ucfirst($k);
+        if (class_exists($dynamicModel)){
+            return count($dynamicModel::where(['medicalOrganization_id = ' => $this->id]));
+        }
+        return null;
+    }
+
+    public function __isset($k)
+    {
+        $res = parent::__isset($k);
+        if (true === $res) {
+            return $res;
+        }
+        $dynamicModel = '\\Modules\\Models\\Anketa\\Dynamic\\' . ucfirst($k);
+        return class_exists($dynamicModel);
+    }
+
 }
