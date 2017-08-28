@@ -80,6 +80,7 @@ return array(
             'Главная' => '/admin/form/list',
             'МО' => '/admin/medicalorganization/list',
             'Ввод с МЗ' => '/admin/mz/list',
+            'Количество' => '/admin/medicalorganization/count',
         ),
 
 );
