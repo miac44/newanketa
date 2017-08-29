@@ -341,8 +341,8 @@ class Index extends \App\Controllers\Main
     {
         $this->view->form = \Modules\Models\Anketa\Form::findById($post['form_id']);
         $this->view->medicalOrganization = \Modules\Models\Anketa\MedicalOrganization::findById($post['medicalOrganization_id']);
-        $this->view->questions = \Modules\Models\Anketa\Dynamic\MZquestion::where(['alias = ' => $this->view->form->alias]);
-        $this->view->values = \Modules\Models\Anketa\Dynamic\MZvalues::getValues($this->view->form->id, $post['medicalOrganization_id']);
+        $this->view->questions = \Modules\Models\Anketa\MZ\MZquestion::where(['alias = ' => $this->view->form->alias]);
+        $this->view->values = \Modules\Models\Anketa\MZ\MZvalues::getValues($this->view->form->id, $post['medicalOrganization_id']);
         $this->view->content = $this->view->render('Admin\mz\mzform');
         $this->view->display('admin');
     }
@@ -350,11 +350,11 @@ class Index extends \App\Controllers\Main
     protected function actionMZSave($data, $post)
     {
         foreach ($post['values'] as $k=>$v){
-            $mzDeleteValues = \Modules\Models\Anketa\Dynamic\MZvalues::whereOneElement(['answer_id = ' => $k, 'medicalorganization_id = ' => $data['id']]);
+            $mzDeleteValues = \Modules\Models\Anketa\MZ\MZvalues::whereOneElement(['answer_id = ' => $k, 'medicalorganization_id = ' => $data['id']]);
             if (!is_null($mzDeleteValues)){
                 $mzDeleteValues->delete();
             };
-            $mzNewValues = new \Modules\Models\Anketa\Dynamic\MZvalues();
+            $mzNewValues = new \Modules\Models\Anketa\MZ\MZvalues();
             $mzNewValues->answer_id = $k;
             $mzNewValues->medicalorganization_id = $data['id'];
             $mzNewValues->value = $v;
