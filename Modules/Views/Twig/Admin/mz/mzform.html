@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1>{{ medicalOrganization.name }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <form name="savedata_stacionar" action="/admin/mz/{{ medicalOrganization.id}}/save" method="POST">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2" class="text-center">
+              {{ form.name }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+	{% for question in questions %}
+          <tr>
+            <td colspan="2"><strong>{{ question.text }}</strong></td>
+          </tr>
+          {% for answer in question.answers %}
+          <tr>
+            <td>{{ answer.text }}</td>
+            <td><input type="input" size="2" name="values[{{ answer.id }}]" value="{% if attribute(values, answer.id) is not null %}{{ attribute (values, answer.id)}} {% else %}0{%endif%}" /></td>
+          </tr>
+          {% endfor %}
+	{% endfor %}
+        </tbody>
+      </table>
+    <div class="text-center">
+        <button type="submit" class="btn btn-block btn-lg btn-primary"><span
+                    class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+        </button>
+    </div>
+    </form>
+  </div>
+</div>
