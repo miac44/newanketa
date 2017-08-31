@@ -1,0 +1,29 @@
+<div class="container">
+    <form name="question" action="/admin/mz/question/form/{{ form_alias }}/save" method="post">
+        {% if question.id is defined %}<input type="hidden" name="id" value="{{ question.id }}" />{% endif %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+                <h2>Добавить вопрос<h2>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8"><textarea name="text" placeholder="Введите вопрос"
+                                            required="required">{% if question.text is defined %}{{ question.text }}{% endif %}</textarea>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        {{ include ('Admin/mz/answer/formbody.html')}}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-block btn-lg btn-primary"><span
+                            class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+                </button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </form>
+</div>

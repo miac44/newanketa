@@ -6,7 +6,7 @@ use App\Controller;
 use App\Config;
 
 class Index extends \App\Controllers\Main
-{
+    {
 
     protected function beforeAction()
     {
@@ -187,9 +187,6 @@ class Index extends \App\Controllers\Main
     {
         $question = \Modules\Models\Anketa\Question::findById($data['id']);
         $question->delete();
-//        TODO
-//        удалить ответы на вопросы
-//        пересчитать информацию
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
     }
@@ -363,5 +360,106 @@ class Index extends \App\Controllers\Main
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
     }
+
+/*
+
+
+
+МЗ
+
+
+
+*/
+
+
+    protected function actionMZQuestionForm($data = null)
+    {
+        if (isset($data['id']) && !is_null($data['id'])) {
+            $this->view->question = \Modules\Models\Anketa\MZ\MZQuestion::findById($data['id']);
+        }
+        $this->view->form_alias = $data['alias'];
+        $this->view->content = $this->view->render('Admin\mz\question\form');
+        $this->view->display('admin');
+    }
+
+    protected function actionMZQuestionSave($data, $post)
+    {
+        $question = new \Modules\Models\Anketa\MZ\MZQuestion();
+        if (isset($post['id'])) {
+            $question->id = $post['id'];
+        };
+        $question->alias = $data['alias'];
+        $question->text = $post['text'];
+        $question->save();
+        $data['question_id'] = $question->id;
+        self::actionMZAnswerSave($data, $post);
+        die;
+    }
+
+    protected function actionMZQuestionList($data)
+    {
+        $this->view->form_alias = $data['alias'];
+        $this->view->questions = \Modules\Models\Anketa\MZ\MZquestion::where(['alias = ' => $data['alias']]);
+        $this->view->content = $this->view->render('Admin\mz\question\list');
+        $this->view->display('admin');
+    }
+
+    protected function actionMZQuestionDelete($data)
+    {
+        $question = \Modules\Models\Anketa\MZ\MZQuestion::findById($data['id']);
+        $question->delete();
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
+    protected function actionMZAnswerForm($data)
+    {
+        if (is_null($data['question_id'])) {
+            $this->view->display('Admin\error');
+        }
+        $this->view->question = \Modules\Models\Anketa\MZ\MZQuestion::findById($data['question_id']);
+        $this->view->content = $this->view->render('Admin\mz\answer\form');
+        $this->view->display('admin');
+    }
+
+    protected function actionMZAnswerSave($data, $post)
+    {
+        $answers = \Modules\Models\Anketa\MZ\MZAnswer::where(['mzquestion_id = ' => $data['question_id']]);
+        foreach ($answers as $answer) {
+            $answer->delete();
+        };
+        $answers = explode("\r\n", $post['answertext']);
+        foreach ($answers as $text) {
+            $answer = new \Modules\Models\Anketa\MZ\MZAnswer();
+            $answer->mzquestion_id = $data['question_id'];
+            $answer->text = trim($text);
+            if ($answer->text != "") {
+                $answer->save();
+            }
+        };
+        $this->view->content = $this->view->render('Admin\ok');
+        $this->view->display('admin');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

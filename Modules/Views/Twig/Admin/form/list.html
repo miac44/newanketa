@@ -7,10 +7,14 @@
             <div class="col-md-3">
                 <a href="/admin/form/edit/{{ form.id }}" class="btn btn-block btn-default btn-primary"><span
                             class="glyphicon glyphicon-edit"></span> Редактировать</a>
-                <a href="/admin/question/form/{{ form.id }}/list" class="btn btn-block btn-default btn-default"><span
+                <a href="/admin/question/form/{{ form.id }}/list" class="btn btn-block btn-default btn-info"><span
                             class="glyphicon glyphicon-question-sign"></span> Редактировать вопросы</a>
                 <a href="/admin/question/form/{{ form.id }}/form" class="btn btn-block btn-default btn-info"><span
                             class="glyphicon glyphicon-plus-sign"></span> Добавить вопрос</a>
+                <a href="/admin/mz/question/{{ form.alias }}/list" class="btn btn-block btn-default btn-default"><span
+                            class="glyphicon glyphicon-question-sign"></span> Редактировать вопросы МЗ</a>
+                <a href="/admin/mz/question/form/{{ form.alias }}" class="btn btn-block btn-default btn-default"><span
+                            class="glyphicon glyphicon-plus-sign"></span> Добавить вопрос МЗ</a>
                 <a href="/admin/medicalorganization/access/form/{{ form.id }}/"
                    class="btn btn-block btn-default btn-success"><span class="glyphicon glyphicon-wrench"></span>
                     Учавствующие МО</a>

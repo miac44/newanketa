@@ -1,0 +1,21 @@
+<div class="container">
+    <form name="form" action="/admin/mz/answer/question/{{ question.id }}/save" method="post">
+        <input type="hidden" name="question_id" value="{{ question.id }}"/>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center"><h2>Добавить ответы к вопросу</h2>
+                <p>{{ question.text }}</p></div>
+            <div class="col-md-2"></div>
+        </div>
+        {{ include ('Admin/mz/answer/formbody.html')}}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-block btn-lg btn-primary"><span
+                            class="glyphicon glyphicon-floppy-disk"></span> Сохранить
+                </button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </form>
+</div>
