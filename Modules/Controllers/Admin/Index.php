@@ -375,7 +375,7 @@ class Index extends \App\Controllers\Main
     protected function actionMZQuestionForm($data = null)
     {
         if (isset($data['id']) && !is_null($data['id'])) {
-            $this->view->question = \Modules\Models\Anketa\MZ\MZQuestion::findById($data['id']);
+            $this->view->question = \Modules\Models\Anketa\MZ\MZquestion::findById($data['id']);
         }
         $this->view->form_alias = $data['alias'];
         $this->view->content = $this->view->render('Admin\mz\question\form');
@@ -384,7 +384,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionMZQuestionSave($data, $post)
     {
-        $question = new \Modules\Models\Anketa\MZ\MZQuestion();
+        $question = new \Modules\Models\Anketa\MZ\MZquestion();
         if (isset($post['id'])) {
             $question->id = $post['id'];
         };
@@ -406,7 +406,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionMZQuestionDelete($data)
     {
-        $question = \Modules\Models\Anketa\MZ\MZQuestion::findById($data['id']);
+        $question = \Modules\Models\Anketa\MZ\MZquestion::findById($data['id']);
         $question->delete();
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
@@ -417,7 +417,7 @@ class Index extends \App\Controllers\Main
         if (is_null($data['question_id'])) {
             $this->view->display('Admin\error');
         }
-        $this->view->question = \Modules\Models\Anketa\MZ\MZQuestion::findById($data['question_id']);
+        $this->view->question = \Modules\Models\Anketa\MZ\MZquestion::findById($data['question_id']);
         $this->view->content = $this->view->render('Admin\mz\answer\form');
         $this->view->display('admin');
     }

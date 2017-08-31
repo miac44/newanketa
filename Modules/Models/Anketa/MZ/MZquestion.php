@@ -4,7 +4,7 @@ namespace Modules\Models\Anketa\MZ;
 
 use App\Model;
 
-class MZQuestion extends Model
+class MZquestion extends Model
 {
 
     const TABLE = 'mz_questions';
