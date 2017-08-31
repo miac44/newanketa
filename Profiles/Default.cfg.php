@@ -51,7 +51,6 @@ return array(
             '/admin/medicalorganization/edit/<1>' => '/Admin/MedicalOrganizationForm(id=<1>)',
             '/admin/medicalorganization/access/form/<1>' => '/Admin/MedicalOrganizationAccessForm(form_id=<1>)',
             '/admin/medicalorganization/access/form/<1>/save' => '/Admin/MedicalOrganizationAccessFormSave(form_id=<1>)',
-            '/admin/medicalorganization/count' => '/Admin/MedicalOrganizationCount',
             '/admin/form/form' => '/Admin/FormForm',
             '/admin/form/save' => '/Admin/FormSave',
             '/admin/form/list' => '/Admin/FormList',
@@ -69,17 +68,31 @@ return array(
             '/admin/action/form/<1>' => '/Admin/ActionForm(form_id=<1>)',
             '/admin/action/form/<1>/questions' => '/Admin/ActionQuestions(form_id=<1>)',
             '/admin/action/answer/<1>/save/' => '/Admin/ActionSave(answer_id=<1>)',
-            '/admin/mz/list' => '/Admin/MZList',
-            '/admin/mz/enterdata/<1>' => '/Admin/MZEnterData(id=<1>)',
-            '/admin/mz/<1>/save' => '/Admin/MZSave(id=<1>)',
+            '/stat' => '/Stat/MedicalOrganizationCount',
+            '/stat/medicalorganization/count' => '/Stat/MedicalOrganizationCount',
+            '/stat/mz/list' => '/Stat/MZList',
+            '/stat/mz/enterdata/<1>' => '/Stat/MZEnterData(id=<1>)',
+            '/stat/mz/save/<1>' => '/Stat/MZSave(id=<1>)',
             '/form/<1>' => '/Anketa/Form(id=<1>)',
             '/form/<1>/save' => '/Anketa/FormSave(id=<1>)',
         ),
-    'menu' =>
-        array(
-            'Главная' => '/admin/form/list',
-            'МО' => '/admin/medicalorganization/list',
-            'Количество' => '/admin/medicalorganization/count',
-            'Ввод с МЗ' => '/admin/mz/list',
-        ),
-);
+        'menu' =>
+            array(
+                'stat' =>
+                    array(
+                        'Главная' => '/stat',
+                        'Ввод с МЗ' => '/stat/mz/list',
+                        'Количество' => '/stat/medicalorganization/count',
+                    ),
+                    'admin' =>
+                    array(
+                        'Главная' => '/admin/form/list',
+                        'МО' => '/admin/medicalorganization/list',
+                    ),
+                    'anketa' =>
+                    array(
+                        'Главная' => '/',
+                    ),
+            ),
+
+    );
