@@ -14,7 +14,7 @@
                         <td>{{ medicalOrganization.id }}</td>
                         <td>{{ medicalOrganization.name }}</td>
                         <td>
-                            <form action="/admin/mz/enterdata/{{ medicalOrganization.id }}" method="post">
+                            <form action="/stat/mz/enterdata/{{ medicalOrganization.id }}" method="post">
                             <select name="form_id">
                                 <option selected disabled>Выберите анкету</option>
                             {% for form in forms %}

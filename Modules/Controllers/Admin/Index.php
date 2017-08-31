@@ -16,7 +16,7 @@ class Index extends \App\Controllers\Main
             die();
         }
         $menu = [];
-        foreach (\App\Config::instance()->menu as $k => $v) {
+        foreach (\App\Config::instance()->menu->admin as $k => $v) {
             $menu[$k] = $v;
         }
         $this->view->menu = $menu;

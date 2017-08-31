@@ -15,6 +15,12 @@ class Index extends \App\Controllers\Main
             \App\Http::redirect("/login");
             die();
         }
+        $menu = [];
+        foreach (\App\Config::instance()->menu->anketa as $k => $v) {
+            $menu[$k] = $v;
+        }
+        $this->view->menu = $menu;
+        $this->view->request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
 
     protected function actionIndex()
