@@ -15,7 +15,7 @@ class Form extends Model
         'alias' => ['type' => 'string'],
     ];
     const RELATIONS = [
-        'medicalOrganization' => ['type' => 'manyToMany', 'model' => '\Modules\Models\Anketa\MedicalOrganization'],
+        'medicalOrganizations' => ['type' => 'manyToMany', 'model' => '\Modules\Models\Anketa\MedicalOrganization'],
         'questions' => ['type' => 'hasMany', 'model' => '\Modules\Models\Anketa\Question'],
     ];
 

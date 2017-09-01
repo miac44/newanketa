@@ -66,5 +66,17 @@ class Index extends \App\Controllers\Main
         $this->view->display('admin');
     }
 
+    /*
+
+    тут понеслась полная хуета
+
+    */
+
+    protected function actionStacionar()
+    {
+        $this->view->form = \Modules\Models\Anketa\Form::findById(1);
+        $this->view->content = $this->view->render('Stat\stacionar');
+        $this->view->display('admin');
+    }
 
 }
