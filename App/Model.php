@@ -165,8 +165,12 @@ abstract class Model
     public function __get($k)
     {
 
-        if ($k == "count") {
+        if ($k == 'count') {
             return self::count();
+        }
+
+        if ($k == 'countRes') {
+            return count(self);
         }
 
         /*
