@@ -51,6 +51,7 @@ class Index extends \App\Controllers\Main
 
     protected function actionMZSave($data, $post)
     {
+        var_dump($post);
         foreach ($post['values'] as $k=>$v){
             $mzDeleteValues = \Modules\Models\Anketa\MZ\MZvalues::whereOneElement(['answer_id = ' => $k, 'medicalorganization_id = ' => $data['id']]);
             if (!is_null($mzDeleteValues)){
@@ -62,6 +63,14 @@ class Index extends \App\Controllers\Main
             $mzNewValues->value = $v;
             $mzNewValues->save();
         }
+        $mzcount = \Modules\Models\Anketa\MZ\MZcount::whereOneElement(['form_id = ' => $post['form_id'], 'medicalorganization_id = ' => $data['id']]);
+        if (is_null($mzcount)){
+            $mzcount = new \Modules\Models\Anketa\MZ\MZcount();
+            $mzcount->form_id = $post['form_id'];
+            $mzcount->medicalorganization_id = $data['medicalorganization_id'];
+        }
+        $mzcount->count = $post['mzcount'];
+        $mzcount->save();
         $this->view->content = $this->view->render('Admin\ok');
         $this->view->display('admin');
     }

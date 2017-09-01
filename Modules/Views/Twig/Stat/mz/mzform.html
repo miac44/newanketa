@@ -6,6 +6,7 @@
   </div>
   <div class="row">
     <form name="savedata_stacionar" action="/stat/mz/save/{{ medicalOrganization.id}}" method="POST">
+        <input type = "hidden" name="form_id" value="{{ form.id }}" />
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -15,6 +16,11 @@
           </tr>
         </thead>
         <tbody>
+            <tr>
+              <td><strong>Количество анкет</strong></td>
+              <td><input type="input" size="2" name="mzcount" value="0" /></td>
+            </tr>
+
 	{% for question in questions %}
           <tr>
             <td colspan="2"><strong>{{ question.text }}</strong></td>
