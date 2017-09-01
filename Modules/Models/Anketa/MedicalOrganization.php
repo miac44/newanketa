@@ -25,7 +25,12 @@ class MedicalOrganization extends Model
         }
 
         if ($k == 'mzcount') {
-            return \Modules\Models\Anketa\MZ\MZcount::whereOneElement(['form_id = ' => $this->form_id, 'medicalorganization_id = ' => $this->id])->count;
+            $mzcount = \Modules\Models\Anketa\MZ\MZcount::whereOneElement(['form_id = ' => $this->form_id, 'medicalorganization_id = ' => $this->id]);
+            if (!is_null($mzcount)){
+                return $mzcount->count;
+            } else {
+                return null;
+            }
         }
 
         $dynamicModel = '\\Modules\\Models\\Anketa\\Dynamic\\' . ucfirst($k);

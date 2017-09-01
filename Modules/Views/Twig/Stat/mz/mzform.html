@@ -18,7 +18,7 @@
         <tbody>
             <tr>
               <td><strong>Количество анкет</strong></td>
-              <td><input type="input" size="2" name="mzcount" value="{{ medicalOrganization.mzcount }}" /></td>
+              <td><input type="input" size="2" name="mzcount" value="{% if medicalOrganization.mzcount is not null %}{{ medicalOrganization.mzcount }}{% else %}0{% endif %}" /></td>
             </tr>
 
 	{% for question in questions %}

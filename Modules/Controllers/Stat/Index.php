@@ -67,7 +67,7 @@ class Index extends \App\Controllers\Main
         if (is_null($mzcount)){
             $mzcount = new \Modules\Models\Anketa\MZ\MZcount();
             $mzcount->form_id = $post['form_id'];
-            $mzcount->medicalorganization_id = $data['medicalorganization_id'];
+            $mzcount->medicalorganization_id = $data['id'];
         }
         $mzcount->count = $post['mzcount'];
         $mzcount->save();
