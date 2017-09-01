@@ -24,10 +24,15 @@ class MedicalOrganization extends Model
             return $res;
         }
 
+        if ($k == 'mzcount') {
+            return \Modules\Models\Anketa\MZ\MZcount::whereOneElement(['form_id = ' => $this->form_id, 'medicalorganization_id = ' => $this->id])->count;
+        }
+
         $dynamicModel = '\\Modules\\Models\\Anketa\\Dynamic\\' . ucfirst($k);
         if (class_exists($dynamicModel)){
             return count($dynamicModel::where(['medicalOrganization_id = ' => $this->id]));
         }
+
         return null;
     }
 
@@ -37,6 +42,18 @@ class MedicalOrganization extends Model
         if (true === $res) {
             return $res;
         }
+
+        if ($k == 'mzcount') {
+            return true;
+            /*
+            if (isset($this->id) && isset($this->forms_id)){
+                return true;
+            } else {
+                return false;
+            }
+            */
+        }
+
         $dynamicModel = '\\Modules\\Models\\Anketa\\Dynamic\\' . ucfirst($k);
         return class_exists($dynamicModel);
     }

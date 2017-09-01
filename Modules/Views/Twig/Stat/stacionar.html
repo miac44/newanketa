@@ -4,7 +4,7 @@
         <tr>
             <th rowspan="3" class="text-center">id</th>
             <th rowspan="3" class="text-center">МО</th>
-            <th rowspan="3" class="text-center">Кол-во (сайт + вручную + МЗ)</th>
+            <th rowspan="3" class="text-center">Кол-во (сайт + МЗ)</th>
             <th colspan="5" class="text-center">1. Показатели, характеризующие открытость и доступность информации о медицинской организации</th>
             <th rowspan="3" class="text-center info">ИТОГО по п.1</th>
             <th colspan="5" class="text-center">2. Показатели, характеризующие комфортность условий предоставления медицинских услуг и доступность их получения</th>
@@ -64,7 +64,7 @@
                     <td>{{ medicalOrganization.id }}</td>
                     <td>{{ medicalOrganization.name }}</td>
                     <td><?php echo $medicalOrganization->stacionar->getCountByType('Сайт'); ?>+<?php echo $medicalOrganization->stacionar->getCountByType('Вручную'); ?>+<?php echo $medicalOrganization->stacionar->getCountByType('mz'); ?>=<?php echo $medicalOrganization->stacionar->getCount(); ?></td>
-                    <td>-</td>
+                    <td>{{ medicalOrganization.mzcount }}</td>
                     <td class="text-center"></td>
                     <td class="text-center"></td>
                     <td class="text-center"><?php echo $medicalOrganization->stacionar->get_1_4()->points; ?></td>
