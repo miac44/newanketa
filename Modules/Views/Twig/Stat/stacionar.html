@@ -63,8 +63,8 @@
                 <tr>
                     <td>{{ medicalOrganization.id }}</td>
                     <td>{{ medicalOrganization.name }}</td>
-                    <td><?php echo $medicalOrganization->stacionar->getCountByType('Сайт'); ?>+<?php echo $medicalOrganization->stacionar->getCountByType('Вручную'); ?>+<?php echo $medicalOrganization->stacionar->getCountByType('mz'); ?>=<?php echo $medicalOrganization->stacionar->getCount(); ?></td>
-                    <td>{{ medicalOrganization.mzcount }}</td>
+                    <td>{{ medicalOrganization.stacionar ?? 0}} + {{ medicalOrganization.mzcount ?? 0 }} = {{ medicalOrganization.stacionar ?? 0 + medicalOrganization.mzcount ?? 0 }}</td>
+                    <td></td>
                     <td class="text-center"></td>
                     <td class="text-center"></td>
                     <td class="text-center"><?php echo $medicalOrganization->stacionar->get_1_4()->points; ?></td>
