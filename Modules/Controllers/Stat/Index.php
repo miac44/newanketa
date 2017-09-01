@@ -43,6 +43,7 @@ class Index extends \App\Controllers\Main
     {
         $this->view->form = \Modules\Models\Anketa\Form::findById($post['form_id']);
         $this->view->medicalOrganization = \Modules\Models\Anketa\MedicalOrganization::findById($post['medicalOrganization_id']);
+        $this->view->medicalOrganization->form_id = $post['form_id'];
         $this->view->questions = \Modules\Models\Anketa\MZ\MZquestion::where(['alias = ' => $this->view->form->alias]);
         $this->view->values = \Modules\Models\Anketa\MZ\MZvalues::getValues($this->view->form->id, $post['medicalOrganization_id']);
         $this->view->content = $this->view->render('Stat\mz\mzform');
@@ -51,7 +52,6 @@ class Index extends \App\Controllers\Main
 
     protected function actionMZSave($data, $post)
     {
-        var_dump($post);
         foreach ($post['values'] as $k=>$v){
             $mzDeleteValues = \Modules\Models\Anketa\MZ\MZvalues::whereOneElement(['answer_id = ' => $k, 'medicalorganization_id = ' => $data['id']]);
             if (!is_null($mzDeleteValues)){
