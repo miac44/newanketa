@@ -424,13 +424,13 @@ class Index extends \App\Controllers\Main
 
     protected function actionMZAnswerSave($data, $post)
     {
-        $answers = \Modules\Models\Anketa\MZ\MZAnswer::where(['mzquestion_id = ' => $data['question_id']]);
+        $answers = \Modules\Models\Anketa\MZ\MZanswer::where(['mzquestion_id = ' => $data['question_id']]);
         foreach ($answers as $answer) {
             $answer->delete();
         };
         $answers = explode("\r\n", $post['answertext']);
         foreach ($answers as $text) {
-            $answer = new \Modules\Models\Anketa\MZ\MZAnswer();
+            $answer = new \Modules\Models\Anketa\MZ\MZanswer();
             $answer->mzquestion_id = $data['question_id'];
             $answer->text = trim($text);
             if ($answer->text != "") {
