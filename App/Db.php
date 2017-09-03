@@ -33,7 +33,7 @@ class Db
         return $res;
     }
 
-    public function query($sql, $class, $substitutions = array())
+    public function query($sql, $class = stdClass, $substitutions = array())
     {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute($substitutions);
