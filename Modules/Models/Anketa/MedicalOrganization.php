@@ -33,6 +33,11 @@ class MedicalOrganization extends Model
             }
         }
 
+        $calcModel = '\\Modules\\Models\\Anketa\\Calc\\' . ucfirst($k);
+        if (class_exists($calcModel)){
+            return new $calcModel($this->id);
+        }
+
         $dynamicModel = '\\Modules\\Models\\Anketa\\Dynamic\\' . ucfirst($k);
         if (class_exists($dynamicModel)){
             return count($dynamicModel::where(['medicalOrganization_id = ' => $this->id]));
@@ -60,7 +65,17 @@ class MedicalOrganization extends Model
         }
 
         $dynamicModel = '\\Modules\\Models\\Anketa\\Dynamic\\' . ucfirst($k);
-        return class_exists($dynamicModel);
+        if (class_exists($dynamicModel)){
+            return true;
+        }
+
+        $calcModel = '\\Modules\\Models\\Anketa\\Calc\\' . ucfirst($k);
+        if (class_exists($calcModel)){
+            return true;
+        }
+
+        return false;
+
     }
 
 }

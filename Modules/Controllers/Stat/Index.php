@@ -4,6 +4,7 @@ namespace Modules\Controllers\Stat;
 
 use App\Controller;
 use App\Config;
+use Modules\Models\Anketa\Calc\CalcStacionar;
 
 class Index extends \App\Controllers\Main
 {
@@ -83,9 +84,18 @@ class Index extends \App\Controllers\Main
 
     protected function actionStacionar()
     {
+        $this->view->countby = \Modules\Models\Anketa\Calc\CalcStacionar::getCountBy(3);
         $this->view->form = \Modules\Models\Anketa\Form::findById(1);
         $this->view->content = $this->view->render('Stat\stacionar');
         $this->view->display('admin');
     }
+
+    protected function actionAmbulatoria()
+    {
+        $this->view->form = \Modules\Models\Anketa\Form::findById(1);
+        $this->view->content = $this->view->render('Stat\ambulatoria');
+        $this->view->display('admin');
+    }
+
 
 }

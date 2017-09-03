@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace Modules\Models\Anketa\Calc;
 
 use App\Model;
 
 class StatStacionar extends Model
 {
-    const TABLE = 'anketa_stacionar';
+    const TABLE = 'valuetable_stacionar';
     public $ambulance;
     public $id;
     public $countbytype = array(0);
@@ -398,7 +398,7 @@ class StatStacionar extends Model
         $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
-       
+
     }
     public function get_MZ19(){
         $sitestat = $this->getStatPerYes('row13');
@@ -406,7 +406,7 @@ class StatStacionar extends Model
         $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
-       
+
     }
 
     public function get_MZ21(){
@@ -415,7 +415,7 @@ class StatStacionar extends Model
         $stat = $this->getStatPerYES_new($sitestat,$mzstat);
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
-       
+
     }
 
     public function get_MZ23(){
@@ -436,7 +436,7 @@ class StatStacionar extends Model
         $stat->count = $count_true+$count_false;
         $stat->points = $this->getPointsFromPercentDefault($stat->getPercent());
         return $stat;
-       
+
     }
 
     public function get_MZ14() {

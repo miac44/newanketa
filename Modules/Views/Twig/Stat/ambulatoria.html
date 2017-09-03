@@ -4,7 +4,7 @@
         <tr>
             <th rowspan="3" class="text-center">id</th>
             <th rowspan="3" class="text-center">МО</th>
-            <th rowspan="3" class="text-center">Кол-во (сайт + МЗ)</th>
+            <th rowspan="3" class="text-center">Кол-во (сайт + вручную + МЗ)</th>
             <th colspan="5" class="text-center">1. Показатели, характеризующие открытость и доступность информации о медицинской организации</th>
             <th rowspan="3" class="text-center info">ИТОГО по п.1</th>
             <th colspan="5" class="text-center">2. Показатели, характеризующие комфортность условий предоставления медицинских услуг и доступность их получения</th>
@@ -13,7 +13,7 @@
             <th rowspan="3" class="text-center info">ИТОГО по п.3</th>
             <th colspan="2" class="text-center">4. Показатели, характеризующие доброжелательность, вежливость и компетентность работников МО</th>
             <th rowspan="3" class="text-center info">ИТОГО по п.4</th>
-            <th colspan="3" class="text-center">5. Показатели, характеризующие удовлетворенность оказанными услугами в МО</th>
+            <th colspan="2" class="text-center">5. Показатели, характеризующие удовлетворенность оказанными услугами в МО</th>
             <th rowspan="3" class="text-center info">ИТОГО по п.5</th>
             <th rowspan="3" class="text-center active">ИТОГО по МО</th>
         </tr>
@@ -23,19 +23,18 @@
             <th class="text-center">Наличие  и доступность на официальном сайте медицинской организации способов обратной связи с потребителями услуг (форма электронного обращения, анкета для ОКОУ) </th>
             <th class="text-center">Доля потребителей услуг, удовлетворенных качеством и полнотой информации о работе МО и порядке предоставления медицинских услуг, доступной в помещениях медицинской организации</th>
             <th class="text-center">Доля потребителей услуг, удовлетворенных качеством и полнотой информации о работе МО и порядке предоставления медицинских услуг, доступной на официальном сайте медицинской организации</th>
+            <th class="text-center">Доля потребителей услуг, которые записались на прием к врачу (получили талон с указанием времени приема и ФИО врача) при первом обращении в МО</th>
+            <th class="text-center">Средний срок ожидания приема врача с момента записи на прием (относительно сроков ожидания, установленных ТП ГГБОГМП)</th>
+            <th class="text-center">Доступность записи на прием к врачу (по телефону, с использованием сети Интернет, в регистратуре лично, лечащим врачом на приеме при посещении)</th>
             <th class="text-center">Доля потребителей услуг, удовлетворенных условиями пребывания в МО</th>
-            <th class="text-center">Доля потребителей услуг, удовлетворенных питанием в МО</th>
-            <th class="text-center">Доля потребителей услуг, у которых во время пребывания в стационаре не возникла необходимость оплачивать назначенные диагностические исследования за свой счет</th>
-            <th class="text-center">Доля потребителей услуг, у которых во время пребывания в стационаре не возникла необходимость оплачивать назначенные лекарственные средства за свой счет</th>
             <th class="text-center">Доля потребителей услуг с ограниченными возможностями здоровья, удовлетворенных условиями пребывания в МО</th>
-            <th class="text-center">Среднее время ожидания в приемном отделении МО</th>
             <th class="text-center">Средний срок ожидания диагностического исследования с момента получения направления на диагностическое исследование (относительно сроков ожидания, установленных ТП ГГБОГМП)</th>
-            <th class="text-center">Доля потребителей услуг, госпитализированных в назначенный срок плановой госпитализации</th>
+            <th class="text-center">Доля потребителей услуг, которых врач принял во время, установленное по записи</th>
+            <th class="text-center">Доля потребителей услуг, которым диагностическое исследование выполнено во время, установленное по записи</th>
             <th class="text-center">Доля потребителей услуг, положительно оценивающих доброжелательность и вежливость работников МО</th>
             <th class="text-center">Доля потребителей услуг, положительно оценивающих компетентность медицинских работников МО</th>
             <th class="text-center">Доля потребителей услуг, удовлетворенных оказанными услугами</th>
             <th class="text-center">Доля потребителей услуг, готовых рекомендовать МО для получения медицинской помощи</th>
-            <th class="text-center">Доля потребителей услуг, удовлетворенных действиями персонала МО по уходу</th>
         </tr>
         <tr>
             <th class="text-center">1.1</th>
@@ -49,47 +48,45 @@
             <th class="text-center">2.4</th>
             <th class="text-center">2.5</th>
             <th class="text-center">3.1</th>
-            <th class="text-center">3.2 (до 20 дней)</th>
+            <th class="text-center">3.2</th>
             <th class="text-center">3.3</th>
             <th class="text-center">4.1</th>
             <th class="text-center">4.2</th>
             <th class="text-center">5.1</th>
             <th class="text-center">5.2</th>
-            <th class="text-center">5.3</th>
         </tr>
         </thead>
         <tbody>
-	{% for medicalOrganization in form.medicalOrganizations %}
-                <tr>
-                    <td>{{ medicalOrganization.id }}</td>
-                    <td>{{ medicalOrganization.name }}</td>
-                    <td>{{ medicalOrganization.stacionar ?? 0}} + {{ medicalOrganization.mzcount ?? 0 }} = {{ medicalOrganization.stacionar ?? 0 + medicalOrganization.mzcount ?? 0 }}</td>
-                    <td>{{ countby }}</td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_1_4()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_1_5()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_1=$medicalOrganization->stacionar->get_1_2()->points+$medicalOrganization->stacionar->get_1_3()->points+$medicalOrganization->stacionar->get_1_4()->points+$medicalOrganization->stacionar->get_1_5()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_1()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_2()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_3()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_4()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_5()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_2=$medicalOrganization->stacionar->get_2_1()->points+$medicalOrganization->stacionar->get_2_2()->points+$medicalOrganization->stacionar->get_2_3()->points+$medicalOrganization->stacionar->get_2_4()->points+$medicalOrganization->stacionar->get_2_5()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_3_1()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_3_2()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_3_3()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_3=$medicalOrganization->stacionar->get_3_1()->points+$medicalOrganization->stacionar->get_3_2()->points+$medicalOrganization->stacionar->get_3_3()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_4_1()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_4_2()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_4=$medicalOrganization->stacionar->get_4_1()->points+$medicalOrganization->stacionar->get_4_2()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_5_1()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_5_2()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_5_3()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_5=$medicalOrganization->stacionar->get_5_1()->points+$medicalOrganization->stacionar->get_5_2()->points+$medicalOrganization->stacionar->get_5_3()->points; ?></td>
-                    <td class="text-center active"><?php echo $points_1+$points_2+$points_3+$points_4+$points_5; ?></td>
-                </tr>
-        {% endfor %}
+            {% for medicalOrganization in form.medicalOrganizations %}
+            <tr>
+                <td>{{ medicalOrganization.id }}</td>
+                <td>{{ medicalOrganization.name }}</td>
+                <td>{{ medicalOrganization.ambulatoria ?? 0}} + {{ medicalOrganization.mzcount ?? 0 }} = {{ medicalOrganization.ambulatoria ?? 0 + medicalOrganization.mzcount ?? 0 }}</td>
+                <td>-</td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_1_4 }}</td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_1_5 }}</td>
+                <td class="text-center info">{{ medicalOrganization.calcAmbulatoria.get_1_4 + medicalOrganization.calcAmbulatoria.get_1_5 }}</td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_1()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_2()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_3()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_4()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_5()->points; ?></td>
+                <td class="text-center info"><?php echo $points_2=$ambulance->ambulatoria->get_2_1()->points+$ambulance->ambulatoria->get_2_2()->points+$ambulance->ambulatoria->get_2_3()->points+$ambulance->ambulatoria->get_2_4()->points+$ambulance->ambulatoria->get_2_5()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_1()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_2()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_3()->points; ?></td>
+                <td class="text-center info"><?php echo $points_3=$ambulance->ambulatoria->get_3_1()->points+$ambulance->ambulatoria->get_3_2()->points+$ambulance->ambulatoria->get_3_3()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_4_1()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_4_2()->points; ?></td>
+                <td class="text-center info"><?php echo $points_4=$ambulance->ambulatoria->get_4_1()->points+$ambulance->ambulatoria->get_4_2()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_5_1()->points; ?></td>
+                <td class="text-center"><?php echo $ambulance->ambulatoria->get_5_2()->points; ?></td>
+                <td class="text-center info"><?php echo $points_5=$ambulance->ambulatoria->get_5_1()->points+$ambulance->ambulatoria->get_5_2()->points; ?></td>
+                <td class="text-center active"><?php echo $points_1+$points_2+$points_3+$points_4+$points_5; ?></td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
