@@ -68,12 +68,17 @@
                 <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_1_4 }}</td>
                 <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_1_5 }}</td>
                 <td class="text-center info">{{ medicalOrganization.calcAmbulatoria.get_1_4 + medicalOrganization.calcAmbulatoria.get_1_5 }}</td>
-                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_1()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_2()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_3()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_4()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->ambulatoria->get_2_5()->points; ?></td>
-                <td class="text-center info"><?php echo $points_2=$ambulance->ambulatoria->get_2_1()->points+$ambulance->ambulatoria->get_2_2()->points+$ambulance->ambulatoria->get_2_3()->points+$ambulance->ambulatoria->get_2_4()->points+$ambulance->ambulatoria->get_2_5()->points; ?></td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_2_1 }}</td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_2_2 }}</td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_2_3 }}</td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_2_4 }}</td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_2_5 }}</td>
+                {% if medicalOrganization.calcAmbulatoria.get_2_5 matches '/^\\d+$/' %}
+                  {% set get_2 = medicalOrganization.calcAmbulatoria.get_2_1 + medicalOrganization.calcAmbulatoria.get_2_2 + medicalOrganization.calcAmbulatoria.get_2_3 + medicalOrganization.calcAmbulatoria.get_2_4 + medicalOrganization.calcAmbulatoria.get_2_5 %}
+                {% else %}
+                    {% set get_2 = medicalOrganization.calcAmbulatoria.get_2_1 + medicalOrganization.calcAmbulatoria.get_2_2 + medicalOrganization.calcAmbulatoria.get_2_3 + medicalOrganization.calcAmbulatoria.get_2_4 + medicalOrganization.calcAmbulatoria.get_2_5 %}
+                {% endif %}
+                <td class="text-center info">{{ get_2 }} </td>
                 <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_1()->points; ?></td>
                 <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_2()->points; ?></td>
                 <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_3()->points; ?></td>
