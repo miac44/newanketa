@@ -3,6 +3,7 @@
 namespace Modules\Models\Anketa\Traits;
 
 use \App\Db;
+use \Modules\Models\Anketa\Calc\Stat;
 
 trait CalcMethod
 {
@@ -71,28 +72,13 @@ trait CalcMethod
     public function getSiteScore($question_id)
     {
         $statValues = $this->getSiteCount($question_id);
-        $value = (current($statValues))->value;
-        if (mb_strtolower($value) == 'да') {
-            return $this->getScoresFromPercentDefault(current($statValues)->percent);
-        }
-        if (mb_strtolower($value) == 'нет') {
-            return $this->getScoresFromPercentDefault(100 - (int)current($statValues)->percent);
-        }
-        return false;
+        return $this->getScoresDefault($statValues);
     }
 
     public function getMZScore($mzquestion_id)
     {
         $statValues = $this->getMZCount($mzquestion_id);
-        $value = (current($statValues))->value;
-
-        if (mb_strtolower($value) == 'да') {
-            return $this->getScoresFromPercentDefault(current($statValues)->percent);
-        }
-        if (mb_strtolower($value) == 'нет') {
-            return $this->getScoresFromPercentDefault(100 - (int)current($statValues)->percent);
-        }
-        return false;
+        return $this->getScoresDefault($statValues);
     }
 
     public function getTotalCount($question_id, $mzquestion_id)
@@ -101,7 +87,9 @@ trait CalcMethod
         return $this->getPercentFromValue($statValues);
 
     }
-
+/*
+Прописываем в массив данных проценты соответствующие
+*/
     public function getPercentFromValue($statValues)
     {
         $sum = 0;
@@ -125,12 +113,16 @@ trait CalcMethod
     public function getScoresDefault($statValues)
     {
         $value = (current($statValues))->value;
-
+        $stat = new Stat();
         if (mb_strtolower($value) == 'да') {
-            return $this->getScoresFromPercentDefault(current($statValues)->percent);
+            $stat->value = current($statValues)->percent;
+            $stat->score = $this->getScoresFromPercentDefault($this->value);
+            return $stat;
         }
         if (mb_strtolower($value) == 'нет') {
-            return $this->getScoresFromPercentDefault(100 - (int)current($statValues)->percent);
+            $stat->value = 100 - (int)current($statValues)->percent;
+            $stat->score = $this->getScoresFromPercentDefault($this->value);
+            return $stat;
         }
         return null;
     }
