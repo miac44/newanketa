@@ -38,7 +38,7 @@ class CalcDonorstvo extends Model
             $sum += $value->count;
         }
         if ($sum ==0){
-            $time = 99999;
+            $time = 0;
         } else {
             $time = (
                     $arr['3 часа'] * 3 +
