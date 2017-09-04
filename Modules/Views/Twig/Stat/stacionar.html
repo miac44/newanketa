@@ -59,35 +59,60 @@
         </tr>
         </thead>
         <tbody>
-	{% for medicalOrganization in form.medicalOrganizations %}
+    	{% for medicalOrganization in form.medicalOrganizations %}
+            {% set get_1_4 = medicalOrganization.calcStacionar.get_1_4 %}
+            {% set get_1_5 = medicalOrganization.calcStacionar.get_1_5 %}
+            {% set get_2_1 = medicalOrganization.calcStacionar.get_2_1 %}
+            {% set get_2_2 = medicalOrganization.calcStacionar.get_2_2 %}
+            {% set get_2_3 = medicalOrganization.calcStacionar.get_2_3 %}
+            {% set get_2_4 = medicalOrganization.calcStacionar.get_2_4 %}
+            {% set get_2_5 = medicalOrganization.calcStacionar.get_2_5 %}
+            {% set get_3_1 = medicalOrganization.calcStacionar.get_3_1 %}
+            {% set get_3_2 = medicalOrganization.calcStacionar.get_3_2 %}
+            {% set get_3_3 = medicalOrganization.calcStacionar.get_3_3 %}
+            {% set get_4_1 = medicalOrganization.calcStacionar.get_4_1 %}
+            {% set get_4_2 = medicalOrganization.calcStacionar.get_4_2 %}
+            {% set get_5_1 = medicalOrganization.calcStacionar.get_5_1 %}
+            {% set get_5_2 = medicalOrganization.calcStacionar.get_5_2 %}
+            {% set get_5_3 = medicalOrganization.calcStacionar.get_5_3 %}
+            {% set get_1 = get_1_4 + get_1_5 %}
+            {% if get_2_5 matches '/^\\d+$/' %}
+              {% set get_2 = get_2_1 + get_2_2 + get_2_3 + get_2_4 + get_2_5 %}
+            {% else %}
+                {% set get_2 = get_2_1 + get_2_2 + get_2_3 + get_2_4 %}
+            {% endif %}
+            {% set get_3 = get_3_1 + get_3_2 + get_3_3 %}
+            {% set get_4 = get_4_1 + get_4_2 %}
+            {% set get_5 = get_5_1 + get_5_2 + get_5_3 %}
+            {% set get_total = get_1 + get_2 + get_3 + get_4 + get_5 %}
                 <tr>
                     <td>{{ medicalOrganization.id }}</td>
                     <td>{{ medicalOrganization.name }}</td>
                     <td>{{ medicalOrganization.stacionar ?? 0}} + {{ medicalOrganization.mzcount ?? 0 }} = {{ medicalOrganization.stacionar ?? 0 + medicalOrganization.mzcount ?? 0 }}</td>
-                    <td>{{ countby }}</td>
+                    <td>-</td>
                     <td class="text-center"></td>
                     <td class="text-center"></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_1_4()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_1_5()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_1=$medicalOrganization->stacionar->get_1_2()->points+$medicalOrganization->stacionar->get_1_3()->points+$medicalOrganization->stacionar->get_1_4()->points+$medicalOrganization->stacionar->get_1_5()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_1()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_2()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_3()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_4()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_2_5()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_2=$medicalOrganization->stacionar->get_2_1()->points+$medicalOrganization->stacionar->get_2_2()->points+$medicalOrganization->stacionar->get_2_3()->points+$medicalOrganization->stacionar->get_2_4()->points+$medicalOrganization->stacionar->get_2_5()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_3_1()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_3_2()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_3_3()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_3=$medicalOrganization->stacionar->get_3_1()->points+$medicalOrganization->stacionar->get_3_2()->points+$medicalOrganization->stacionar->get_3_3()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_4_1()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_4_2()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_4=$medicalOrganization->stacionar->get_4_1()->points+$medicalOrganization->stacionar->get_4_2()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_5_1()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_5_2()->points; ?></td>
-                    <td class="text-center"><?php echo $medicalOrganization->stacionar->get_5_3()->points; ?></td>
-                    <td class="text-center info"><?php echo $points_5=$medicalOrganization->stacionar->get_5_1()->points+$medicalOrganization->stacionar->get_5_2()->points+$medicalOrganization->stacionar->get_5_3()->points; ?></td>
-                    <td class="text-center active"><?php echo $points_1+$points_2+$points_3+$points_4+$points_5; ?></td>
+                    <td class="text-center">{{ get_1_4 }}</td>
+                    <td class="text-center">{{ get_1_5 }}</td>
+                    <td class="text-center info">{{ get_1 }}</td>
+                    <td class="text-center">{{ get_2_1 }}</td>
+                    <td class="text-center">{{ get_2_2 }}</td>
+                    <td class="text-center">{{ get_2_3 }}</td>
+                    <td class="text-center">{{ get_2_4 }}</td>
+                    <td class="text-center">{{ get_2_5 }}</td>
+                    <td class="text-center info">{{ get_2 }}</td>
+                    <td class="text-center">{{ get_3_1 }}</td>
+                    <td class="text-center">{{ get_3_2 }}</td>
+                    <td class="text-center">{{ get_3_3 }}</td>
+                    <td class="text-center info">{{ get_3 }}</td>
+                    <td class="text-center">{{ get_4_1 }}</td>
+                    <td class="text-center">{{ get_4_2 }}</td>
+                    <td class="text-center info">{{ get_4 }}</td>
+                    <td class="text-center">{{ get_5_1 }}</td>
+                    <td class="text-center">{{ get_5_2 }}</td>
+                    <td class="text-center">{{ get_5_3 }}</td>
+                    <td class="text-center info">{{ get_5 }}</td>
+                    <td class="text-center active">{{ get_total }}</td>
                 </tr>
         {% endfor %}
         </tbody>

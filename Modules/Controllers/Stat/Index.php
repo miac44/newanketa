@@ -84,7 +84,6 @@ class Index extends \App\Controllers\Main
 
     protected function actionStacionar()
     {
-        $this->view->countby = \Modules\Models\Anketa\Calc\CalcStacionar::getCountBy(3);
         $this->view->form = \Modules\Models\Anketa\Form::findById(1);
         $this->view->content = $this->view->render('Stat\stacionar');
         $this->view->display('admin');
