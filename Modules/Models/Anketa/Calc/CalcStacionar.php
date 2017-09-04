@@ -4,6 +4,7 @@ namespace Modules\Models\Anketa\Calc;
 
 use App\Model;
 use App\Db;
+use \Modules\Models\Anketa\Calc;
 
 class CalcStacionar extends Model
 {
@@ -65,12 +66,15 @@ class CalcStacionar extends Model
                 $invalidCount = $value->count;
             }
         }
+        $stat = new Stat();
         if ($allCount==0) {
-            return '';
+            return $stat;
         } else {
             $percent = round(100/$allCount*$invalidCount);
         }
-        return $this->getScoresFromPercentDefault($percent);
+        $stat->value = "100/". $allCount . "x" . $invalidCount . "=" .  $percent . "%" ;
+        $stat->score = $this->getScoresFromPercentDefault($percent);
+        return $stat;
     }
 
     public function get_3_1()
@@ -79,6 +83,7 @@ class CalcStacionar extends Model
         $statPercent = $this->getPercentFromValue($statValues);
         $arr = [];
         $sum = 0;
+        $stat = new Stat();
         foreach ($statValues as $value) {
             $key = trim($value->value);
             $arr[$key] = $value->count;
@@ -101,8 +106,9 @@ class CalcStacionar extends Model
                     $arr['от 45 мин до 60 мин'] * 45 +
                     $arr['от 30 мин до 45 мин'] * 30 +
                     $arr['менее 30 мин'] * 29)/$sum;
+                    $time = round($time);
+                    $stat->value = "Новая версия. ". $time  . "мин";
         }
-        $time = round($time);
         $scores = 0;
         if ($time<120) $scores++;
         if ($time<75) $scores++;
@@ -124,16 +130,18 @@ class CalcStacionar extends Model
                     $arr['до 60 мин'] * 59 +
                     $arr['до 90 мин'] * 89 +
                     $arr['90 мин и более'] * 90) / $sum;
+                    $time = round($time);
+                    $stat->value .= " Старая версия " . $time  . "мин";
+
         }
-        $time = round($time);
         $scores_old = 0;
         if ($time<120) $scores_old++;
         if ($time<75) $scores_old++;
         if ($time<60) $scores_old++;
         if ($time<45) $scores_old++;
         if ($time<30) $scores_old++;
-        return round(($scores+$scores_old)/2);
-
+        $stat->score = round(($scores+$scores_old)/2);
+        return $stat;
     }
 
     public function get_3_2()
@@ -142,6 +150,7 @@ class CalcStacionar extends Model
         $statPercent = $this->getPercentFromValue($statValues);
         $arr = [];
         $sum = 0;
+        $stat = new Stat();
         foreach ($statValues as $value) {
             $key = trim($value->value);
             $arr[$key] = $value->count;
@@ -157,16 +166,18 @@ class CalcStacionar extends Model
                     $arr['27 календарных дней'] * 27 +
                     $arr['15 календарных дней'] * 15 +
                     $arr['меньше 15 календарных дней'] * 14) / $sum;
+                    $time = round($time);
+                    $stat->value = $time . " дней";
 
         }
-        $time = round($time);
         $scores = 0;
         if ($time<=30) $scores++;
         if ($time<=29) $scores++;
         if ($time<=28) $scores++;
         if ($time<=27) $scores++;
         if ($time<=15) $scores++;
-        return $scores;
+        $stat->score = $scores;
+        return $stat;
     }
 
     public function get_3_3()

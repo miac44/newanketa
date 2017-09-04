@@ -115,29 +115,30 @@ trait CalcMethod
         $value = (current($statValues))->value;
         $stat = new Stat();
         if (mb_strtolower($value) == 'да') {
-            $stat->value = current($statValues)->percent;
-            $stat->score = $this->getScoresFromPercentDefault($this->value);
-            return $stat;
+            $stat->value = current($statValues)->percent . "%";
+            $stat->score = $this->getScoresFromPercentDefault($stat->value);
         }
         if (mb_strtolower($value) == 'нет') {
-            $stat->value = 100 - (int)current($statValues)->percent;
-            $stat->score = $this->getScoresFromPercentDefault($this->value);
-            return $stat;
+            $stat->value = 100 - (int)current($statValues)->percent . "%";
+            $stat->score = $this->getScoresFromPercentDefault($stat->value);
         }
-        return null;
+        return $stat;
     }
 
     public function getScoresReverse($statValues)
     {
         $value = (current($statValues))->value;
-
+        $stat = new Stat();
         if (mb_strtolower($value) == 'нет') {
-            return $this->getScoresFromPercentReverse(current($statValues)->percent);
+            $stat->value = current($statValues)->percent . "%";
+            $stat->score = $this->getScoresFromPercentReverse($stat->value);
         }
         if (mb_strtolower($value) == 'да') {
-            return $this->getScoresFromPercentReverse(100 - (int)current($statValues)->percent);
+            $stat->value = 100 - (int)current($statValues)->percent . "%";
+            $stat->score = $this->getScoresFromPercentReverse($stat->value);
+            return $stat;
         }
-        return null;
+        return $stat;
     }
 
     private function getScoresFromPercentReverse($percent)
