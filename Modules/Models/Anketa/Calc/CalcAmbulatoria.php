@@ -33,6 +33,7 @@ class CalcAmbulatoria extends Model
         $statPercent = $this->getPercentFromValue($statValues);
         $arr = [];
         $sum = 0;
+        $stat = new Stat();
         foreach ($statValues as $value) {
             $key = trim($value->value);
             $arr[$key] = $value->count;
@@ -48,9 +49,9 @@ class CalcAmbulatoria extends Model
                     $arr['12 календарных дней'] * 12 +
                     $arr['13 календарных дней'] * 13 +
                     $arr['14 календарных дней'] * 14) / $sum;
-
+                    $time = round($time);
+                    $stat->value = '1вопрос. ' . $time . 'дн.';
         }
-        $time = round($time);
 
         $scores = 0;
         if ($time<=14) $scores++;
@@ -65,6 +66,7 @@ class CalcAmbulatoria extends Model
         $statPercent = $this->getPercentFromValue($statValues);
         $arr = [];
         $sum = 0;
+
         foreach ($statValues as $value) {
             $key = trim($value->value);
             $arr[$key] = $value->count;
@@ -80,23 +82,26 @@ class CalcAmbulatoria extends Model
                     $arr['6 часов'] * 6 +
                     $arr['3 часа'] * 3 +
                     $arr['менее 1 часа'] * 1) / $sum;
-
+                    $time = round($time);
+                    $stat->value = '2вопрос. ' . $time . 'ч.';
         }
-        $time = round($time);
         $scores_hour = 0;
         if ($time<=24) $scores_hour++;
         if ($time<=23) $scores_hour++;
         if ($time<=22) $scores_hour++;
         if ($time<=21) $scores_hour++;
         if ($time<=12) $scores_hour++;
-        return round(($scores+$scores_hour)/2);
+        $stat->score = round(($scores+$scores_hour)/2);
+        return $stat;
     }
 
     public function get_2_3()
     {
 
         $values = $this->getTotalCount(46, 26);
-        return count($values);
+        $stat = new Stat();
+        $stat->score = count($values);
+        return $stat;
     }
 
     public function get_2_4()
@@ -120,12 +125,16 @@ class CalcAmbulatoria extends Model
                 $invalidCount = $value->count;
             }
         }
+        $stat = new Stat();
         if ($allCount==0) {
-            return '';
+            return $stat;
         } else {
+
             $percent = round(100/$allCount*$invalidCount);
         }
-        return $this->getScoresFromPercentDefault($percent);
+        $stat->value = "100/". $allCount . "x" . $invalidCount . "=" .  $percent . "%" ;
+        $stat->score = $this->getScoresFromPercentDefault($percent);
+        return $stat;
     }
 
     public function get_3_1()
@@ -134,6 +143,7 @@ class CalcAmbulatoria extends Model
         $statPercent = $this->getPercentFromValue($statValues);
         $arr = [];
         $sum = 0;
+        $stat = new Stat();
         foreach ($statValues as $value) {
             $key = trim($value->value);
             $arr[$key] = $value->count;
@@ -149,9 +159,9 @@ class CalcAmbulatoria extends Model
                     $arr['12 календарных дней'] * 12 +
                     $arr['13 календарных дней'] * 13 +
                     $arr['14 календарных дней'] * 14) / $sum;
-
+                    $time = round($time);
+                    $stat->value = '1вопрос. ' . $time . "дн.";
         }
-        $time = round($time);
         $scores = 0;
         if ($time<=10) $scores++;
         if ($time<=9) $scores++;
@@ -178,16 +188,17 @@ class CalcAmbulatoria extends Model
                     $arr['27 календарных дней'] * 27 +
                     $arr['15 календарных дней'] * 15 +
                     $arr['менее 15 календарных дней'] * 14) / $sum;
+                    $time = round($time);
+                    $stat->value .= '2вопрос. ' . $time . "дн.";
         }
-        $time = round($time);
         $scores_hour = 0;
         if ($time<=30) $scores_hour++;
         if ($time<=29) $scores_hour++;
         if ($time<=28) $scores_hour++;
         if ($time<=27) $scores_hour++;
         if ($time<=16) $scores_hour++;
-        return round(($scores+$scores_hour)/2);
-
+        $stat->score = round(($scores+$scores_hour)/2);
+        return $stat;
     }
 
     public function get_3_2()
