@@ -76,13 +76,13 @@
                 {% if medicalOrganization.calcAmbulatoria.get_2_5 matches '/^\\d+$/' %}
                   {% set get_2 = medicalOrganization.calcAmbulatoria.get_2_1 + medicalOrganization.calcAmbulatoria.get_2_2 + medicalOrganization.calcAmbulatoria.get_2_3 + medicalOrganization.calcAmbulatoria.get_2_4 + medicalOrganization.calcAmbulatoria.get_2_5 %}
                 {% else %}
-                    {% set get_2 = medicalOrganization.calcAmbulatoria.get_2_1 + medicalOrganization.calcAmbulatoria.get_2_2 + medicalOrganization.calcAmbulatoria.get_2_3 + medicalOrganization.calcAmbulatoria.get_2_4 + medicalOrganization.calcAmbulatoria.get_2_5 %}
+                    {% set get_2 = medicalOrganization.calcAmbulatoria.get_2_1 + medicalOrganization.calcAmbulatoria.get_2_2 + medicalOrganization.calcAmbulatoria.get_2_3 + medicalOrganization.calcAmbulatoria.get_2_4 %}
                 {% endif %}
                 <td class="text-center info">{{ get_2 }} </td>
-                <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_1()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_2()->points; ?></td>
-                <td class="text-center"><?php echo $ambulance->ambulatoria->get_3_3()->points; ?></td>
-                <td class="text-center info"><?php echo $points_3=$ambulance->ambulatoria->get_3_1()->points+$ambulance->ambulatoria->get_3_2()->points+$ambulance->ambulatoria->get_3_3()->points; ?></td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_3_1 }}</td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_3_2 }}</td>
+                <td class="text-center">{{ medicalOrganization.calcAmbulatoria.get_3_3 }}</td>
+                <td class="text-center info">{{ medicalOrganization.calcAmbulatoria.get_3_1 + medicalOrganization.calcAmbulatoria.get_3_2 + medicalOrganization.calcAmbulatoria.get_3_3 }}
                 <td class="text-center"><?php echo $ambulance->ambulatoria->get_4_1()->points; ?></td>
                 <td class="text-center"><?php echo $ambulance->ambulatoria->get_4_2()->points; ?></td>
                 <td class="text-center info"><?php echo $points_4=$ambulance->ambulatoria->get_4_1()->points+$ambulance->ambulatoria->get_4_2()->points; ?></td>

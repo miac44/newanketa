@@ -73,7 +73,8 @@ class CalcAmbulatoria extends Model
     }
 
 
-    public function getSiteScore($question_id){
+    public function getSiteScore($question_id)
+    {
         $statValues = $this->getSiteCount($question_id);
         $value = (current($statValues))->value;
         if (mb_strtolower($value) == 'да') {
@@ -85,7 +86,8 @@ class CalcAmbulatoria extends Model
         return false;
     }
 
-    public function getMZScore($mzquestion_id){
+    public function getMZScore($mzquestion_id)
+    {
         $statValues = $this->getMZCount($mzquestion_id);
         $value = (current($statValues))->value;
 
@@ -120,6 +122,13 @@ class CalcAmbulatoria extends Model
     public function getTotalScore($question_id, $mzquestion_id)
     {
         $statValues = $this->getTotalCount($question_id, $mzquestion_id);
+        $statValues = $this->getPercentFromValue($statValues);
+        return $this->getScoresDefault($statValues);
+
+    }
+
+    public function getScoresDefault($statValues)
+    {
         $value = (current($statValues))->value;
 
         if (mb_strtolower($value) == 'да') {
@@ -128,10 +137,11 @@ class CalcAmbulatoria extends Model
         if (mb_strtolower($value) == 'нет') {
             return $this->getScoresFromPercentDefault(100 - (int)current($statValues)->percent);
         }
-        return false;
+        return null;
     }
 
-    public function joinValues($arrValue1, $arrValue2){
+    public function joinValues($arrValue1, $arrValue2)
+    {
         if (count($arrValue2)>0){
             foreach ($arrValue1 as $value) {
                 foreach ($arrValue2 as $key=>$mzvalue) {
@@ -233,5 +243,53 @@ class CalcAmbulatoria extends Model
         }
         return $this->getScoresFromPercentDefault($percent);
     }
+
+    public function get_3_1()
+    {
+        $statValues = $this->joinValues($this->getSiteCount(59), $this->getMZCount(39));
+        $statPercent = $this->getPercentFromValue($statValues);
+        $arr = [];
+        $sum = 0;
+        foreach ($statValues as $value) {
+            $key = trim($value->value);
+            $arr[$key] = $value->count;
+            $sum += $value->count;
+        }
+        if ($sum ==0){
+            $time = 99999;
+        } else {
+            $time = (
+                    $arr['менее 7 календарных дней'] * 6 +
+                    $arr['7 календарных дней'] * 7 +
+                    $arr['10 календарных дней'] * 10 +
+                    $arr['12 календарных дней'] * 12 +
+                    $arr['13 календарных дней'] * 13 +
+                    $arr['14 календарных дней'] * 14) / $sum;
+
+        }
+
+        $scores = 0;
+        if ($time<=10) $scores++;
+        if ($time<=9) $scores++;
+        if ($time<=8) $scores++;
+        if ($time<=7) $scores++;
+        if ($time<=5) $scores++;
+        return $scores;
+    }
+
+    public function get_3_2()
+    {
+        return $this->getTotalScore(48,28);
+    }
+
+    public function get_3_3()
+    {
+        $statValues = $this->joinValues($this->getSiteCount(60), $this->getMZCount(40));
+        for ($i = 41; $i <= 52; $i++) {
+            $statValues = $this->joinValues($statValues, $this->getMZCount($i));
+        }
+        return $this->getScoresDefault($this->getPercentFromValue($statValues));
+    }
+
 
 }
