@@ -11,19 +11,49 @@ class CalcAmbulatoria extends Model
 
     const TABLE = 'valuetable_ambulatoria';
 
+    public function getTotalScoreWith240($question_id, $mzquestion_id, $question240_id)
+    {
+        $statValues = $this->joinValues($this->getSiteCount($question_id), $this->getMZCount($mzquestion_id));
+        $statValues = $this->joinValues($statValues, $this->get240Count($question240_id));
+        $statValues = $this->getPercentFromValue($statValues);
+        return $this->getScoresDefault($statValues);
+    }
+
+    public function get240Count($question_id)
+    {
+        $db = Db::instance();
+        $question_row = 'question_' . $question_id;
+        $sql = "SELECT $question_row AS value, count($question_row) AS count FROM valuetable_ambulatoria_240 WHERE medicalOrganization_id =" . $this->medicalOrganization->id . " GROUP BY $question_row";
+        $statClasses = $db->query($sql);
+        $sum = 0;
+        foreach ($statClasses as $k=>$statClass) {
+            if ($statClass->value == "") {
+                unset($statClasses[$k]);
+            } else {
+                $sum += (int)$statClass->count;
+                $statClass->value = mb_strtolower($statClass->value);
+            }
+        }
+        foreach ($statClasses as $k=>$statClass) {
+            $statClass->percent=(int)round($statClass->count / $sum * 100);
+        }
+        return $statClasses;
+
+    }
+
     public function get_1_4()
     {
-        return $this->getTotalScore(50,30);
+        return $this->getTotalScoreWith240(50, 30, 89);
     }
 
     public function get_1_5()
     {
-        return $this->getTotalScore(52,32);
+        return $this->getTotalScoreWith240(52,32, 87);
     }
 
     public function get_2_1()
     {
-        return $this->getTotalScore(45,25);
+        return $this->getTotalScoreWith240(45,25,80);
     }
 
     public function get_2_2()
@@ -97,22 +127,26 @@ class CalcAmbulatoria extends Model
 
     public function get_2_3()
     {
-
-        $values = $this->getTotalCount(46, 26);
+        $statValues = $this->joinValues($this->getSiteCount(46), $this->getMZCount(26));
+        $statValues = $this->joinValues($statValues, $this->get240Count(81));
         $stat = new Stat();
-        $stat->score = count($values);
+        $stat->score = count($statValues);
         return $stat;
     }
 
     public function get_2_4()
     {
-        return $this->getTotalScore(53,33);
+        return $this->getTotalScoreWith240(53,33,84);
     }
 
     public function get_2_5()
     {
-        $all = $this->getTotalCount(55, 35);
-        $invalid = $this->getTotalCount(57, 37);
+        $statValues = $this->joinValues($this->getSiteCount(55), $this->getMZCount(35));
+        $statValues = $this->joinValues($statValues, $this->get240Count(76));
+        $all = $statValues;
+        $statValues = $this->joinValues($this->getSiteCount(57), $this->getMZCount(37));
+        $statValues = $this->joinValues($statValues, $this->get240Count(78));
+        $invalid = $statValues;
         foreach ($all as $key => $value) {
             if ($value->value == 'да'){
                 $allCount = $value->count;
@@ -203,7 +237,7 @@ class CalcAmbulatoria extends Model
 
     public function get_3_2()
     {
-        return $this->getTotalScore(48,28);
+        return $this->getTotalScoreWith240(48,28,83);
     }
 
     public function get_3_3()
@@ -223,6 +257,8 @@ class CalcAmbulatoria extends Model
         $statValues = $this->joinValues($statValues, $this->getMZCount(12));
         $statValues = $this->joinValues($statValues, $this->getMZCount(17));
         $statValues = $this->joinValues($statValues, $this->getMZCount(21));
+        $statValues = $this->joinValues($statValues, $this->get240Count(92));
+        $statValues = $this->joinValues($statValues, $this->get240Count(95));
         $statValues = $this->getPercentFromValue($statValues);
         return $this->getScoresDefault($statValues);
     }
@@ -235,18 +271,20 @@ class CalcAmbulatoria extends Model
         $statValues = $this->joinValues($statValues, $this->getMZCount(13));
         $statValues = $this->joinValues($statValues, $this->getMZCount(18));
         $statValues = $this->joinValues($statValues, $this->getMZCount(22));
+        $statValues = $this->joinValues($statValues, $this->get240Count(93));
+        $statValues = $this->joinValues($statValues, $this->get240Count(97));
         $statValues = $this->getPercentFromValue($statValues);
         return $this->getScoresDefault($statValues);
     }
 
     public function get_5_1()
     {
-        return $this->getTotalScore(63,53);
+        return $this->getTotalScoreWith240(63,53,101);
     }
 
     public function get_5_2()
     {
-        return $this->getTotalScore(64,54);
+        return $this->getTotalScoreWith240(64,54,102);
     }
 
 }
