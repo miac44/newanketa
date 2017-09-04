@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <select size="1" id="medicalOrganization" title="Выберите район" name="medicalOrganization" required>
                 <option>Выберите медицинскую организацию</option>
-                {% for medicalOrganization in form.medicalOrganization %}
+                {% for medicalOrganization in form.medicalOrganizations %}
                     <option value="medicalOrganization_{{ medicalOrganization.id }}"
                             class="region_{{ medicalOrganization.region_id }}">{{ medicalOrganization.name }}</option>
                 {% endfor %}

@@ -8,6 +8,7 @@
                 {% endfor %}
                 {% endif %}
             </ul>
+            {% if user.name is defined %}
             <div class="dropdown pull-right">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <span class="glyphicon glyphicon-user"></span> {{ user.name }}<span class="caret"></span>
@@ -20,6 +21,7 @@
                     <li><a href="/logout">Выйти</a></li>
                 </ul>
             </div>
+            {% endif %}
         </div>
     </div>
 </nav>
