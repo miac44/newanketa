@@ -54,11 +54,11 @@
             {% set get_4_2 = medicalOrganization.calcDonorstvo.get_4_2 %}
             {% set get_5_1 = medicalOrganization.calcDonorstvo.get_5_1 %}
             {% set get_5_2 = medicalOrganization.calcDonorstvo.get_5_2 %}
-            {% set get_1 = get_1_4 + get_1_5 %}
-            {% set get_2 = get_2_4 %}
-            {% set get_3 = get_3_1 %}
-            {% set get_4 = get_4_1 + get_4_2 %}
-            {% set get_5 = get_5_1 + get_5_2 %}
+            {% set get_1 = get_1_4.score + get_1_5.score %}
+            {% set get_2 = get_2_4.score %}
+            {% set get_3 = get_3_1.score %}
+            {% set get_4 = get_4_1.score + get_4_2.score %}
+            {% set get_5 = get_5_1.score + get_5_2.score %}
             {% set get_total = get_1 + get_2 + get_3 + get_4 + get_5 %}
             <tr>
                 <td>{{ medicalOrganization.id }}</td>
@@ -67,18 +67,18 @@
                 <td>-</td>
                 <td class="text-center"></td>
                 <td class="text-center"></td>
-                <td class="text-center">{{ get_1_4 }}</td>
-                <td class="text-center">{{ get_1_5 }}</td>
+                <td class="text-center">{{ get_1_4.score }} ({{ get_1_4.value?? 'нет информации' }})</td>
+                <td class="text-center">{{ get_1_5.score }} ({{ get_1_5.value?? 'нет информации' }})</td>
                 <td class="text-center info">{{ get_1 }}</td>
-                <td class="text-center">{{ get_2_4 }}</td>
+                <td class="text-center">{{ get_2_4.score }} ({{ get_2_4.value?? 'нет информации' }})</td>
                 <td class="text-center info">{{ get_2 }} </td>
-                <td class="text-center">{{ get_3_1 }}</td>
-                <td class="text-center info">{{ get_3 }}
-                <td class="text-center">{{ get_4_1 }}</td>
-                <td class="text-center">{{ get_4_2 }}</td>
-                <td class="text-center info">{{ get_4 }}
-                <td class="text-center">{{ get_5_1 }}</td>
-                <td class="text-center">{{ get_5_2 }}</td>
+                <td class="text-center">{{ get_3_1.score }} ({{ get_3_1.value?? 'нет информации' }})</td>
+                <td class="text-center info">{{ get_3 }}</td>
+                <td class="text-center">{{ get_4_1.score }} ({{ get_4_1.value?? 'нет информации' }})</td>
+                <td class="text-center">{{ get_4_2.score }} ({{ get_4_2.value?? 'нет информации' }})</td>
+                <td class="text-center info">{{ get_4 }}</td>
+                <td class="text-center">{{ get_5_1.score }} ({{ get_5_1.value?? 'нет информации' }})</td>
+                <td class="text-center">{{ get_5_2.score }} ({{ get_5_2.value?? 'нет информации' }})</td>
                 <td class="text-center info">{{ get_5 }}
                 <td class="text-center active">{{ get_total }}</td>
             </tr>

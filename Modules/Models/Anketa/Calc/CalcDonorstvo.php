@@ -30,6 +30,7 @@ class CalcDonorstvo extends Model
     {
         $statValues = $this->joinValues($this->getSiteCount(168), $this->getMZCount(104));
         $statPercent = $this->getPercentFromValue($statValues);
+        $stat = new Stat();
         $arr = [];
         $sum = 0;
         foreach ($statValues as $value) {
@@ -45,17 +46,18 @@ class CalcDonorstvo extends Model
                     $arr['2 часа'] * 2 +
                     $arr['1 час'] * 1 +
                     $arr['менее 1 часа'] * 0.9) / $sum;
-
+                    $time = round($time);
+                    $stat->value = $time . "ч.";
         }
-        $time = round($time);
         if ($time<1){
-            return null;
+            return $stat;
         }
         $scores = 0;
         if ($time>=3) $scores++;
         if ($time>=2) $scores++;
         if ($time>=1) $scores++;
-        return $scores;
+        $stat->score = $scores;
+        return $stat;
 
     }
     public function get_4_1()
