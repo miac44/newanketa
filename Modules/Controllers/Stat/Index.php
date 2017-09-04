@@ -91,8 +91,15 @@ class Index extends \App\Controllers\Main
 
     protected function actionAmbulatoria()
     {
-        $this->view->form = \Modules\Models\Anketa\Form::findById(1);
+        $this->view->form = \Modules\Models\Anketa\Form::findById(2);
         $this->view->content = $this->view->render('Stat\ambulatoria');
+        $this->view->display('admin');
+    }
+
+    protected function actionDonorstvo()
+    {
+        $this->view->form = \Modules\Models\Anketa\Form::findById(7);
+        $this->view->content = $this->view->render('Stat\donorstvo');
         $this->view->display('admin');
     }
 

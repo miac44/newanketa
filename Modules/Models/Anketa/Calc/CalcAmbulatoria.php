@@ -29,9 +29,9 @@ class CalcAmbulatoria extends Model
     {
         $db = Db::instance();
         $question_row = 'question_' . $question_id;
-        $sql = "SELECT $question_row AS value, count($question_row) AS count FROM " . self::TABLE . " WHERE medicalOrganization_id =:medicalOrganization_id GROUP BY $question_row";
-        $substitutions = ['medicalOrganization_id' => $this->medicalOrganization->id];
-        $statClasses = $db->query($sql,stdClass, $substitutions);
+        $sql = "SELECT $question_row AS value, count($question_row) AS count FROM " . self::TABLE . " WHERE medicalOrganization_id =" . $this->medicalOrganization->id . " GROUP BY $question_row";
+        $arr = [];
+        $statClasses = $db->query($sql);
         $sum = 0;
         foreach ($statClasses as $k=>$statClass) {
             if ($statClass->value == "") {
@@ -50,7 +50,7 @@ class CalcAmbulatoria extends Model
 
     public function getMZCount($question_id)
     {
-        $mzquestion = \Modules\Models\Anketa\MZ\MZQuestion::findById($question_id);
+        $mzquestion = \Modules\Models\Anketa\MZ\MZquestion::findById($question_id);
         $sum = 0;
         $arr = [];
         foreach ($mzquestion->answers as $answer) {
